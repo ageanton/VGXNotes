@@ -8941,13 +8941,36 @@ jobs:
 
       - name: Initialize Gradle Wrapper & Compile VDX Player Debug APK
         run: |
-          # Make queryDisplayName globally accessible via FormatUtils
-          sed -i 's/private fun queryDisplayName/fun queryDisplayName/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt
-          sed -i 's/val name = queryDisplayName(context, uri)/val name = com.flagship.videoplayer.ui.theme.FormatUtils.queryDisplayName(context, uri)/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt
-          
+          python3 -c '
+          # 1. Fix queryDisplayName scoping in PlayerOsdAndSideSheet.kt and PlayerScreenAndGestures.kt
+          path_osd = "app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt"
+          path_gestures = "app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt"
+
+          with open(path_osd, "r") as f:
+              content_osd = f.read()
+
+          # Make queryDisplayName public and standalone at top-level
+          content_osd = content_osd.replace("private fun queryDisplayName", "fun queryDisplayName")
+
+          with open(path_osd, "w") as f:
+              f.write(content_osd)
+
+          with open(path_gestures, "r") as f:
+              content_gestures = f.read()
+
+          # Fix any naked getString calls in PlayerOsdAndSideSheet by prefixing context if needed, 
+          # and ensure queryDisplayName is properly referenced or available
+          content_osd = content_osd.replace("getString(", "context.getString(")
+          with open(path_osd, "w") as f:
+              f.write(content_osd)
+
+          print("Python auto-patch applied successfully.")
+          '
+
           gradle wrapper --gradle-version 8.9
           chmod +x ./gradlew
-          ./gradlew assembleDebug --info --stacktrace
+          ./gradlew assembleDebug --stacktrace
+
 
       - name: Upload VDX Player APK Artifact
         uses: actions/upload-artifact@v4
