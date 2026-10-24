@@ -4707,7 +4707,7 @@ jobs:
               }
           }
           EOF
-cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/engine/MediaEngineAndProcessors.kt
+          cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/engine/MediaEngineAndProcessors.kt
           package com.flagship.videoplayer.engine
 
           import android.content.Context
@@ -6200,7 +6200,7 @@ cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/engine/MediaEngineAndP
               }
           }
           EOF
-cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt
+          cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt
           package com.flagship.videoplayer.ui.player
 
           import android.app.Activity
