@@ -8941,7 +8941,8 @@ jobs:
 
       - name: Initialize Gradle Wrapper & Compile VDX Player Debug APK
         run: |
-          gradle wrapper --gradle-version 8.9
+         sed -i 's/private fun queryDisplayName/fun queryDisplayName/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt
+         gradle wrapper --gradle-version 8.9
           chmod +x ./gradlew
           ./gradlew assembleDebug --stacktrace
 
