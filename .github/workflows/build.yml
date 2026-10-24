@@ -1179,7 +1179,7 @@ jobs:
               }
           }
           EOF
-cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/theme/ThemeAndTypography.kt
+          cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/theme/ThemeAndTypography.kt
           package com.flagship.videoplayer.ui.theme
 
           import android.app.Activity
