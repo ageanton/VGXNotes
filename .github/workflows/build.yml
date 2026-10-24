@@ -2289,7 +2289,7 @@ jobs:
               }
           }
           EOF
-cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/home/HomeLibraryAndTrashScreen.kt
+          cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/ui/home/HomeLibraryAndTrashScreen.kt
           package com.flagship.videoplayer.ui.home
 
           import android.Manifest
