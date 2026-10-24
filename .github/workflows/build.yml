@@ -8942,29 +8942,42 @@ jobs:
       - name: Initialize Gradle Wrapper & Compile VDX Player Debug APK
         run: |
           python3 -c '
-          # 1. Fix queryDisplayName scoping in PlayerOsdAndSideSheet.kt and PlayerScreenAndGestures.kt
           path_osd = "app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt"
-          path_gestures = "app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt"
-
           with open(path_osd, "r") as f:
-              content_osd = f.read()
+              code = f.read()
 
-          # Make queryDisplayName public and standalone at top-level
-          content_osd = content_osd.replace("private fun queryDisplayName", "fun queryDisplayName")
+          # Strip any broken queryDisplayName fragments
+          if "queryDisplayName" in code:
+              code = code[:code.find("private fun queryDisplayName") if "private fun queryDisplayName" in code else code.find("fun queryDisplayName")]
+
+          # Ensure required imports are present
+          imports = """
+          import android.content.Context
+          import android.net.Uri
+          import android.provider.OpenableColumns
+          import android.database.Cursor
+          """
+          if "import android.provider.OpenableColumns" not in code:
+              pkg_idx = code.find("package ")
+              eol = code.find("\n", pkg_idx)
+              code = code[:eol+1] + imports + code[eol+1:]
+
+          # Append correct queryDisplayName function
+          correct_func = """
+          fun queryDisplayName(context: android.content.Context, uri: android.net.Uri): String? {
+              return runCatching {
+                  context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                      val idx = cursor.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME)
+                      if (idx >= 0 && cursor.moveToFirst()) cursor.getString(idx) else null
+                  }
+              }.getOrNull()
+          }
+          """
+          code += correct_func
 
           with open(path_osd, "w") as f:
-              f.write(content_osd)
-
-          with open(path_gestures, "r") as f:
-              content_gestures = f.read()
-
-          # Fix any naked getString calls in PlayerOsdAndSideSheet by prefixing context if needed, 
-          # and ensure queryDisplayName is properly referenced or available
-          content_osd = content_osd.replace("getString(", "context.getString(")
-          with open(path_osd, "w") as f:
-              f.write(content_osd)
-
-          print("Python auto-patch applied successfully.")
+              f.write(code)
+          print("Successfully patched PlayerOsdAndSideSheet.kt imports and queryDisplayName.")
           '
 
           gradle wrapper --gradle-version 8.9
