@@ -8941,10 +8941,13 @@ jobs:
 
       - name: Initialize Gradle Wrapper & Compile VDX Player Debug APK
         run: |
-         sed -i 's/private fun queryDisplayName/fun queryDisplayName/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt
-         gradle wrapper --gradle-version 8.9
+          # Make queryDisplayName globally accessible via FormatUtils
+          sed -i 's/private fun queryDisplayName/fun queryDisplayName/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerOsdAndSideSheet.kt
+          sed -i 's/val name = queryDisplayName(context, uri)/val name = com.flagship.videoplayer.ui.theme.FormatUtils.queryDisplayName(context, uri)/g' app/src/main/java/com/flagship/videoplayer/ui/player/PlayerScreenAndGestures.kt
+          
+          gradle wrapper --gradle-version 8.9
           chmod +x ./gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --info --stacktrace
 
       - name: Upload VDX Player APK Artifact
         uses: actions/upload-artifact@v4
