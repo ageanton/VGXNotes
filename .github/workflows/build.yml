@@ -1637,6 +1637,7 @@ jobs:
           import kotlinx.coroutines.launch
           import kotlinx.coroutines.withContext
           import java.io.File
+          import java.util.Locale
 
           // ============================================================================
           // 1. INSTANT-LOAD BACKGROUND DELTA SCANNER (ZERO STARTUP DELAY)
