@@ -163,8 +163,8 @@ jobs:
                   applicationId = "com.flagship.videoplayer"
                   minSdk = 26
                   targetSdk = 35
-                  versionCode = 300
-                  versionName = "3.0.0-VDX"
+                  versionCode = 400
+                  versionName = "4.0.0-VDX"
 
                   vectorDrawables {
                       useSupportLibrary = true
@@ -267,25 +267,74 @@ jobs:
           </resources>
           EOF
 
-          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_round.xml
+          # Generate 5 Round Launcher Icon Variants for Dynamic App Icon Color Switching
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_blue.xml
           <?xml version="1.0" encoding="utf-8"?>
           <vector xmlns:android="http://schemas.android.com/apk/res/android"
               android:width="108dp"
               android:height="108dp"
               android:viewportWidth="108"
               android:viewportHeight="108">
-              <path
-                  android:fillColor="#111111"
-                  android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
-              <path
-                  android:fillColor="#4D9CFF"
-                  android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
-              <path
-                  android:fillColor="#111111"
-                  android:pathData="M43,34 L77,54 L43,74 Z"/>
-              <path
-                  android:fillColor="#FFFFFF"
-                  android:pathData="M40,31 L74,51 L40,71 Z"/>
+              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#4D9CFF" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#FFFFFF" android:pathData="M40,31 L74,51 L40,71 Z"/>
+          </vector>
+          EOF
+
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_crimson.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <vector xmlns:android="http://schemas.android.com/apk/res/android"
+              android:width="108dp"
+              android:height="108dp"
+              android:viewportWidth="108"
+              android:viewportHeight="108">
+              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#E53935" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#FFFFFF" android:pathData="M40,31 L74,51 L40,71 Z"/>
+          </vector>
+          EOF
+
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_gold.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <vector xmlns:android="http://schemas.android.com/apk/res/android"
+              android:width="108dp"
+              android:height="108dp"
+              android:viewportWidth="108"
+              android:viewportHeight="108">
+              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#FFD83D" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#FFFFFF" android:pathData="M40,31 L74,51 L40,71 Z"/>
+          </vector>
+          EOF
+
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_chalk.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <vector xmlns:android="http://schemas.android.com/apk/res/android"
+              android:width="108dp"
+              android:height="108dp"
+              android:viewportWidth="108"
+              android:viewportHeight="108">
+              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#EFECE6" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#455A64" android:pathData="M40,31 L74,51 L40,71 Z"/>
+          </vector>
+          EOF
+
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_onyx.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <vector xmlns:android="http://schemas.android.com/apk/res/android"
+              android:width="108dp"
+              android:height="108dp"
+              android:viewportWidth="108"
+              android:viewportHeight="108">
+              <path android:fillColor="#5CE1E6" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#16181E" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#000000" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#5CE1E6" android:pathData="M40,31 L74,51 L40,71 Z"/>
           </vector>
           EOF
 
@@ -311,8 +360,8 @@ jobs:
 
               <application
                   android:allowBackup="true"
-                  android:icon="@drawable/ic_vdx_round"
-                  android:roundIcon="@drawable/ic_vdx_round"
+                  android:icon="@drawable/ic_vdx_blue"
+                  android:roundIcon="@drawable/ic_vdx_blue"
                   android:label="VDX Player"
                   android:supportsRtl="true"
                   android:usesCleartextTraffic="true"
@@ -325,10 +374,6 @@ jobs:
                       android:supportsPictureInPicture="true"
                       android:launchMode="singleTask"
                       android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden|uiMode">
-                      <intent-filter>
-                          <action android:name="android.intent.action.MAIN" />
-                          <category android:name="android.intent.category.LAUNCHER" />
-                      </intent-filter>
                       <intent-filter>
                           <action android:name="android.intent.action.VIEW" />
                           <category android:name="android.intent.category.DEFAULT" />
@@ -350,6 +395,78 @@ jobs:
                           <data android:mimeType="application/dash+xml" />
                       </intent-filter>
                   </activity>
+
+                  <!-- Activity Aliases for Dynamic App Icon Color Switching -->
+                  <activity-alias
+                      android:name=".LauncherBlue"
+                      android:enabled="true"
+                      android:exported="true"
+                      android:icon="@drawable/ic_vdx_blue"
+                      android:roundIcon="@drawable/ic_vdx_blue"
+                      android:label="VDX Player"
+                      android:targetActivity=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity-alias>
+
+                  <activity-alias
+                      android:name=".LauncherCrimson"
+                      android:enabled="false"
+                      android:exported="true"
+                      android:icon="@drawable/ic_vdx_crimson"
+                      android:roundIcon="@drawable/ic_vdx_crimson"
+                      android:label="VDX Player"
+                      android:targetActivity=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity-alias>
+
+                  <activity-alias
+                      android:name=".LauncherGold"
+                      android:enabled="false"
+                      android:exported="true"
+                      android:icon="@drawable/ic_vdx_gold"
+                      android:roundIcon="@drawable/ic_vdx_gold"
+                      android:label="VDX Player"
+                      android:targetActivity=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity-alias>
+
+                  <activity-alias
+                      android:name=".LauncherChalk"
+                      android:enabled="false"
+                      android:exported="true"
+                      android:icon="@drawable/ic_vdx_chalk"
+                      android:roundIcon="@drawable/ic_vdx_chalk"
+                      android:label="VDX Player"
+                      android:targetActivity=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity-alias>
+
+                  <activity-alias
+                      android:name=".LauncherOnyx"
+                      android:enabled="false"
+                      android:exported="true"
+                      android:icon="@drawable/ic_vdx_onyx"
+                      android:roundIcon="@drawable/ic_vdx_onyx"
+                      android:label="VDX Player"
+                      android:targetActivity=".MainActivity">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity-alias>
+
               </application>
           </manifest>
           EOF
@@ -357,9 +474,15 @@ jobs:
           cat << 'EOF' > app/src/main/java/com/flagship/videoplayer/data/DatabaseAndModels.kt
           package com.flagship.videoplayer.data
 
+          import android.content.ComponentName
           import android.content.ContentValues
           import android.content.Context
+          import android.content.pm.PackageManager
+          import android.media.MediaExtractor
+          import android.media.MediaFormat
+          import android.media.MediaMetadataRetriever
           import android.net.Uri
+          import android.os.Build
           import android.provider.MediaStore
           import androidx.datastore.core.DataStore
           import androidx.datastore.preferences.core.*
@@ -374,28 +497,37 @@ jobs:
           import java.io.FileInputStream
           import java.io.FileOutputStream
           import java.security.MessageDigest
+          import java.util.Locale
 
           enum class AppThemeMode(val label: String) {
               OCEAN("Ocean"),
-              BUBBLEGUM("Bubblegum"),
+              CRIMSON("Crimson red"),
+              TAINTED_CHALK("Tainted white"),
               BANANA("Banana"),
-              LAVENDER("Lavender"),
               TERRACOTTA("Terracotta"),
               SLATE_DUSK("Slate dusk"),
               MIDNIGHT("Midnight")
+          }
+
+          enum class AppIconColor(val label: String, val aliasName: String, val previewHex: Long) {
+              BLUE("Ocean blue", "com.flagship.videoplayer.LauncherBlue", 0xFF4D9CFF),
+              CRIMSON("Crimson red", "com.flagship.videoplayer.LauncherCrimson", 0xFFE53935),
+              GOLD("Gold yellow", "com.flagship.videoplayer.LauncherGold", 0xFFFFD83D),
+              CHALK("Tainted white", "com.flagship.videoplayer.LauncherChalk", 0xFFEFECE6),
+              ONYX("Onyx cyan", "com.flagship.videoplayer.LauncherOnyx", 0xFF16181E)
           }
 
           enum class LibraryViewMode(val label: String) {
               FOLDER("Folders"),
               RICH_LIST("List"),
               COMFORT_GRID("Grid"),
-              COMPACT_GRID("Compact grid")
+              COMPACT_GRID("Compact")
           }
 
           enum class FolderContentViewMode(val label: String) {
               RICH_LIST("List"),
               COMFORT_GRID("Grid"),
-              COMPACT_GRID("Compact grid")
+              COMPACT_GRID("Compact")
           }
 
           enum class LibrarySortField(val label: String) {
@@ -407,9 +539,9 @@ jobs:
           }
 
           enum class DecoderMode(val badge: String, val description: String) {
-              HW("HW", "Hardware MediaCodec"),
-              HW_PLUS("HW+", "Hybrid Hardware + FFmpeg"),
-              SW("SW", "FFmpeg Software Decoder")
+              HW("HW", "Pure Hardware MediaCodec"),
+              HW_PLUS("HW+", "Hardware Video + FFmpeg Audio"),
+              SW("SW", "Full Software CPU Decoding")
           }
 
           enum class AspectRatioMode(val label: String) {
@@ -451,6 +583,169 @@ jobs:
               DECODER("DECODER", "Decoder selector"),
               PIP("PIP", "Picture-in-Picture"),
               STATS("STATS", "Codec & renderer stats")
+          }
+
+          data class VideoTechnicalMetadata(
+              val videoCodec: String,
+              val audioCodec: String,
+              val bitrateFormatted: String,
+              val frameRateFormatted: String,
+              val hdrFormatDetails: String,
+              val colorSpaceDetails: String,
+              val isHdr: Boolean
+          )
+
+          object VideoTechnicalProber {
+              suspend fun probeVideoFile(context: Context, video: LocalVideoItem): VideoTechnicalMetadata =
+                  withContext(Dispatchers.IO) {
+                      var vCodec = video.extensionBadge
+                      var aCodec = "None / Unknown"
+                      var bitrateBps = 0L
+                      var fps = 0f
+                      var colorTransfer = 0
+                      var colorStandard = 0
+                      var profile = 0
+
+                      runCatching {
+                          val extractor = MediaExtractor()
+                          try {
+                              if (File(video.filePath).exists()) {
+                                  extractor.setDataSource(video.filePath)
+                              } else {
+                                  extractor.setDataSource(context, video.contentUri, null)
+                              }
+                              for (i in 0 until extractor.trackCount) {
+                                  val fmt = extractor.getTrackFormat(i)
+                                  val mime = fmt.getString(MediaFormat.KEY_MIME) ?: ""
+                                  if (mime.startsWith("video/")) {
+                                      vCodec = formatMimeToCodecName(mime)
+                                      if (fmt.containsKey(MediaFormat.KEY_BIT_RATE)) {
+                                          bitrateBps = fmt.getInteger(MediaFormat.KEY_BIT_RATE).toLong()
+                                      }
+                                      if (fmt.containsKey(MediaFormat.KEY_FRAME_RATE)) {
+                                          fps = fmt.getInteger(MediaFormat.KEY_FRAME_RATE).toFloat()
+                                      }
+                                      if (fmt.containsKey(MediaFormat.KEY_COLOR_TRANSFER)) {
+                                          colorTransfer = fmt.getInteger(MediaFormat.KEY_COLOR_TRANSFER)
+                                      }
+                                      if (fmt.containsKey(MediaFormat.KEY_COLOR_STANDARD)) {
+                                          colorStandard = fmt.getInteger(MediaFormat.KEY_COLOR_STANDARD)
+                                      }
+                                      if (fmt.containsKey(MediaFormat.KEY_PROFILE)) {
+                                          profile = fmt.getInteger(MediaFormat.KEY_PROFILE)
+                                      }
+                                  } else if (mime.startsWith("audio/")) {
+                                      val ch = if (fmt.containsKey(MediaFormat.KEY_CHANNEL_COUNT)) fmt.getInteger(MediaFormat.KEY_CHANNEL_COUNT) else 2
+                                      aCodec = "${formatMimeToCodecName(mime)} (${ch}ch)"
+                                  }
+                              }
+                          } finally {
+                              extractor.release()
+                          }
+                      }
+
+                      if (bitrateBps <= 0L) {
+                          runCatching {
+                              val retriever = MediaMetadataRetriever()
+                              try {
+                                  if (File(video.filePath).exists()) {
+                                      retriever.setDataSource(video.filePath)
+                                  } else {
+                                      retriever.setDataSource(context, video.contentUri)
+                                  }
+                                  retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE)?.toLongOrNull()?.let {
+                                      bitrateBps = it
+                                  }
+                              } finally {
+                                  retriever.release()
+                              }
+                          }
+                      }
+
+                      if (bitrateBps <= 0L && video.durationMs > 0L && video.sizeBytes > 0L) {
+                          bitrateBps = (video.sizeBytes * 8L * 1000L) / video.durationMs
+                      }
+
+                      val bitrateStr = when {
+                          bitrateBps >= 1_000_000L -> String.format(Locale.US, "%.2f Mbps", bitrateBps / 1_000_000.0)
+                          bitrateBps >= 1_000L -> String.format(Locale.US, "%d kbps", bitrateBps / 1_000L)
+                          else -> "Variable"
+                      }
+
+                      val fpsStr = if (fps > 0f) String.format(Locale.US, "%.2f fps", fps) else "Standard"
+
+                      val isDolbyVision = vCodec.contains("Dolby Vision", ignoreCase = true)
+                      val isPqHdr10 = colorTransfer == MediaFormat.COLOR_TRANSFER_ST2084
+                      val isHlg = colorTransfer == MediaFormat.COLOR_TRANSFER_HLG
+                      val isBt2020 = colorStandard == MediaFormat.COLOR_STANDARD_BT2020
+                      val isHdr = isDolbyVision || isPqHdr10 || isHlg || isBt2020
+
+                      val hdrDetails = when {
+                          isDolbyVision -> "Dolby Vision (10-bit Dynamic HDR)"
+                          isPqHdr10 && profile >= 4096 -> "HDR10+ / PQ (SMPTE ST 2084 • 10-bit)"
+                          isPqHdr10 -> "HDR10 (SMPTE ST 2084 PQ • 10-bit)"
+                          isHlg -> "HLG (Hybrid Log-Gamma HDR • 10-bit)"
+                          isBt2020 -> "Wide Gamut BT.2020 HDR"
+                          else -> "SDR (Standard Dynamic Range • Rec.709 8-bit)"
+                      }
+
+                      val colorSpaceStr = when (colorStandard) {
+                          MediaFormat.COLOR_STANDARD_BT2020 -> "BT.2020 Wide Gamut"
+                          MediaFormat.COLOR_STANDARD_BT709 -> "Rec.709 Standard"
+                          else -> if (isHdr) "BT.2020" else "Rec.709"
+                      }
+
+                      VideoTechnicalMetadata(
+                          videoCodec = vCodec,
+                          audioCodec = aCodec,
+                          bitrateFormatted = bitrateStr,
+                          frameRateFormatted = fpsStr,
+                          hdrFormatDetails = hdrDetails,
+                          colorSpaceDetails = colorSpaceStr,
+                          isHdr = isHdr
+                      )
+                  }
+
+              private fun formatMimeToCodecName(mime: String): String {
+                  val lower = mime.lowercase()
+                  return when {
+                      lower.contains("hevc") || lower.contains("h265") -> "HEVC / H.265"
+                      lower.contains("avc") || lower.contains("h264") -> "AVC / H.264"
+                      lower.contains("dolby-vision") || lower.contains("dvhe") -> "Dolby Vision HEVC"
+                      lower.contains("av01") || lower.contains("av1") -> "AV1"
+                      lower.contains("vp9") -> "VP9"
+                      lower.contains("vp8") -> "VP8"
+                      lower.contains("mp4a") || lower.contains("aac") -> "AAC"
+                      lower.contains("ac3") -> "Dolby AC-3"
+                      lower.contains("eac3") -> "Dolby Digital Plus (E-AC3)"
+                      lower.contains("flac") -> "FLAC Lossless"
+                      lower.contains("opus") -> "Opus"
+                      lower.contains("vorbis") -> "Vorbis"
+                      lower.contains("dts") -> "DTS Coherent Acoustics"
+                      else -> mime.substringAfter('/').uppercase()
+                  }
+              }
+          }
+
+          object AppLauncherIconManager {
+              fun applyLauncherIcon(context: Context, selectedColor: AppIconColor) {
+                  val pm = context.packageManager
+                  AppIconColor.entries.forEach { option ->
+                      val component = ComponentName(context.packageName, option.aliasName)
+                      val newState = if (option == selectedColor) {
+                          PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                      } else {
+                          PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                      }
+                      runCatching {
+                          pm.setComponentEnabledSetting(
+                              component,
+                              newState,
+                              PackageManager.DONT_KILL_APP
+                          )
+                      }
+                  }
+              }
           }
 
           data class LocalVideoItem(
@@ -548,6 +843,7 @@ jobs:
               val lastPlayedAtMs: Long = 0L,
               val playbackSpeed: Float = 1.0f,
               val decoderMode: String = DecoderMode.HW_PLUS.name,
+              val forceSdrToneMapping: Boolean = false,
               val zoomScale: Float = 1.0f,
               val panOffsetX: Float = 0f,
               val panOffsetY: Float = 0f,
@@ -737,7 +1033,7 @@ jobs:
                   TrashedVideoEntity::class,
                   NetworkStreamHistoryEntity::class
               ],
-              version = 3,
+              version = 4,
               exportSchema = false
           )
           abstract class FlagshipDatabase : RoomDatabase() {
@@ -752,7 +1048,7 @@ jobs:
                           val instance = Room.databaseBuilder(
                               context.applicationContext,
                               FlagshipDatabase::class.java,
-                              "vdx_flagship_player_v3.db"
+                              "vdx_flagship_player_v4.db"
                           ).fallbackToDestructiveMigration().build()
                           INSTANCE = instance
                           instance
@@ -941,10 +1237,11 @@ jobs:
               }
           }
 
-          private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "vdx_player_prefs_v3")
+          private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "vdx_player_prefs_v4")
 
           data class AppPreferencesState(
               val themeMode: AppThemeMode = AppThemeMode.OCEAN,
+              val appIconColor: AppIconColor = AppIconColor.BLUE,
               val libraryViewMode: LibraryViewMode = LibraryViewMode.RICH_LIST,
               val folderContentViewMode: FolderContentViewMode = FolderContentViewMode.RICH_LIST,
               val sortField: LibrarySortField = LibrarySortField.DATE_MODIFIED,
@@ -960,6 +1257,9 @@ jobs:
               val subtitleFontSizeSp: Float = 22f,
               val subtitleTextColorArgb: Int = 0xFFFFFFFF.toInt(),
               val subtitleBgOpacity: Float = 0.35f,
+              val subtitleDropShadowRadius: Float = 5.0f,
+              val subtitleDropShadowOffsetY: Float = 2.0f,
+              val subtitleDropShadowOpacity: Float = 0.85f,
               val subtitleBold: Boolean = true,
               val subtitleBottomMarginDp: Float = 28f
           ) {
@@ -974,7 +1274,8 @@ jobs:
 
           class AppPreferencesRepository(private val context: Context) {
               private object Keys {
-                  val THEME_MODE = stringPreferencesKey("theme_mode_v3")
+                  val THEME_MODE = stringPreferencesKey("theme_mode_v4")
+                  val APP_ICON_COLOR = stringPreferencesKey("app_icon_color")
                   val VIEW_MODE = stringPreferencesKey("library_view_mode")
                   val FOLDER_CONTENT_VIEW_MODE = stringPreferencesKey("folder_content_view_mode")
                   val SORT_FIELD = stringPreferencesKey("sort_field")
@@ -986,10 +1287,13 @@ jobs:
                   val BG_AUDIO = booleanPreferencesKey("bg_audio")
                   val TOP_LEFT_SLOTS = stringPreferencesKey("top_left_slots_csv")
                   val TOP_RIGHT_SLOTS = stringPreferencesKey("top_right_slots_csv")
-                  val SUB_FONT = stringPreferencesKey("sub_font_v3")
+                  val SUB_FONT = stringPreferencesKey("sub_font_v4")
                   val SUB_SIZE_SP = floatPreferencesKey("sub_size_sp")
                   val SUB_COLOR = intPreferencesKey("sub_color_argb")
                   val SUB_BG_OPACITY = floatPreferencesKey("sub_bg_opacity")
+                  val SUB_SHADOW_RADIUS = floatPreferencesKey("sub_shadow_radius")
+                  val SUB_SHADOW_OFFSET_Y = floatPreferencesKey("sub_shadow_offset_y")
+                  val SUB_SHADOW_OPACITY = floatPreferencesKey("sub_shadow_opacity")
                   val SUB_BOLD = booleanPreferencesKey("sub_bold")
                   val SUB_BOTTOM_MARGIN = floatPreferencesKey("sub_bottom_margin")
               }
@@ -1001,6 +1305,9 @@ jobs:
                           themeMode = runCatching {
                               AppThemeMode.valueOf(prefs[Keys.THEME_MODE] ?: AppThemeMode.OCEAN.name)
                           }.getOrDefault(AppThemeMode.OCEAN),
+                          appIconColor = runCatching {
+                              AppIconColor.valueOf(prefs[Keys.APP_ICON_COLOR] ?: AppIconColor.BLUE.name)
+                          }.getOrDefault(AppIconColor.BLUE),
                           libraryViewMode = runCatching {
                               LibraryViewMode.valueOf(prefs[Keys.VIEW_MODE] ?: LibraryViewMode.RICH_LIST.name)
                           }.getOrDefault(LibraryViewMode.RICH_LIST),
@@ -1026,6 +1333,9 @@ jobs:
                           subtitleFontSizeSp = prefs[Keys.SUB_SIZE_SP] ?: 22f,
                           subtitleTextColorArgb = prefs[Keys.SUB_COLOR] ?: 0xFFFFFFFF.toInt(),
                           subtitleBgOpacity = prefs[Keys.SUB_BG_OPACITY] ?: 0.35f,
+                          subtitleDropShadowRadius = prefs[Keys.SUB_SHADOW_RADIUS] ?: 5.0f,
+                          subtitleDropShadowOffsetY = prefs[Keys.SUB_SHADOW_OFFSET_Y] ?: 2.0f,
+                          subtitleDropShadowOpacity = prefs[Keys.SUB_SHADOW_OPACITY] ?: 0.85f,
                           subtitleBold = prefs[Keys.SUB_BOLD] ?: true,
                           subtitleBottomMarginDp = prefs[Keys.SUB_BOTTOM_MARGIN] ?: 28f
                       )
@@ -1033,6 +1343,11 @@ jobs:
 
               suspend fun setThemeMode(mode: AppThemeMode) {
                   context.dataStore.edit { it[Keys.THEME_MODE] = mode.name }
+              }
+
+              suspend fun setAppIconColor(iconColor: AppIconColor) {
+                  context.dataStore.edit { it[Keys.APP_ICON_COLOR] = iconColor.name }
+                  AppLauncherIconManager.applyLauncherIcon(context, iconColor)
               }
 
               suspend fun setLibraryViewMode(mode: LibraryViewMode) {
@@ -1107,6 +1422,9 @@ jobs:
                   sizeSp: Float? = null,
                   colorArgb: Int? = null,
                   bgOpacity: Float? = null,
+                  shadowRadius: Float? = null,
+                  shadowOffsetY: Float? = null,
+                  shadowOpacity: Float? = null,
                   bold: Boolean? = null,
                   bottomMarginDp: Float? = null
               ) {
@@ -1115,6 +1433,9 @@ jobs:
                       sizeSp?.let { prefs[Keys.SUB_SIZE_SP] = it.coerceIn(14f, 42f) }
                       colorArgb?.let { prefs[Keys.SUB_COLOR] = it }
                       bgOpacity?.let { prefs[Keys.SUB_BG_OPACITY] = it.coerceIn(0f, 1f) }
+                      shadowRadius?.let { prefs[Keys.SUB_SHADOW_RADIUS] = it.coerceIn(0f, 16f) }
+                      shadowOffsetY?.let { prefs[Keys.SUB_SHADOW_OFFSET_Y] = it.coerceIn(0f, 8f) }
+                      shadowOpacity?.let { prefs[Keys.SUB_SHADOW_OPACITY] = it.coerceIn(0f, 1f) }
                       bold?.let { prefs[Keys.SUB_BOLD] = it }
                       bottomMarginDp?.let { prefs[Keys.SUB_BOTTOM_MARGIN] = it.coerceIn(8f, 120f) }
                   }
@@ -1308,20 +1629,36 @@ jobs:
                       quaternary = Color(0xFFFF8A3D),
                       isDark = false
                   )
-                  AppThemeMode.BUBBLEGUM -> VdxThemeTokens(
-                      mode = AppThemeMode.BUBBLEGUM,
-                      paper = Color(0xFFF3E8FF),
+                  AppThemeMode.CRIMSON -> VdxThemeTokens(
+                      mode = AppThemeMode.CRIMSON,
+                      paper = Color(0xFFFFEBEE),
                       card = Color(0xFFFFFFFF),
-                      ink = Color(0xFF111111),
-                      muted = Color(0xFF55554F),
+                      ink = Color(0xFF141111),
+                      muted = Color(0xFF5C4B4B),
                       onColor = Color(0xFF111111),
-                      tickerBg = Color(0xFF111111),
-                      onTicker = Color(0xFFF3E8FF),
+                      tickerBg = Color(0xFF141111),
+                      onTicker = Color(0xFFFFEBEE),
                       tickerSlash = Color(0xFF8A8A85),
-                      primary = Color(0xFFFF7AB6),
-                      secondary = Color(0xFFB79CFF),
-                      tertiary = Color(0xFFFFE45C),
-                      quaternary = Color(0xFF7CE0B5),
+                      primary = Color(0xFFFF5252),
+                      secondary = Color(0xFFFF8A80),
+                      tertiary = Color(0xFFFFCA28),
+                      quaternary = Color(0xFF80CBC4),
+                      isDark = false
+                  )
+                  AppThemeMode.TAINTED_CHALK -> VdxThemeTokens(
+                      mode = AppThemeMode.TAINTED_CHALK,
+                      paper = Color(0xFFF3F0E8),
+                      card = Color(0xFFFAF8F3),
+                      ink = Color(0xFF1C1B18),
+                      muted = Color(0xFF636059),
+                      onColor = Color(0xFF111111),
+                      tickerBg = Color(0xFF1C1B18),
+                      onTicker = Color(0xFFF3F0E8),
+                      tickerSlash = Color(0xFF8A8A85),
+                      primary = Color(0xFFD6CFC2),
+                      secondary = Color(0xFFAEC6CF),
+                      tertiary = Color(0xFFE6D7A8),
+                      quaternary = Color(0xFFC5D6C0),
                       isDark = false
                   )
                   AppThemeMode.BANANA -> VdxThemeTokens(
@@ -1338,22 +1675,6 @@ jobs:
                       secondary = Color(0xFF8EC5FF),
                       tertiary = Color(0xFFFF9CCB),
                       quaternary = Color(0xFF7CE0B5),
-                      isDark = false
-                  )
-                  AppThemeMode.LAVENDER -> VdxThemeTokens(
-                      mode = AppThemeMode.LAVENDER,
-                      paper = Color(0xFFEDE7F6),
-                      card = Color(0xFFFFFFFF),
-                      ink = Color(0xFF111111),
-                      muted = Color(0xFF534E5E),
-                      onColor = Color(0xFF111111),
-                      tickerBg = Color(0xFF111111),
-                      onTicker = Color(0xFFEDE7F6),
-                      tickerSlash = Color(0xFF8A8A85),
-                      primary = Color(0xFF9FA8DA),
-                      secondary = Color(0xFF80DEEA),
-                      tertiary = Color(0xFFFFE082),
-                      quaternary = Color(0xFFF48FB1),
                       isDark = false
                   )
                   AppThemeMode.TERRACOTTA -> VdxThemeTokens(
@@ -1374,8 +1695,8 @@ jobs:
                   )
                   AppThemeMode.SLATE_DUSK -> VdxThemeTokens(
                       mode = AppThemeMode.SLATE_DUSK,
-                      paper = Color(0xFF1F242D),
-                      card = Color(0xFF2A303C),
+                      paper = Color(0xFF212630),
+                      card = Color(0xFF2C3340),
                       ink = Color(0xFFF0F4F8),
                       muted = Color(0xFFA9B4C2),
                       onColor = Color(0xFF111111),
@@ -1384,24 +1705,25 @@ jobs:
                       tickerSlash = Color(0xFF8A8A85),
                       primary = Color(0xFF64B5F6),
                       secondary = Color(0xFF81C784),
-                      tertiary = Color(0xFFFFD54F),
+                      tertiary = Color(0xFF4DD0E1),
                       quaternary = Color(0xFFBA68C8),
                       isDark = true
                   )
+                  // Midnight without any bright yellow
                   AppThemeMode.MIDNIGHT -> VdxThemeTokens(
                       mode = AppThemeMode.MIDNIGHT,
                       paper = Color(0xFF121216),
-                      card = Color(0xFF1E1E26),
-                      ink = Color(0xFFF5F5F0),
-                      muted = Color(0xFFA8A8B3),
+                      card = Color(0xFF1C1D24),
+                      ink = Color(0xFFF2F3F7),
+                      muted = Color(0xFF9BA0AE),
                       onColor = Color(0xFF111111),
-                      tickerBg = Color(0xFF000000),
-                      onTicker = Color(0xFFF5F5F0),
-                      tickerSlash = Color(0xFF8A8A85),
-                      primary = Color(0xFFC6FF3D),
-                      secondary = Color(0xFF5CE1E6),
-                      tertiary = Color(0xFFFFE45C),
-                      quaternary = Color(0xFFFF8AD8),
+                      tickerBg = Color(0xFF070709),
+                      onTicker = Color(0xFFF2F3F7),
+                      tickerSlash = Color(0xFF707582),
+                      primary = Color(0xFF5CE1E6),
+                      secondary = Color(0xFF7C9EFF),
+                      tertiary = Color(0xFF69F0AE),
+                      quaternary = Color(0xFFB388FF),
                       isDark = true
                   )
               }
@@ -1483,7 +1805,7 @@ jobs:
               val primaryAccent: Color = Color(0xFF4D9CFF),
               val onPrimaryAccent: Color = Color(0xFF111111),
               val primaryGlow: Color = Color(0x664D9CFF),
-              val tertiaryLoopAccent: Color = Color(0xFFFFE45C),
+              val tertiaryLoopAccent: Color = Color(0xFF5CE1E6),
               val osdSurface: Color = Color(0xFF0E0F12).copy(alpha = 0.84f),
               val osdElevatedSurface: Color = Color(0xFF1E1F24).copy(alpha = 0.92f),
               val specularBorder: Color = Color.White.copy(alpha = 0.15f)
@@ -1495,7 +1817,7 @@ jobs:
                       primaryAccent = tokens.primary,
                       onPrimaryAccent = tokens.onColor,
                       primaryGlow = tokens.primary.copy(alpha = 0.42f),
-                      tertiaryLoopAccent = tokens.tertiary
+                      tertiaryLoopAccent = tokens.secondary
                   )
               }
           }
@@ -1581,11 +1903,13 @@ jobs:
           import android.content.Intent
           import android.content.pm.PackageManager
           import android.database.ContentObserver
+          import android.graphics.Bitmap
           import android.net.Uri
           import android.os.Build
           import android.os.Handler
           import android.os.Looper
           import android.provider.MediaStore
+          import android.util.Size
           import androidx.activity.compose.BackHandler
           import androidx.activity.compose.rememberLauncherForActivityResult
           import androidx.activity.result.contract.ActivityResultContracts
@@ -1613,10 +1937,13 @@ jobs:
           import androidx.compose.ui.Alignment
           import androidx.compose.ui.Modifier
           import androidx.compose.ui.draw.clip
+          import androidx.compose.ui.draw.drawBehind
+          import androidx.compose.ui.geometry.Offset
           import androidx.compose.ui.graphics.Brush
           import androidx.compose.ui.graphics.Color
           import androidx.compose.ui.graphics.SolidColor
           import androidx.compose.ui.graphics.StrokeCap
+          import androidx.compose.ui.graphics.asImageBitmap
           import androidx.compose.ui.graphics.vector.ImageVector
           import androidx.compose.ui.layout.ContentScale
           import androidx.compose.ui.platform.LocalContext
@@ -1635,11 +1962,6 @@ jobs:
           import androidx.lifecycle.ViewModel
           import androidx.lifecycle.ViewModelProvider
           import androidx.lifecycle.viewModelScope
-          import coil.ImageLoader
-          import coil.compose.AsyncImage
-          import coil.decode.VideoFrameDecoder
-          import coil.request.ImageRequest
-          import coil.request.videoFrameMillis
           import com.flagship.videoplayer.data.*
           import com.flagship.videoplayer.ui.theme.*
           import kotlinx.coroutines.Dispatchers
@@ -1647,8 +1969,102 @@ jobs:
           import kotlinx.coroutines.launch
           import kotlinx.coroutines.withContext
           import java.io.File
+          import java.io.FileOutputStream
           import java.util.Locale
           import kotlin.math.roundToInt
+
+          // ============================================================================
+          // 1. MX-STYLE INSTANT MEMORY + DISK THUMBNAIL ENGINE (ZERO FOLDER DELAY)
+          // ============================================================================
+
+          object FastThumbnailCacheEngine {
+              private val memoryLru = object : android.util.LruCache<String, Bitmap>(
+                  (Runtime.getRuntime().maxMemory() / 1024 / 8).toInt().coerceAtLeast(16 * 1024)
+              ) {
+                  override fun sizeOf(key: String, value: Bitmap): Int = value.byteCount / 1024
+              }
+
+              fun getFromMemory(fingerprint: String): Bitmap? = memoryLru.get(fingerprint)
+
+              private fun getDiskThumbFile(context: Context, fingerprint: String): File {
+                  val dir = File(context.cacheDir, "vdx_fast_thumbs")
+                  if (!dir.exists()) dir.mkdirs()
+                  return File(dir, "$fingerprint.jpg")
+              }
+
+              suspend fun loadOrGenerateThumbnail(
+                  context: Context,
+                  video: LocalVideoItem
+              ): Bitmap? = withContext(Dispatchers.IO) {
+                  memoryLru.get(video.fileFingerprint)?.let { return@withContext it }
+
+                  val diskFile = getDiskThumbFile(context, video.fileFingerprint)
+                  if (diskFile.exists() && diskFile.length() > 100L) {
+                      val decoded = android.graphics.BitmapFactory.decodeFile(diskFile.absolutePath)
+                      if (decoded != null) {
+                          memoryLru.put(video.fileFingerprint, decoded)
+                          return@withContext decoded
+                      }
+                  }
+
+                  val loaded: Bitmap? = runCatching {
+                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                          context.contentResolver.loadThumbnail(video.contentUri, Size(320, 180), null)
+                      } else {
+                          @Suppress("DEPRECATION")
+                          MediaStore.Video.Thumbnails.getThumbnail(
+                              context.contentResolver,
+                              video.mediaStoreId,
+                              MediaStore.Video.Thumbnails.MINI_KIND,
+                              null
+                          )
+                      }
+                  }.getOrNull()
+
+                  if (loaded != null) {
+                      memoryLru.put(video.fileFingerprint, loaded)
+                      runCatching {
+                          FileOutputStream(diskFile).use { out ->
+                              loaded.compress(Bitmap.CompressFormat.JPEG, 82, out)
+                          }
+                      }
+                  }
+                  loaded
+              }
+          }
+
+          @Composable
+          fun InstantVideoThumbnail(
+              video: LocalVideoItem,
+              modifier: Modifier = Modifier
+          ) {
+              val context = LocalContext.current
+              var bitmap by remember(video.fileFingerprint) {
+                  mutableStateOf(FastThumbnailCacheEngine.getFromMemory(video.fileFingerprint))
+              }
+
+              LaunchedEffect(video.fileFingerprint) {
+                  if (bitmap == null) {
+                      bitmap = FastThumbnailCacheEngine.loadOrGenerateThumbnail(context, video)
+                  }
+              }
+
+              val bmp = bitmap
+              if (bmp != null) {
+                  Image(
+                      bitmap = bmp.asImageBitmap(),
+                      contentDescription = video.displayName,
+                      contentScale = ContentScale.Crop,
+                      modifier = modifier
+                  )
+              } else {
+                  Box(modifier = modifier)
+              }
+          }
+
+          // ============================================================================
+          // 2. MEDIASTORE SCANNER + BACKGROUND THUMBNAIL PRE-WARMER
+          // ============================================================================
 
           object MediaStoreVideoScanner {
               private val SUBTITLE_EXTENSIONS = setOf("srt", "ass", "ssa", "vtt", "sub", "ttml")
@@ -1893,6 +2309,15 @@ jobs:
               fun refreshLibrarySilently() {
                   viewModelScope.launch {
                       MediaStoreVideoScanner.syncDeviceVideosToCache(appContext, dao)
+                      // Pre-warm thumbnails into memory/disk cache in background so folders open in 0ms
+                      val snapshot = enrichedVideos.value
+                      withContext(Dispatchers.IO) {
+                          for (vid in snapshot.take(80)) {
+                              if (FastThumbnailCacheEngine.getFromMemory(vid.fileFingerprint) == null) {
+                                  FastThumbnailCacheEngine.loadOrGenerateThumbnail(appContext, vid)
+                              }
+                          }
+                      }
                   }
               }
 
@@ -1918,6 +2343,13 @@ jobs:
 
               fun setThemeMode(mode: AppThemeMode) {
                   viewModelScope.launch { prefsRepo.setThemeMode(mode) }
+              }
+
+              fun setAppIconColor(iconColor: AppIconColor) {
+                  viewModelScope.launch {
+                      prefsRepo.setAppIconColor(iconColor)
+                      _snackbarMessage.emit("App icon updated to ${iconColor.label}")
+                  }
               }
 
               fun setDefaultDecoder(mode: DecoderMode) {
@@ -2292,7 +2724,6 @@ jobs:
                   }
 
                   // BLOCK C: VIEW SWITCHER
-                  // When inside a folder, tapping List / Grid / Compact Grid changes the Folder Internal View Mode!
                   Row(
                       modifier = Modifier.fillMaxWidth(),
                       horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -2301,7 +2732,7 @@ jobs:
                           Triple(LibraryViewMode.FOLDER, tokens.primary, "Folders view"),
                           Triple(LibraryViewMode.RICH_LIST, tokens.secondary, "List view"),
                           Triple(LibraryViewMode.COMFORT_GRID, tokens.tertiary, "Grid view"),
-                          Triple(LibraryViewMode.COMPACT_GRID, tokens.quaternary, "Compact grid view")
+                          Triple(LibraryViewMode.COMPACT_GRID, tokens.quaternary, "Compact view")
                       )
 
                       items.forEach { (mode, ownColor, desc) ->
@@ -2479,10 +2910,38 @@ jobs:
               }
           }
 
+          // Subtle organic grain/spots modifier for the Tainted White theme
+          fun Modifier.taintedWhiteSpotsIfEnabled(mode: AppThemeMode): Modifier {
+              if (mode != AppThemeMode.TAINTED_CHALK) return this
+              return this.drawBehind {
+                  val spotColor1 = Color(0xFFDCD6C8).copy(alpha = 0.45f)
+                  val spotColor2 = Color(0xFFE5DFD3).copy(alpha = 0.55f)
+                  val w = size.width
+                  val h = size.height
+                  val spots = listOf(
+                      Triple(0.12f, 0.08f, 42f),
+                      Triple(0.78f, 0.16f, 64f),
+                      Triple(0.34f, 0.29f, 28f),
+                      Triple(0.86f, 0.44f, 52f),
+                      Triple(0.19f, 0.58f, 70f),
+                      Triple(0.62f, 0.71f, 38f),
+                      Triple(0.28f, 0.88f, 56f),
+                      Triple(0.82f, 0.91f, 44f)
+                  )
+                  spots.forEachIndexed { idx, (fx, fy, radiusDp) ->
+                      drawCircle(
+                          color = if (idx % 2 == 0) spotColor1 else spotColor2,
+                          radius = radiusDp.dp.toPx(),
+                          center = Offset(w * fx, h * fy)
+                      )
+                  }
+              }
+          }
+
           @Composable
           fun HomeLibraryScreen(
               viewModel: HomeLibraryViewModel,
-              onPlayVideo: (LocalVideoItem, Boolean) -> Unit
+              onPlayVideo: (LocalVideoItem, List<LocalVideoItem>, Boolean) -> Unit
           ) {
               val context = LocalContext.current
               val tokens = LocalVdxTokens.current
@@ -2527,13 +2986,6 @@ jobs:
                   }
               }
 
-              val videoImageLoader = remember(context) {
-                  ImageLoader.Builder(context)
-                      .components { add(VideoFrameDecoder.Factory()) }
-                      .crossfade(true)
-                      .build()
-              }
-
               var showSortMenu by remember { mutableStateOf(false) }
               var showNetworkSheet by remember { mutableStateOf(false) }
               var showTrashSheet by remember { mutableStateOf(false) }
@@ -2558,6 +3010,14 @@ jobs:
                       viewModel.setSearchQuery("")
                   } else if (selectedFolder != null) {
                       viewModel.openFolder(null)
+                  }
+              }
+
+              val displayedVideos = remember(videos, selectedFolder) {
+                  if (selectedFolder != null) {
+                      videos.filter { it.folderPath == selectedFolder }
+                  } else {
+                      videos
                   }
               }
 
@@ -2643,7 +3103,7 @@ jobs:
                                       .size(60.dp)
                                       .clip(CircleShape)
                                       .combinedClickable(
-                                          onClick = { onPlayVideo(targetVideo, true) },
+                                          onClick = { onPlayVideo(targetVideo, displayedVideos, true) },
                                           onLongClick = { showFabPreviewTooltip = !showFabPreviewTooltip }
                                       )
                               ) {
@@ -2678,6 +3138,7 @@ jobs:
                   Column(
                       modifier = Modifier
                           .fillMaxSize()
+                          .taintedWhiteSpotsIfEnabled(prefs.themeMode)
                           .padding(innerPadding)
                   ) {
                       if (selectedFolder != null) {
@@ -2711,14 +3172,6 @@ jobs:
                                   onOpenNetworkStream = { showNetworkSheet = true }
                               )
                           } else {
-                              val displayedVideos = remember(videos, selectedFolder) {
-                                  if (selectedFolder != null) {
-                                      videos.filter { it.folderPath == selectedFolder }
-                                  } else {
-                                      videos
-                                  }
-                              }
-
                               if (prefs.libraryViewMode == LibraryViewMode.FOLDER && selectedFolder == null && searchQuery.isBlank()) {
                                   if (folders.isEmpty()) {
                                       EmptyLibraryView(
@@ -2752,8 +3205,7 @@ jobs:
                                           LibraryViewMode.FOLDER, LibraryViewMode.RICH_LIST -> {
                                               RichVideoListView(
                                                   videos = displayedVideos,
-                                                  imageLoader = videoImageLoader,
-                                                  onVideoClick = { onPlayVideo(it, true) },
+                                                  onVideoClick = { onPlayVideo(it, displayedVideos, true) },
                                                   onShareClick = shareVideoAction,
                                                   onPropertiesClick = { videoForProperties = it },
                                                   onRenameClick = { videoToRename = it },
@@ -2763,8 +3215,7 @@ jobs:
                                           LibraryViewMode.COMFORT_GRID -> {
                                               ComfortVideoGridView(
                                                   videos = displayedVideos,
-                                                  imageLoader = videoImageLoader,
-                                                  onVideoClick = { onPlayVideo(it, true) },
+                                                  onVideoClick = { onPlayVideo(it, displayedVideos, true) },
                                                   onShareClick = shareVideoAction,
                                                   onPropertiesClick = { videoForProperties = it },
                                                   onRenameClick = { videoToRename = it },
@@ -2774,8 +3225,7 @@ jobs:
                                           LibraryViewMode.COMPACT_GRID -> {
                                               CompactVideoGridView(
                                                   videos = displayedVideos,
-                                                  imageLoader = videoImageLoader,
-                                                  onVideoClick = { onPlayVideo(it, true) },
+                                                  onVideoClick = { onPlayVideo(it, displayedVideos, true) },
                                                   onPropertiesClick = { videoForProperties = it }
                                               )
                                           }
@@ -2787,9 +3237,13 @@ jobs:
                   }
               }
 
-              // Video Properties Dialog
+              // Video Properties Dialog (Including Codec, Bitrate, and HDR Format Details)
               videoForProperties?.let { vid ->
-                  val tokens = LocalVdxTokens.current
+                  var probedMeta by remember(vid.filePath) { mutableStateOf<VideoTechnicalMetadata?>(null) }
+                  LaunchedEffect(vid) {
+                      probedMeta = VideoTechnicalProber.probeVideoFile(context, vid)
+                  }
+
                   AlertDialog(
                       onDismissRequest = { videoForProperties = null },
                       containerColor = tokens.card,
@@ -2797,13 +3251,21 @@ jobs:
                           Text("Properties", style = MaterialTheme.typography.titleLarge, color = tokens.ink)
                       },
                       text = {
-                          Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                          Column(
+                              modifier = Modifier.verticalScroll(rememberScrollState()),
+                              verticalArrangement = Arrangement.spacedBy(8.dp)
+                          ) {
                               PropertyRow("File name", vid.displayName)
                               PropertyRow("Location", vid.folderPath)
                               PropertyRow("Size", "${FormatUtils.formatFileSize(vid.sizeBytes)} (${vid.sizeBytes} bytes)")
                               PropertyRow("Duration", FormatUtils.formatDurationMs(vid.durationMs))
                               PropertyRow("Resolution", "${vid.width} x ${vid.height} (${vid.resolutionBadge})")
-                              PropertyRow("Format", vid.extensionBadge)
+                              PropertyRow("Video codec", probedMeta?.videoCodec ?: "Analyzing...")
+                              PropertyRow("Audio codec", probedMeta?.audioCodec ?: "Analyzing...")
+                              PropertyRow("Bitrate", probedMeta?.bitrateFormatted ?: "Analyzing...")
+                              PropertyRow("Frame rate", probedMeta?.frameRateFormatted ?: "Analyzing...")
+                              PropertyRow("HDR / Dynamic range", probedMeta?.hdrFormatDetails ?: "Analyzing...")
+                              PropertyRow("Color space", probedMeta?.colorSpaceDetails ?: "Analyzing...")
                               PropertyRow("Modified", FormatUtils.formatDateModified(vid.dateModifiedSec))
                           }
                       },
@@ -2863,7 +3325,7 @@ jobs:
                       onLaunchStream = { url, title, ua, referer, headers ->
                           showNetworkSheet = false
                           viewModel.saveAndLaunchNetworkStream(url, title, ua, referer, headers) { streamItem ->
-                              onPlayVideo(streamItem, true)
+                              onPlayVideo(streamItem, listOf(streamItem), true)
                           }
                       },
                       onDeleteHistory = { viewModel.deleteStreamHistoryItem(it) },
@@ -2880,6 +3342,7 @@ jobs:
                           showTrashSheet = true
                       },
                       onThemeChange = { viewModel.setThemeMode(it) },
+                      onAppIconColorChange = { viewModel.setAppIconColor(it) },
                       onFolderViewModeChange = { viewModel.setFolderContentViewMode(it) },
                       onDecoderChange = { viewModel.setDefaultDecoder(it) },
                       onHoldSpeedChange = { viewModel.setHoldFastForwardSpeed(it) },
@@ -2985,7 +3448,6 @@ jobs:
           @Composable
           private fun RichVideoListView(
               videos: List<LocalVideoItem>,
-              imageLoader: ImageLoader,
               onVideoClick: (LocalVideoItem) -> Unit,
               onShareClick: (LocalVideoItem) -> Unit,
               onPropertiesClick: (LocalVideoItem) -> Unit,
@@ -3020,14 +3482,8 @@ jobs:
                                       .clip(RoundedCornerShape(8.dp))
                                       .background(tokens.ink.copy(alpha = 0.08f))
                               ) {
-                                  AsyncImage(
-                                      model = ImageRequest.Builder(LocalContext.current)
-                                          .data(video.contentUri)
-                                          .videoFrameMillis((video.durationMs / 4).coerceAtLeast(1000L))
-                                          .build(),
-                                      imageLoader = imageLoader,
-                                      contentDescription = video.displayName,
-                                      contentScale = ContentScale.Crop,
+                                  InstantVideoThumbnail(
+                                      video = video,
                                       modifier = Modifier.fillMaxSize()
                                   )
 
@@ -3136,7 +3592,6 @@ jobs:
           @Composable
           private fun ComfortVideoGridView(
               videos: List<LocalVideoItem>,
-              imageLoader: ImageLoader,
               onVideoClick: (LocalVideoItem) -> Unit,
               onShareClick: (LocalVideoItem) -> Unit,
               onPropertiesClick: (LocalVideoItem) -> Unit,
@@ -3167,14 +3622,8 @@ jobs:
                                       .aspectRatio(16f / 9f)
                                       .background(tokens.ink.copy(alpha = 0.08f))
                               ) {
-                                  AsyncImage(
-                                      model = ImageRequest.Builder(LocalContext.current)
-                                          .data(video.contentUri)
-                                          .videoFrameMillis(2000L)
-                                          .build(),
-                                      imageLoader = imageLoader,
-                                      contentDescription = video.displayName,
-                                      contentScale = ContentScale.Crop,
+                                  InstantVideoThumbnail(
+                                      video = video,
                                       modifier = Modifier.fillMaxSize()
                                   )
                                   Surface(
@@ -3260,7 +3709,6 @@ jobs:
           @Composable
           private fun CompactVideoGridView(
               videos: List<LocalVideoItem>,
-              imageLoader: ImageLoader,
               onVideoClick: (LocalVideoItem) -> Unit,
               onPropertiesClick: (LocalVideoItem) -> Unit
           ) {
@@ -3284,14 +3732,8 @@ jobs:
                                   onLongClick = { onPropertiesClick(video) }
                               )
                       ) {
-                          AsyncImage(
-                              model = ImageRequest.Builder(LocalContext.current)
-                                  .data(video.contentUri)
-                                  .videoFrameMillis(2000L)
-                                  .build(),
-                              imageLoader = imageLoader,
-                              contentDescription = video.displayName,
-                              contentScale = ContentScale.Crop,
+                          InstantVideoThumbnail(
+                              video = video,
                               modifier = Modifier.fillMaxSize()
                           )
                           Box(
@@ -3555,6 +3997,7 @@ jobs:
               trashedCount: Int,
               onOpenRecycleBin: () -> Unit,
               onThemeChange: (AppThemeMode) -> Unit,
+              onAppIconColorChange: (AppIconColor) -> Unit,
               onFolderViewModeChange: (FolderContentViewMode) -> Unit,
               onDecoderChange: (DecoderMode) -> Unit,
               onHoldSpeedChange: (Float) -> Unit,
@@ -3668,6 +4111,39 @@ jobs:
                           }
                       }
 
+                      // App Icon Color Picker
+                      Text("App icon color", style = MaterialTheme.typography.labelMedium, color = tokens.muted)
+                      Row(
+                          modifier = Modifier.fillMaxWidth(),
+                          horizontalArrangement = Arrangement.spacedBy(12.dp)
+                      ) {
+                          AppIconColor.entries.forEach { iconOption ->
+                              val selected = prefs.appIconColor == iconOption
+                              Box(
+                                  contentAlignment = Alignment.Center,
+                                  modifier = Modifier
+                                      .size(42.dp)
+                                      .clip(CircleShape)
+                                      .background(Color(iconOption.previewHex))
+                                      .border(
+                                          width = if (selected) 3.dp else 1.5.dp,
+                                          color = if (selected) tokens.primary else tokens.ink,
+                                          shape = CircleShape
+                                      )
+                                      .clickable { onAppIconColorChange(iconOption) }
+                              ) {
+                                  if (selected) {
+                                      Icon(
+                                          Icons.Default.Check,
+                                          contentDescription = iconOption.label,
+                                          tint = if (iconOption == AppIconColor.ONYX) Color.White else Color.Black,
+                                          modifier = Modifier.size(18.dp)
+                                      )
+                                  }
+                              }
+                          }
+                      }
+
                       HorizontalDivider()
 
                       Text("View mode inside folders", style = MaterialTheme.typography.labelMedium, color = tokens.muted)
@@ -3693,7 +4169,7 @@ jobs:
                       }
 
                       Text(
-                          "Skip button interval: ${prefs.skipIntervalSeconds}s",
+                          "Double-tap skip interval: ${prefs.skipIntervalSeconds}s",
                           style = MaterialTheme.typography.labelMedium,
                           color = tokens.ink
                       )
@@ -3800,10 +4276,14 @@ jobs:
           package com.flagship.videoplayer.engine
 
           import android.content.Context
+          import android.hardware.display.DisplayManager
           import android.media.AudioManager
           import android.media.audiofx.LoudnessEnhancer
           import android.net.Uri
+          import android.os.Build
+          import android.os.Handler
           import android.provider.Settings
+          import android.view.Display
           import androidx.lifecycle.ViewModel
           import androidx.lifecycle.ViewModelProvider
           import androidx.lifecycle.viewModelScope
@@ -3813,14 +4293,20 @@ jobs:
           import androidx.media3.common.text.CueGroup
           import androidx.media3.datasource.DefaultDataSource
           import androidx.media3.datasource.okhttp.OkHttpDataSource
+          import androidx.media3.exoplayer.DefaultLoadControl
           import androidx.media3.exoplayer.DefaultRenderersFactory
           import androidx.media3.exoplayer.ExoPlayer
+          import androidx.media3.exoplayer.Renderer
           import androidx.media3.exoplayer.SeekParameters
+          import androidx.media3.exoplayer.audio.AudioRendererEventListener
           import androidx.media3.exoplayer.audio.AudioSink
           import androidx.media3.exoplayer.audio.DefaultAudioSink
+          import androidx.media3.exoplayer.mediacodec.MediaCodecInfo
+          import androidx.media3.exoplayer.mediacodec.MediaCodecSelector
           import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
           import androidx.media3.exoplayer.source.MediaSource
           import androidx.media3.exoplayer.source.MergingMediaSource
+          import androidx.media3.exoplayer.video.VideoRendererEventListener
           import com.flagship.videoplayer.data.*
           import com.flagship.videoplayer.ui.theme.FormatUtils
           import kotlinx.coroutines.*
@@ -3835,6 +4321,10 @@ jobs:
           import kotlin.math.abs
           import kotlin.math.roundToInt
           import kotlin.math.roundToLong
+
+          // ============================================================================
+          // 1. BIDIRECTIONAL PCM RING-BUFFER AUDIO DELAY PROCESSOR (-5000ms to +5000ms)
+          // ============================================================================
 
           class DelayingAudioProcessor : BaseAudioProcessor() {
 
@@ -3982,20 +4472,69 @@ jobs:
               }
           }
 
+          // ============================================================================
+          // 2. MX-GRADE CONFIGURABLE RENDERERS FACTORY (TRUE HW / HW+ / SW SEPARATION)
+          // ============================================================================
+
+          /**
+           * Distinct decoder behavior matching MX Player:
+           * - HW: Strictly hardware MediaCodec (`hardwareOnly == true`), zero software extensions.
+           * - HW+: Hardware video MediaCodec first with software fallback + FFmpeg extension for AC3/DTS/TrueHD/FLAC audio.
+           * - SW: Prioritizes software CPU decoders (`softwareOnly == true` / `c2.android.*` / `OMX.google.*` + FFmpeg).
+           */
           class ConfigurableRenderersFactory(
               context: Context,
-              decoderMode: DecoderMode,
+              private val decoderMode: DecoderMode,
               private val delayingAudioProcessor: DelayingAudioProcessor
           ) : DefaultRenderersFactory(context) {
 
               init {
-                  val mode = when (decoderMode) {
+                  val extMode = when (decoderMode) {
                       DecoderMode.HW -> EXTENSION_RENDERER_MODE_OFF
                       DecoderMode.HW_PLUS -> EXTENSION_RENDERER_MODE_ON
                       DecoderMode.SW -> EXTENSION_RENDERER_MODE_PREFER
                   }
-                  setExtensionRendererMode(mode)
+                  setExtensionRendererMode(extMode)
                   setEnableDecoderFallback(true)
+                  setMediaCodecSelector(buildModeSpecificSelector(decoderMode))
+              }
+
+              private fun buildModeSpecificSelector(mode: DecoderMode): MediaCodecSelector {
+                  return MediaCodecSelector { mimeType, requiresSecureDecoder, requiresTunnelingDecoder ->
+                      val defaultList = MediaCodecSelector.DEFAULT.getDecoderInfos(
+                          mimeType,
+                          requiresSecureDecoder,
+                          requiresTunnelingDecoder
+                      )
+                      if (defaultList.isEmpty()) return@MediaCodecSelector defaultList
+
+                      when (mode) {
+                          DecoderMode.HW -> {
+                              val hwOnly = defaultList.filter { isHardwareCodec(it) }
+                              hwOnly.ifEmpty { defaultList }
+                          }
+                          DecoderMode.HW_PLUS -> {
+                              val hwFirst = defaultList.sortedByDescending { isHardwareCodec(it) }
+                              hwFirst
+                          }
+                          DecoderMode.SW -> {
+                              val swFirst = defaultList.sortedBy { isHardwareCodec(it) }
+                              swFirst
+                          }
+                      }
+                  }
+              }
+
+              private fun isHardwareCodec(info: MediaCodecInfo): Boolean {
+                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                      return info.hardwareAccelerated && !info.softwareOnly
+                  }
+                  val lower = info.name.lowercase(Locale.US)
+                  val isSw = lower.startsWith("omx.google.") ||
+                      lower.startsWith("c2.android.") ||
+                      lower.contains(".sw.") ||
+                      lower.contains("ffmpeg")
+                  return !isSw
               }
 
               override fun buildAudioSink(
@@ -4010,6 +4549,46 @@ jobs:
                       .build()
               }
           }
+
+          // ============================================================================
+          // 3. DISPLAY HDR CAPABILITY CHECKER
+          // ============================================================================
+
+          object HdrDisplayHelper {
+              fun doesDeviceDisplaySupportHdr(context: Context): Boolean {
+                  return runCatching {
+                      val dm = context.getSystemService(Context.DISPLAY_SERVICE) as? DisplayManager
+                      val display = dm?.getDisplay(Display.DEFAULT_DISPLAY) ?: return@runCatching false
+                      @Suppress("DEPRECATION")
+                      val caps = display.hdrCapabilities ?: return@runCatching false
+                      @Suppress("DEPRECATION")
+                      caps.supportedHdrTypes.isNotEmpty()
+                  }.getOrDefault(false)
+              }
+
+              fun detectHdrBadgeFromColorInfo(colorInfo: ColorInfo?, sampleMime: String?): Pair<Boolean, String> {
+                  val mimeLower = sampleMime?.lowercase(Locale.US) ?: ""
+                  if (mimeLower.contains("dolby-vision") || mimeLower.contains("dvhe")) {
+                      return true to "Dolby Vision"
+                  }
+                  if (colorInfo == null) return false to "SDR"
+                  return when (colorInfo.colorTransfer) {
+                      C.COLOR_TRANSFER_ST2084 -> true to "HDR10 PQ"
+                      C.COLOR_TRANSFER_HLG -> true to "HLG HDR"
+                      else -> {
+                          if (colorInfo.colorSpace == C.COLOR_SPACE_BT2020) {
+                              true to "BT.2020 HDR"
+                          } else {
+                              false to "SDR"
+                          }
+                      }
+                  }
+              }
+          }
+
+          // ============================================================================
+          // 4. MULTI-FORMAT SUBTITLE PARSER & FPS SPEED / OFFSET TIME-WARP ENGINE
+          // ============================================================================
 
           data class TimedSubtitleCue(
               val startMs: Long,
@@ -4227,12 +4806,17 @@ jobs:
               val videoCodec: String = "N/A",
               val resolutionAndFps: String = "N/A",
               val activeDecoderBadge: String = "HW+",
+              val hdrSummary: String = "SDR",
               val videoBitrateKbps: Int = 0,
               val droppedFrames: Int = 0,
               val audioCodecAndChannels: String = "N/A",
               val audioSampleRateHz: Int = 0,
               val networkProtocol: String = "Local file"
           )
+
+          // ============================================================================
+          // 5. VDX PLAYER VIEWMODEL (HDR SUPPORT, PLAYLIST PREV/NEXT, LOOP ENGINE)
+          // ============================================================================
 
           class PlayerViewModel(
               private val appContext: Context,
@@ -4245,12 +4829,27 @@ jobs:
 
               private val delayingAudioProcessor = DelayingAudioProcessor()
               private var loudnessEnhancer: LoudnessEnhancer? = null
+              private val deviceDisplaySupportsHdr: Boolean = HdrDisplayHelper.doesDeviceDisplaySupportHdr(appContext)
 
               private val _exoPlayerFlow = MutableStateFlow<ExoPlayer?>(null)
               val exoPlayerFlow: StateFlow<ExoPlayer?> = _exoPlayerFlow.asStateFlow()
 
               private val _activeVideo = MutableStateFlow<LocalVideoItem?>(null)
               val activeVideo: StateFlow<LocalVideoItem?> = _activeVideo.asStateFlow()
+
+              private val _playlistQueue = MutableStateFlow<List<LocalVideoItem>>(emptyList())
+              val hasPreviousVideo: StateFlow<Boolean> = combine(_activeVideo, _playlistQueue) { cur, list ->
+                  if (cur == null || list.size <= 1) false
+                  else list.indexOfFirst { it.filePath == cur.filePath } > 0
+              }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
+              val hasNextVideo: StateFlow<Boolean> = combine(_activeVideo, _playlistQueue) { cur, list ->
+                  if (cur == null || list.size <= 1) false
+                  else {
+                      val idx = list.indexOfFirst { it.filePath == cur.filePath }
+                      idx in 0 until (list.size - 1)
+                  }
+              }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
               private val _isPlaying = MutableStateFlow(false)
               val isPlaying: StateFlow<Boolean> = _isPlaying.asStateFlow()
@@ -4266,6 +4865,28 @@ jobs:
 
               private val _decoderMode = MutableStateFlow(DecoderMode.HW_PLUS)
               val decoderMode: StateFlow<DecoderMode> = _decoderMode.asStateFlow()
+
+              // HDR State & Manual HDR-to-SDR Tone-Mapping Toggle
+              private val _isCurrentVideoHdr = MutableStateFlow(false)
+              val isCurrentVideoHdr: StateFlow<Boolean> = _isCurrentVideoHdr.asStateFlow()
+
+              private val _activeHdrFormatBadge = MutableStateFlow("SDR")
+              val activeHdrFormatBadge: StateFlow<String> = _activeHdrFormatBadge.asStateFlow()
+
+              private val _forceSdrToneMapping = MutableStateFlow(false)
+              val forceSdrToneMapping: StateFlow<Boolean> = _forceSdrToneMapping.asStateFlow()
+
+              /**
+               * True whenever an HDR video should be tone-mapped to SDR:
+               * either because the user toggled "Convert HDR to SDR", OR because the device display
+               * does not natively support HDR (preventing washed-out colors on SDR screens).
+               */
+              val shouldApplySdrVisualToneMap: StateFlow<Boolean> = combine(
+                  _isCurrentVideoHdr,
+                  _forceSdrToneMapping
+              ) { isHdr, userForcedSdr ->
+                  isHdr && (userForcedSdr || !deviceDisplaySupportsHdr)
+              }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
               private val _playbackSpeed = MutableStateFlow(1.0f)
               val playbackSpeed: StateFlow<Float> = _playbackSpeed.asStateFlow()
@@ -4306,15 +4927,18 @@ jobs:
               private val _volumeFraction = MutableStateFlow(0.75f)
               val volumeFraction: StateFlow<Float> = _volumeFraction.asStateFlow()
 
-              // Default to null so device brightness is used until user explicitly swipes brightness
               private val _brightnessOverride = MutableStateFlow<Float?>(null)
               val brightnessOverride: StateFlow<Float?> = _brightnessOverride.asStateFlow()
 
+              // Precision A-B Loop State + Independent Loop Editor Visibility
               private val _loopStartMs = MutableStateFlow<Long?>(null)
               val loopStartMs: StateFlow<Long?> = _loopStartMs.asStateFlow()
 
               private val _loopEndMs = MutableStateFlow<Long?>(null)
               val loopEndMs: StateFlow<Long?> = _loopEndMs.asStateFlow()
+
+              private val _isLoopEditorVisible = MutableStateFlow(false)
+              val isLoopEditorVisible: StateFlow<Boolean> = _isLoopEditorVisible.asStateFlow()
 
               private val _audioTracks = MutableStateFlow<List<PlayerTrackOption>>(emptyList())
               val audioTracks: StateFlow<List<PlayerTrackOption>> = _audioTracks.asStateFlow()
@@ -4405,16 +5029,23 @@ jobs:
                   }.getOrDefault(0.6f)
               }
 
-              fun loadAndPlayVideo(video: LocalVideoItem, autoResume: Boolean = true) {
+              fun loadAndPlayVideo(
+                  video: LocalVideoItem,
+                  playlist: List<LocalVideoItem> = listOf(video),
+                  autoResume: Boolean = true
+              ) {
                   viewModelScope.launch {
                       saveCurrentVideoStateToRoom()
                       syncDeviceMediaVolume()
-                      // Reset brightness override to null so every session starts at device's current brightness
                       _brightnessOverride.value = null
 
                       _activeVideo.value = video
+                      _playlistQueue.value = playlist.ifEmpty { listOf(video) }
                       _loopStartMs.value = null
                       _loopEndMs.value = null
+                      _isLoopEditorVisible.value = false
+                      _isCurrentVideoHdr.value = false
+                      _activeHdrFormatBadge.value = "SDR"
                       _parsedSubtitleCues.value = emptyList()
                       _embeddedLiveCues.value = emptyList()
                       _externalSubtitleUri.value = null
@@ -4427,6 +5058,7 @@ jobs:
                       } ?: preferencesState.value.defaultDecoderMode
 
                       _decoderMode.value = initialDecoder
+                      _forceSdrToneMapping.value = savedState?.forceSdrToneMapping ?: false
                       _playbackSpeed.value = savedState?.playbackSpeed ?: 1.0f
                       _zoomScale.value = savedState?.zoomScale ?: 1.0f
                       _panOffsetX.value = savedState?.panOffsetX ?: 0f
@@ -4480,6 +5112,45 @@ jobs:
                   }
               }
 
+              fun playPreviousVideoInQueue() {
+                  val cur = _activeVideo.value ?: return
+                  val queue = _playlistQueue.value
+                  val idx = queue.indexOfFirst { it.filePath == cur.filePath }
+                  if (idx > 0) {
+                      loadAndPlayVideo(queue[idx - 1], queue, autoResume = true)
+                  }
+              }
+
+              fun playNextVideoInQueue() {
+                  val cur = _activeVideo.value ?: return
+                  val queue = _playlistQueue.value
+                  val idx = queue.indexOfFirst { it.filePath == cur.filePath }
+                  if (idx in 0 until (queue.size - 1)) {
+                      loadAndPlayVideo(queue[idx + 1], queue, autoResume = true)
+                  }
+              }
+
+              fun toggleForceSdrToneMapping() {
+                  val next = !_forceSdrToneMapping.value
+                  _forceSdrToneMapping.value = next
+                  val video = _activeVideo.value ?: return
+                  val player = _exoPlayerFlow.value
+                  val currentPos = player?.currentPosition ?: _currentPositionMs.value
+                  val wasPlaying = player?.isPlaying ?: true
+
+                  pendingSavedTrackRestoration = true
+                  buildOrRebuildExoPlayer(
+                      video = video,
+                      decoder = _decoderMode.value,
+                      seekPositionMs = currentPos,
+                      playWhenReady = wasPlaying
+                  )
+                  viewModelScope.launch {
+                      _toastBanner.emit(if (next) "HDR converted to SDR" else "Native HDR active")
+                      saveCurrentVideoStateToRoom()
+                  }
+              }
+
               private fun buildOrRebuildExoPlayer(
                   video: LocalVideoItem,
                   decoder: DecoderMode,
@@ -4496,8 +5167,20 @@ jobs:
 
                   val mediaSourceFactory = buildMediaSourceFactory(video)
 
+                  // High-performance LoadControl to prevent buffer underrun stutters on high-bitrate 4K/HDR files
+                  val loadControl = DefaultLoadControl.Builder()
+                      .setBufferDurationsMs(
+                          15_000,
+                          50_000,
+                          1_200,
+                          2_500
+                      )
+                      .setPrioritizeTimeOverSizeThresholds(true)
+                      .build()
+
                   val player = ExoPlayer.Builder(appContext, renderersFactory)
                       .setMediaSourceFactory(mediaSourceFactory)
+                      .setLoadControl(loadControl)
                       .setSeekParameters(SeekParameters.CLOSEST_SYNC)
                       .build()
 
@@ -4728,7 +5411,7 @@ jobs:
                       playWhenReady = wasPlaying
                   )
                   viewModelScope.launch {
-                      _toastBanner.emit("Decoder: ${targetMode.badge}")
+                      _toastBanner.emit("Decoder: ${targetMode.badge} (${targetMode.description})")
                       saveCurrentVideoStateToRoom()
                   }
               }
@@ -4745,10 +5428,6 @@ jobs:
                   }
               }
 
-              /**
-               * Auto-pauses playback during incremental swipe or timeline scrubbing so audio never
-               * stutters or jitters, and resumes cleanly when the gesture ends.
-               */
               fun beginIncrementalSeekSession() {
                   val player = _exoPlayerFlow.value ?: return
                   if (!isCurrentlyScrubPaused) {
@@ -4934,35 +5613,49 @@ jobs:
                   viewModelScope.launch { prefsRepo.toggleTopRightSlot(slot) }
               }
 
-              fun onLoopPillTapped() {
-                  val now = _exoPlayerFlow.value?.currentPosition ?: _currentPositionMs.value
-                  val startA = _loopStartMs.value
-                  val endB = _loopEndMs.value
+              // ============================================================================
+              // 6. REDESIGNED A-B LOOP CONTROLLER (INDEPENDENT EDITOR VISIBILITY + SET A / SET B)
+              // ============================================================================
 
-                  when {
-                      startA == null -> {
-                          _loopStartMs.value = now
-                          _loopEndMs.value = null
-                          viewModelScope.launch {
-                              _toastBanner.emit("Loop A set at ${FormatUtils.formatPreciseCentiseconds(now)}")
-                          }
+              fun toggleLoopEditorOrStartLoop() {
+                  val now = _exoPlayerFlow.value?.currentPosition ?: _currentPositionMs.value
+                  if (_loopStartMs.value == null) {
+                      _loopStartMs.value = now
+                      _loopEndMs.value = null
+                      _isLoopEditorVisible.value = true
+                      viewModelScope.launch {
+                          _toastBanner.emit("Point A set • Tap Set B in loop bar")
                       }
-                      endB == null -> {
-                          if (now > startA + 150L) {
-                              _loopEndMs.value = now
-                              viewModelScope.launch {
-                                  _toastBanner.emit(
-                                      "Loop active: ${FormatUtils.formatPreciseCentiseconds(startA)} - ${FormatUtils.formatPreciseCentiseconds(now)}"
-                                  )
-                              }
-                          } else {
-                              val autoB = (startA + 5000L).coerceAtMost(_durationMs.value.coerceAtLeast(startA + 1000L))
-                              _loopEndMs.value = autoB
-                          }
-                      }
-                      else -> {
-                          clearAbLoop()
-                      }
+                  } else {
+                      _isLoopEditorVisible.value = !_isLoopEditorVisible.value
+                  }
+              }
+
+              fun setLoopEditorVisible(visible: Boolean) {
+                  _isLoopEditorVisible.value = visible
+              }
+
+              fun setLoopPointANow() {
+                  val now = _exoPlayerFlow.value?.currentPosition ?: _currentPositionMs.value
+                  _loopStartMs.value = now
+                  val endB = _loopEndMs.value
+                  if (endB != null && endB <= now + 150L) {
+                      _loopEndMs.value = null
+                  }
+                  _isLoopEditorVisible.value = true
+              }
+
+              fun setLoopPointBNow() {
+                  val now = _exoPlayerFlow.value?.currentPosition ?: _currentPositionMs.value
+                  val startA = _loopStartMs.value ?: 0L
+                  if (now > startA + 150L) {
+                      _loopEndMs.value = now
+                  } else {
+                      val autoB = (startA + 4000L).coerceAtMost(_durationMs.value.coerceAtLeast(startA + 1000L))
+                      _loopEndMs.value = autoB
+                  }
+                  viewModelScope.launch {
+                      _toastBanner.emit("A-B loop active")
                   }
               }
 
@@ -4991,7 +5684,8 @@ jobs:
               fun clearAbLoop() {
                   _loopStartMs.value = null
                   _loopEndMs.value = null
-                  viewModelScope.launch { _toastBanner.emit("Loop cleared") }
+                  _isLoopEditorVisible.value = false
+                  viewModelScope.launch { _toastBanner.emit("Loop exited") }
               }
 
               fun saveCurrentAbLoop(customLabel: String = "") {
@@ -5010,15 +5704,16 @@ jobs:
                               endMs = endB
                           )
                       )
-                      _toastBanner.emit("Saved loop \"$label\"")
+                      _toastBanner.emit("Saved \"$label\" to menu")
                   }
               }
 
               fun activateSavedLoop(loop: SavedLoopEntity) {
                   _loopStartMs.value = loop.startMs
                   _loopEndMs.value = loop.endMs
+                  _isLoopEditorVisible.value = false
                   seekToFastOrExact(loop.startMs, exactFrame = true, autoPlay = true)
-                  viewModelScope.launch { _toastBanner.emit("Loaded loop: ${loop.label}") }
+                  viewModelScope.launch { _toastBanner.emit("Playing saved loop: ${loop.label}") }
               }
 
               fun deleteSavedLoop(loop: SavedLoopEntity) {
@@ -5039,7 +5734,7 @@ jobs:
                               label = label
                           )
                       )
-                      _toastBanner.emit("Bookmarked ${FormatUtils.formatPreciseCentiseconds(pos)}")
+                      _toastBanner.emit("Bookmarked ${FormatUtils.formatDurationMs(pos)}")
                   }
               }
 
@@ -5199,6 +5894,9 @@ jobs:
                   sizeSp: Float? = null,
                   colorArgb: Int? = null,
                   bgOpacity: Float? = null,
+                  shadowRadius: Float? = null,
+                  shadowOffsetY: Float? = null,
+                  shadowOpacity: Float? = null,
                   bold: Boolean? = null,
                   bottomMarginDp: Float? = null
               ) {
@@ -5208,6 +5906,9 @@ jobs:
                           sizeSp = sizeSp,
                           colorArgb = colorArgb,
                           bgOpacity = bgOpacity,
+                          shadowRadius = shadowRadius,
+                          shadowOffsetY = shadowOffsetY,
+                          shadowOpacity = shadowOpacity,
                           bold = bold,
                           bottomMarginDp = bottomMarginDp
                       )
@@ -5223,6 +5924,8 @@ jobs:
                   var vBitrate = 0
                   var aCodecChan = if (_isAudioDisabled.value) "Disabled" else "Stereo"
                   var aSampleRate = 48000
+                  var detectedHdr = false
+                  var detectedHdrBadge = "SDR"
 
                   val groups = player.currentTracks.groups
                   var audioUiIdx = 0
@@ -5240,6 +5943,12 @@ jobs:
                                       _videoFrameRate.value = fps
                                       vResFps = "${fmt.width}x${fmt.height} @ ${String.format(Locale.US, "%.2f", fps)} fps"
                                       vBitrate = if (fmt.bitrate > 0) fmt.bitrate / 1000 else 0
+                                      val (isHdr, hdrLabel) = HdrDisplayHelper.detectHdrBadgeFromColorInfo(
+                                          fmt.colorInfo,
+                                          fmt.sampleMimeType
+                                      )
+                                      detectedHdr = isHdr
+                                      detectedHdrBadge = hdrLabel
                                   }
                               }
                           }
@@ -5299,6 +6008,12 @@ jobs:
                       }
                   }
 
+                  _isCurrentVideoHdr.value = detectedHdr
+                  _activeHdrFormatBadge.value = if (detectedHdr && (_forceSdrToneMapping.value || !deviceDisplaySupportsHdr)) {
+                      "$detectedHdrBadge \u2192 SDR"
+                  } else {
+                      detectedHdrBadge
+                  }
                   _audioTracks.value = audioList
                   _subtitleTracks.value = subList
 
@@ -5308,6 +6023,7 @@ jobs:
                       videoCodec = vCodec,
                       resolutionAndFps = vResFps,
                       activeDecoderBadge = "${_decoderMode.value.badge} (${_decoderMode.value.description})",
+                      hdrSummary = _activeHdrFormatBadge.value,
                       videoBitrateKbps = vBitrate,
                       droppedFrames = dropped,
                       audioCodecAndChannels = aCodecChan,
@@ -5332,6 +6048,7 @@ jobs:
                       lastPlayedAtMs = System.currentTimeMillis(),
                       playbackSpeed = _playbackSpeed.value,
                       decoderMode = _decoderMode.value.name,
+                      forceSdrToneMapping = _forceSdrToneMapping.value,
                       zoomScale = _zoomScale.value,
                       panOffsetX = _panOffsetX.value,
                       panOffsetY = _panOffsetY.value,
@@ -5391,9 +6108,14 @@ jobs:
           import android.app.Activity
           import android.content.Context
           import android.content.pm.ActivityInfo
+          import android.graphics.ColorMatrix
+          import android.graphics.ColorMatrixColorFilter
+          import android.graphics.Paint
           import android.net.Uri
+          import android.os.Build
           import android.provider.OpenableColumns
           import android.view.HapticFeedbackConstants
+          import android.view.View
           import android.view.ViewGroup
           import android.view.WindowManager
           import androidx.activity.compose.BackHandler
@@ -5447,7 +6169,7 @@ jobs:
           enum class SideSheetTab(val title: String) {
               SUBTITLES("Subtitles & sync"),
               AUDIO("Audio & delay"),
-              BOOKMARKS_LOOPS("Bookmarks & loops"),
+              BOOKMARKS_LOOPS("Bookmarks & saved loops"),
               SPEED("Playback speed"),
               CUSTOMIZE_CONTROLS("Customize HUD controls")
           }
@@ -5476,6 +6198,8 @@ jobs:
 
               val exoPlayer by viewModel.exoPlayerFlow.collectAsState()
               val activeVideo by viewModel.activeVideo.collectAsState()
+              val hasPreviousVideo by viewModel.hasPreviousVideo.collectAsState()
+              val hasNextVideo by viewModel.hasNextVideo.collectAsState()
               val prefs by viewModel.preferencesState.collectAsState()
 
               val isPlaying by viewModel.isPlaying.collectAsState()
@@ -5483,6 +6207,11 @@ jobs:
               val durationMs by viewModel.durationMs.collectAsState()
               val bufferedPercentage by viewModel.bufferedPercentage.collectAsState()
               val decoderMode by viewModel.decoderMode.collectAsState()
+              val isCurrentVideoHdr by viewModel.isCurrentVideoHdr.collectAsState()
+              val activeHdrFormatBadge by viewModel.activeHdrFormatBadge.collectAsState()
+              val forceSdrToneMapping by viewModel.forceSdrToneMapping.collectAsState()
+              val shouldApplySdrVisualToneMap by viewModel.shouldApplySdrVisualToneMap.collectAsState()
+
               val playbackSpeed by viewModel.playbackSpeed.collectAsState()
               val isHoldFastForward by viewModel.isHoldFastForwardActive.collectAsState()
               val activeHoldSpeed by viewModel.activeHoldSpeed.collectAsState()
@@ -5502,6 +6231,7 @@ jobs:
 
               val loopStartMs by viewModel.loopStartMs.collectAsState()
               val loopEndMs by viewModel.loopEndMs.collectAsState()
+              val isLoopEditorVisible by viewModel.isLoopEditorVisible.collectAsState()
               val bookmarks by viewModel.bookmarks.collectAsState()
               val savedLoops by viewModel.savedLoops.collectAsState()
 
@@ -5540,24 +6270,23 @@ jobs:
                   }
               }
 
-              // Never auto-hide OSD while any dropdown menu or side-sheet is open!
               LaunchedEffect(
                   isOsdVisible,
                   isPlaying,
                   activeSideSheetTab,
                   activeGestureHud,
                   isAnyDropdownMenuOpen,
-                  loopStartMs,
-                  loopEndMs
+                  isLoopEditorVisible
               ) {
                   if (isOsdVisible &&
                       isPlaying &&
                       activeSideSheetTab == null &&
                       !isAnyDropdownMenuOpen &&
+                      !isLoopEditorVisible &&
                       activeGestureHud == ActiveGestureHud.NONE
                   ) {
                       delay(3800L)
-                      if (!isAnyDropdownMenuOpen && activeSideSheetTab == null) {
+                      if (!isAnyDropdownMenuOpen && activeSideSheetTab == null && !isLoopEditorVisible) {
                           isOsdVisible = false
                       }
                   }
@@ -5568,6 +6297,18 @@ jobs:
                       delay(650L)
                       doubleTapSeekAccumulatedSec = 0
                       doubleTapSide = 0
+                  }
+              }
+
+              // Configure Window ColorMode for Wide Gamut / HDR when playing native HDR
+              LaunchedEffect(isCurrentVideoHdr, shouldApplySdrVisualToneMap, activity) {
+                  val window = activity?.window ?: return@LaunchedEffect
+                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                      window.colorMode = if (isCurrentVideoHdr && !shouldApplySdrVisualToneMap) {
+                          ActivityInfo.COLOR_MODE_HDR
+                      } else {
+                          ActivityInfo.COLOR_MODE_DEFAULT
+                      }
                   }
               }
 
@@ -5589,12 +6330,14 @@ jobs:
                           lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
                           window.attributes = lp
                       }
+                      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && window != null) {
+                          window.colorMode = ActivityInfo.COLOR_MODE_DEFAULT
+                      }
                       insetsController?.show(WindowInsetsCompat.Type.systemBars())
                       activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
                   }
               }
 
-              // Only override window brightness if user explicitly dragged the brightness gesture
               LaunchedEffect(brightnessOverride, activity) {
                   val window = activity?.window ?: return@LaunchedEffect
                   val lp = window.attributes
@@ -5645,6 +6388,7 @@ jobs:
               BackHandler {
                   when {
                       activeSideSheetTab != null -> activeSideSheetTab = null
+                      isLoopEditorVisible -> viewModel.setLoopEditorVisible(false)
                       isTouchLocked -> showLockedWakeShield = true
                       else -> onExitPlayer()
                   }
@@ -5686,7 +6430,8 @@ jobs:
                           aspectRatioMode = aspectRatioMode,
                           zoomScale = zoomScale,
                           panOffsetX = panOffsetX,
-                          panOffsetY = panOffsetY
+                          panOffsetY = panOffsetY,
+                          applySdrToneMapFilter = shouldApplySdrVisualToneMap
                       )
 
                       if (effectiveBri < 0f) {
@@ -5737,10 +6482,13 @@ jobs:
                           currentPanY = panOffsetY,
                           defaultHoldSpeed = prefs.holdFastForwardSpeed,
                           onSingleTap = {
-                              if (activeSideSheetTab != null) {
-                                  activeSideSheetTab = null
-                              } else {
-                                  isOsdVisible = !isOsdVisible
+                              when {
+                                  activeSideSheetTab != null -> activeSideSheetTab = null
+                                  isLoopEditorVisible -> {
+                                      viewModel.setLoopEditorVisible(false)
+                                      isOsdVisible = false
+                                  }
+                                  else -> isOsdVisible = !isOsdVisible
                               }
                           },
                           onCenterDoubleTap = {
@@ -5847,11 +6595,15 @@ jobs:
                       MainOsdChromeLayer(
                           videoTitle = activeVideo?.titleWithoutExt ?: "Video",
                           isPlaying = isPlaying,
+                          hasPreviousVideo = hasPreviousVideo,
+                          hasNextVideo = hasNextVideo,
                           currentPositionMs = currentPositionMs,
                           durationMs = durationMs,
                           bufferedPercentage = bufferedPercentage,
-                          skipIntervalSeconds = prefs.skipIntervalSeconds,
                           decoderMode = decoderMode,
+                          isCurrentVideoHdr = isCurrentVideoHdr,
+                          activeHdrFormatBadge = activeHdrFormatBadge,
+                          forceSdrToneMapping = forceSdrToneMapping,
                           playbackSpeed = playbackSpeed,
                           aspectRatioMode = aspectRatioMode,
                           orientationMode = orientationMode,
@@ -5859,7 +6611,9 @@ jobs:
                           enabledTopRightSlots = prefs.enabledTopRightSlots,
                           loopStartMs = loopStartMs,
                           loopEndMs = loopEndMs,
+                          isLoopEditorVisible = isLoopEditorVisible,
                           bookmarks = bookmarks,
+                          savedLoops = savedLoops,
                           palette = palette,
                           onMenuOpenStateChanged = { isOpen -> isAnyDropdownMenuOpen = isOpen },
                           onBack = onExitPlayer,
@@ -5867,15 +6621,22 @@ jobs:
                               localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                               viewModel.selectDecoderMode(mode)
                           },
+                          onToggleForceSdrToneMapping = {
+                              viewModel.toggleForceSdrToneMapping()
+                          },
                           onEnterPip = onEnterPipMode,
                           onToggleNerdStats = { viewModel.toggleNerdStats() },
+                          onPlayPreviousVideo = {
+                              localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                              viewModel.playPreviousVideoInQueue()
+                          },
                           onPlayPause = {
                               localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                               viewModel.togglePlayPause()
                           },
-                          onSeekRelative = { deltaMs ->
-                              localView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-                              viewModel.seekRelativeMs(deltaMs)
+                          onPlayNextVideo = {
+                              localView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                              viewModel.playNextVideoInQueue()
                           },
                           onTimelineScrubStart = {
                               viewModel.beginIncrementalSeekSession()
@@ -5897,9 +6658,21 @@ jobs:
                           onDragLoopBracket = { newStartA, newEndB ->
                               viewModel.setLoopPointsDirect(newStartA, newEndB)
                           },
-                          onTapLoopPill = {
+                          onTapLoopButton = {
                               localView.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                              viewModel.onLoopPillTapped()
+                              viewModel.toggleLoopEditorOrStartLoop()
+                          },
+                          onSetLoopPointANow = {
+                              localView.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                              viewModel.setLoopPointANow()
+                          },
+                          onSetLoopPointBNow = {
+                              localView.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                              viewModel.setLoopPointBNow()
+                          },
+                          onHideLoopEditor = {
+                              viewModel.setLoopEditorVisible(false)
+                              isOsdVisible = false
                           },
                           onAdjustLoopA = { deltaMs ->
                               localView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
@@ -5931,18 +6704,19 @@ jobs:
                       )
                   }
 
+                  // Subtle, Compact "Tap to unlock" Pill (No bright colored outline, smaller footprint)
                   AnimatedVisibility(
                       visible = isTouchLocked && showLockedWakeShield,
-                      enter = fadeIn(tween(90)),
-                      exit = fadeOut(tween(90)),
+                      enter = fadeIn(tween(80)),
+                      exit = fadeOut(tween(80)),
                       modifier = Modifier
                           .align(Alignment.TopCenter)
-                          .padding(top = 28.dp)
+                          .padding(top = 24.dp)
                   ) {
                       Surface(
-                          shape = RoundedCornerShape(14.dp),
-                          color = palette.osdElevatedSurface,
-                          border = BorderStroke(1.5.dp, palette.primaryAccent),
+                          shape = RoundedCornerShape(12.dp),
+                          color = Color.Black.copy(alpha = 0.68f),
+                          border = BorderStroke(1.dp, Color.White.copy(alpha = 0.16f)),
                           onClick = {
                               viewModel.setTouchLocked(false)
                               showLockedWakeShield = false
@@ -5950,15 +6724,20 @@ jobs:
                           }
                       ) {
                           Row(
-                              modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
+                              modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
                               verticalAlignment = Alignment.CenterVertically
                           ) {
-                              Icon(Icons.Default.LockOpen, contentDescription = null, tint = palette.primaryAccent, modifier = Modifier.size(18.dp))
-                              Spacer(Modifier.width(8.dp))
+                              Icon(
+                                  Icons.Default.LockOpen,
+                                  contentDescription = null,
+                                  tint = Color.White.copy(alpha = 0.9f),
+                                  modifier = Modifier.size(15.dp)
+                              )
+                              Spacer(Modifier.width(6.dp))
                               Text(
                                   text = "Tap to unlock",
-                                  color = Color.White,
-                                  style = MaterialTheme.typography.labelLarge
+                                  color = Color.White.copy(alpha = 0.9f),
+                                  style = MaterialTheme.typography.labelMedium
                               )
                           }
                       }
@@ -5989,6 +6768,8 @@ jobs:
                               volumeFraction = volumeFraction,
                               bookmarks = bookmarks,
                               savedLoops = savedLoops,
+                              loopStartMs = loopStartMs,
+                              loopEndMs = loopEndMs,
                               playbackSpeed = playbackSpeed,
                               onSelectSubtitleTrack = { viewModel.selectSubtitleTrack(it) },
                               onEnableExternalSubtitle = { viewModel.enableExternalSubtitleAgain() },
@@ -5997,8 +6778,8 @@ jobs:
                               onResetSubtitleDelay = { viewModel.resetSubtitleDelay() },
                               onSetSubtitleSpeed = { viewModel.setSubtitleSpeedFactor(it) },
                               onAnchorSubtitleSpeedHere = { viewModel.anchorSubtitleSpeedAtCurrentTime() },
-                              onUpdateSubtitleStyle = { font, size, color, bg, bold, margin ->
-                                  viewModel.updateSubtitleStyle(font, size, color, bg, bold, margin)
+                              onUpdateSubtitleStyle = { font, size, color, bg, shadowR, shadowY, shadowOp, bold, margin ->
+                                  viewModel.updateSubtitleStyle(font, size, color, bg, shadowR, shadowY, shadowOp, bold, margin)
                               },
                               onSelectAudioTrack = { viewModel.selectAudioTrack(it) },
                               onPickExternalAudio = { audioFilePicker.launch(arrayOf("audio/*", "*/*")) },
@@ -6009,7 +6790,11 @@ jobs:
                               onAddBookmarkNow = { viewModel.addBookmarkAtCurrentPosition(it) },
                               onUpdateBookmarkLabel = { bm, lbl -> viewModel.updateBookmarkLabel(bm, lbl) },
                               onDeleteBookmark = { viewModel.deleteBookmark(it) },
-                              onActivateSavedLoop = { viewModel.activateSavedLoop(it) },
+                              onActivateSavedLoop = {
+                                  viewModel.activateSavedLoop(it)
+                                  activeSideSheetTab = null
+                              },
+                              onClearActiveLoop = { viewModel.clearAbLoop() },
                               onDeleteSavedLoop = { viewModel.deleteSavedLoop(it) },
                               onSetPlaybackSpeed = { viewModel.setNormalPlaybackSpeed(it) },
                               onToggleTopLeftSlot = { viewModel.toggleTopLeftQuickSlot(it) },
@@ -6020,13 +6805,21 @@ jobs:
               }
           }
 
+          /**
+           * Video Surface Layer:
+           * - Uses `surface_type="surface_view"` (default) for genuine 10-bit hardware HDR passthrough.
+           * - When `applySdrToneMapFilter == true` (either user selected "Convert HDR to SDR" or the device
+           *   screen lacks HDR support), applies a calibrated BT.2020 PQ -> Rec.709 contrast/saturation
+           *   tone-mapping transformation so HDR videos never look washed out on SDR displays.
+           */
           @Composable
           private fun VideoSurfaceLayer(
               exoPlayer: ExoPlayer?,
               aspectRatioMode: AspectRatioMode,
               zoomScale: Float,
               panOffsetX: Float,
-              panOffsetY: Float
+              panOffsetY: Float,
+              applySdrToneMapFilter: Boolean
           ) {
               val aspectModifier = when (aspectRatioMode) {
                   AspectRatioMode.RATIO_16_9 -> Modifier.aspectRatio(16f / 9f)
@@ -6045,7 +6838,7 @@ jobs:
                           factory = { ctx ->
                               PlayerView(ctx).apply {
                                   useController = false
-                                  subtitleView?.visibility = android.view.View.GONE
+                                  subtitleView?.visibility = View.GONE
                                   layoutParams = ViewGroup.LayoutParams(
                                       ViewGroup.LayoutParams.MATCH_PARENT,
                                       ViewGroup.LayoutParams.MATCH_PARENT
@@ -6064,6 +6857,27 @@ jobs:
                                   AspectRatioMode.STRETCH ->
                                       AspectRatioFrameLayout.RESIZE_MODE_FILL
                               }
+
+                              if (applySdrToneMapFilter) {
+                                  val contrast = 1.18f
+                                  val translate = (-0.5f * contrast + 0.5f) * 255f
+                                  val contrastMatrix = ColorMatrix(
+                                      floatArrayOf(
+                                          contrast, 0f, 0f, 0f, translate,
+                                          0f, contrast, 0f, 0f, translate,
+                                          0f, 0f, contrast, 0f, translate,
+                                          0f, 0f, 0f, 1f, 0f
+                                      )
+                                  )
+                                  val saturationMatrix = ColorMatrix().apply { setSaturation(1.24f) }
+                                  contrastMatrix.postConcat(saturationMatrix)
+                                  val paint = Paint().apply {
+                                      colorFilter = ColorMatrixColorFilter(contrastMatrix)
+                                  }
+                                  playerView.setLayerType(View.LAYER_TYPE_HARDWARE, paint)
+                              } else {
+                                  playerView.setLayerType(View.LAYER_TYPE_NONE, null)
+                              }
                           },
                           modifier = aspectModifier.graphicsLayer {
                               scaleX = zoomScale
@@ -6076,12 +6890,6 @@ jobs:
               }
           }
 
-          /**
-           * Clean Subtitle Renderer:
-           * - Uses a crisp cinema drop-shadow instead of the 3D dual-stroke outline.
-           * - Scales down cleanly in Picture-in-Picture mode (8.5sp, max 2 lines, compact padding)
-           *   so subtitles never overflow or cover the PiP window.
-           */
           @Composable
           private fun CustomSubtitleCanvasLayer(
               joinedText: String,
@@ -6098,6 +6906,10 @@ jobs:
               val horizPad = if (isInPipMode) 6.dp else 28.dp
               val boxHPad = if (isInPipMode) 6.dp else 12.dp
               val boxVPad = if (isInPipMode) 2.dp else 5.dp
+
+              val shadowAlpha = prefs.subtitleDropShadowOpacity.coerceIn(0f, 1f)
+              val shadowBlur = if (isInPipMode) 2f else prefs.subtitleDropShadowRadius.coerceIn(0f, 16f)
+              val shadowY = if (isInPipMode) 1f else prefs.subtitleDropShadowOffsetY.coerceIn(0f, 8f)
 
               Box(
                   modifier = modifier
@@ -6124,11 +6936,13 @@ jobs:
                           maxLines = if (isInPipMode) 2 else 5,
                           overflow = TextOverflow.Ellipsis,
                           style = TextStyle.Default.copy(
-                              shadow = Shadow(
-                                  color = Color.Black,
-                                  offset = Offset(0f, 1.5f),
-                                  blurRadius = if (isInPipMode) 2f else 5f
-                              )
+                              shadow = if (shadowBlur > 0.1f && shadowAlpha > 0.02f) {
+                                  Shadow(
+                                      color = Color.Black.copy(alpha = shadowAlpha),
+                                      offset = Offset(0f, shadowY),
+                                      blurRadius = shadowBlur
+                                  )
+                              } else null
                           )
                       )
                   }
@@ -6405,7 +7219,6 @@ jobs:
                       )
                   }
 
-                  // Instant "2x" Hold Indicator
                   AnimatedVisibility(
                       visible = isHoldFastForward || activeGestureHud == ActiveGestureHud.HOLD_FAST_FORWARD,
                       enter = fadeIn(tween(35)),
@@ -6445,7 +7258,6 @@ jobs:
                       }
                   }
 
-                  // Horizontal Finger Swipe-to-Seek HUD
                   AnimatedVisibility(
                       visible = activeGestureHud == ActiveGestureHud.SWIPE_SEEK,
                       enter = fadeIn(tween(45)),
@@ -6514,7 +7326,6 @@ jobs:
                       }
                   }
 
-                  // Clean, Subtle Borderless Double-Tap Skip Pill (No bright circle outline)
                   AnimatedVisibility(
                       visible = doubleTapSide != 0 && doubleTapAccumulatedSec != 0,
                       enter = fadeIn(tween(50)) + scaleIn(initialScale = 0.92f, animationSpec = tween(70)),
@@ -6624,6 +7435,7 @@ jobs:
                                   }
                               }
                               Text("Video: ${nerdStats.videoCodec} • ${nerdStats.resolutionAndFps}", style = TabularMonoStyle, fontSize = 11.sp, color = Color.White)
+                              Text("Dynamic range: ${nerdStats.hdrSummary}", style = TabularMonoStyle, fontSize = 11.sp, color = Color.White)
                               Text("Decoder: ${nerdStats.activeDecoderBadge}", style = TabularMonoStyle, fontSize = 11.sp, color = Color.White)
                               Text("Audio: ${nerdStats.audioCodecAndChannels} @ ${nerdStats.audioSampleRateHz} Hz", style = TabularMonoStyle, fontSize = 11.sp, color = Color.White)
                               Text("Dropped frames: ${nerdStats.droppedFrames} • ${nerdStats.networkProtocol}", style = TabularMonoStyle, fontSize = 11.sp, color = Color.White)
@@ -6742,6 +7554,7 @@ jobs:
           import androidx.compose.runtime.*
           import androidx.compose.ui.Alignment
           import androidx.compose.ui.Modifier
+          import androidx.compose.ui.draw.alpha
           import androidx.compose.ui.draw.clip
           import androidx.compose.ui.geometry.CornerRadius
           import androidx.compose.ui.geometry.Offset
@@ -6754,6 +7567,7 @@ jobs:
           import androidx.compose.ui.input.pointer.pointerInput
           import androidx.compose.ui.input.pointer.positionChange
           import androidx.compose.ui.text.font.FontWeight
+          import androidx.compose.ui.text.style.TextAlign
           import androidx.compose.ui.text.style.TextOverflow
           import androidx.compose.ui.unit.dp
           import androidx.compose.ui.unit.sp
@@ -6771,11 +7585,15 @@ jobs:
           fun MainOsdChromeLayer(
               videoTitle: String,
               isPlaying: Boolean,
+              hasPreviousVideo: Boolean,
+              hasNextVideo: Boolean,
               currentPositionMs: Long,
               durationMs: Long,
               bufferedPercentage: Int,
-              skipIntervalSeconds: Int,
               decoderMode: DecoderMode,
+              isCurrentVideoHdr: Boolean,
+              activeHdrFormatBadge: String,
+              forceSdrToneMapping: Boolean,
               playbackSpeed: Float,
               aspectRatioMode: AspectRatioMode,
               orientationMode: PlayerOrientationMode,
@@ -6783,21 +7601,28 @@ jobs:
               enabledTopRightSlots: List<TopRightQuickSlot>,
               loopStartMs: Long?,
               loopEndMs: Long?,
+              isLoopEditorVisible: Boolean,
               bookmarks: List<BookmarkEntity>,
+              savedLoops: List<SavedLoopEntity>,
               palette: VideoDynamicPalette,
               onMenuOpenStateChanged: (Boolean) -> Unit,
               onBack: () -> Unit,
               onSelectDecoder: (DecoderMode) -> Unit,
+              onToggleForceSdrToneMapping: () -> Unit,
               onEnterPip: () -> Unit,
               onToggleNerdStats: () -> Unit,
+              onPlayPreviousVideo: () -> Unit,
               onPlayPause: () -> Unit,
-              onSeekRelative: (Long) -> Unit,
+              onPlayNextVideo: () -> Unit,
               onTimelineScrubStart: () -> Unit,
               onTimelineScrubMove: (Long, String) -> Unit,
               onTimelineScrubEnd: (Long) -> Unit,
               onTapBookmarkDiamond: (BookmarkEntity) -> Unit,
               onDragLoopBracket: (Long, Long) -> Unit,
-              onTapLoopPill: () -> Unit,
+              onTapLoopButton: () -> Unit,
+              onSetLoopPointANow: () -> Unit,
+              onSetLoopPointBNow: () -> Unit,
+              onHideLoopEditor: () -> Unit,
               onAdjustLoopA: (Long) -> Unit,
               onAdjustLoopB: (Long) -> Unit,
               onSaveLoop: () -> Unit,
@@ -6820,11 +7645,6 @@ jobs:
                       .fillMaxSize()
                       .padding(horizontal = 16.dp, vertical = 12.dp)
               ) {
-                  // --------------------------------------------------------------------
-                  // PORTRAIT-SAFE TOP BAR:
-                  // - Row 1: Back button + Title (weight 1f) + Top-Right Rounded Icon Buttons
-                  // - Row 2: Compact Rounded Icon Buttons under Title (Never overlaps Top-Right!)
-                  // --------------------------------------------------------------------
                   Column(
                       modifier = Modifier
                           .fillMaxWidth()
@@ -6844,19 +7664,28 @@ jobs:
 
                           Spacer(Modifier.width(10.dp))
 
-                          Text(
-                              text = videoTitle,
-                              style = MaterialTheme.typography.titleMedium,
-                              fontWeight = FontWeight.Bold,
-                              color = Color.White,
-                              maxLines = 1,
-                              overflow = TextOverflow.Ellipsis,
-                              modifier = Modifier.weight(1f)
-                          )
+                          Column(modifier = Modifier.weight(1f)) {
+                              Text(
+                                  text = videoTitle,
+                                  style = MaterialTheme.typography.titleMedium,
+                                  fontWeight = FontWeight.Bold,
+                                  color = Color.White,
+                                  maxLines = 1,
+                                  overflow = TextOverflow.Ellipsis
+                              )
+                              if (isCurrentVideoHdr) {
+                                  Text(
+                                      text = activeHdrFormatBadge,
+                                      style = TabularMonoStyle,
+                                      fontSize = 10.sp,
+                                      fontWeight = FontWeight.Bold,
+                                      color = palette.primaryAccent
+                                  )
+                              }
+                          }
 
                           Spacer(Modifier.width(8.dp))
 
-                          // Top-Right Customizable Buttons + Permanent Overflow Menu Button
                           Row(
                               horizontalArrangement = Arrangement.spacedBy(6.dp),
                               verticalAlignment = Alignment.CenterVertically
@@ -6949,7 +7778,6 @@ jobs:
                                   }
                               }
 
-                              // Permanent Top-Right Menu Button (Automatically houses any hidden Top-Left or Top-Right items!)
                               Box {
                                   OsdRoundedIconButton(
                                       icon = Icons.Default.MoreVert,
@@ -6962,7 +7790,30 @@ jobs:
                                       expanded = showTopRightMainMenu,
                                       onDismissRequest = { showTopRightMainMenu = false }
                                   ) {
-                                      // Dynamically include any Top-Right slot that was hidden from the bar
+                                      // Only show HDR -> SDR conversion option when the current video is HDR!
+                                      if (isCurrentVideoHdr) {
+                                          DropdownMenuItem(
+                                              text = {
+                                                  Text(
+                                                      if (forceSdrToneMapping) "Restore native HDR"
+                                                      else "Convert HDR to SDR"
+                                                  )
+                                              },
+                                              leadingIcon = {
+                                                  Icon(
+                                                      Icons.Default.HdrOn,
+                                                      contentDescription = null,
+                                                      tint = palette.primaryAccent
+                                                  )
+                                              },
+                                              onClick = {
+                                                  showTopRightMainMenu = false
+                                                  onToggleForceSdrToneMapping()
+                                              }
+                                          )
+                                          HorizontalDivider()
+                                      }
+
                                       if (TopRightQuickSlot.LOCK !in enabledTopRightSlots) {
                                           DropdownMenuItem(
                                               text = { Text("Lock controls") },
@@ -6984,7 +7835,6 @@ jobs:
                                           )
                                       }
 
-                                      // Dynamically include any Top-Left slot that was hidden from under the title
                                       if (TopLeftQuickSlot.SPEED !in enabledTopLeftSlots) {
                                           DropdownMenuItem(
                                               text = { Text(String.format(Locale.US, "Playback speed (%.2fx)", playbackSpeed)) },
@@ -6998,7 +7848,7 @@ jobs:
                                       if (TopLeftQuickSlot.BOOKMARK !in enabledTopLeftSlots) {
                                           DropdownMenuItem(
                                               text = { Text("Pin bookmark") },
-                                              leadingIcon = { Icon(Icons.Default.BookmarkAdd, contentDescription = null) },
+                                              leadingIcon = { Icon(Icons.Outlined.BookmarkBorder, contentDescription = null) },
                                               onClick = {
                                                   showTopRightMainMenu = false
                                                   onAddBookmark()
@@ -7011,7 +7861,7 @@ jobs:
                                               leadingIcon = { Icon(Icons.Default.Repeat, contentDescription = null) },
                                               onClick = {
                                                   showTopRightMainMenu = false
-                                                  onTapLoopPill()
+                                                  onTapLoopButton()
                                               }
                                           )
                                       }
@@ -7043,7 +7893,7 @@ jobs:
                                           }
                                       )
                                       DropdownMenuItem(
-                                          text = { Text("Bookmarks & saved loops (${bookmarks.size})") },
+                                          text = { Text("Saved loops & bookmarks (${savedLoops.size} loops)") },
                                           leadingIcon = { Icon(Icons.Outlined.Bookmarks, contentDescription = null) },
                                           onClick = {
                                               showTopRightMainMenu = false
@@ -7094,7 +7944,8 @@ jobs:
                           }
                       }
 
-                      // Row 2: Compact Rounded Symbol Buttons Directly Under Title (Never collides in Portrait)
+                      // Row 2: Top-Left Quick Buttons Under Title
+                      // Note: Bookmark button simply pins a bookmark with zero counter badge or selected highlight!
                       if (enabledTopLeftSlots.isNotEmpty()) {
                           LazyRow(
                               horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -7118,10 +7969,10 @@ jobs:
                                       }
                                       TopLeftQuickSlot.BOOKMARK -> {
                                           OsdRoundedIconButton(
-                                              icon = Icons.Default.BookmarkAdd,
-                                              badgeText = if (bookmarks.isNotEmpty()) "${bookmarks.size}" else null,
-                                              isHighlighted = bookmarks.isNotEmpty(),
-                                              contentDescription = "Bookmark",
+                                              icon = Icons.Outlined.BookmarkAdd,
+                                              badgeText = null,
+                                              isHighlighted = false,
+                                              contentDescription = "Pin bookmark",
                                               palette = palette,
                                               onClick = onAddBookmark
                                           )
@@ -7137,9 +7988,9 @@ jobs:
                                               badgeText = loopBadge,
                                               isHighlighted = loopStartMs != null,
                                               highlightColor = palette.tertiaryLoopAccent,
-                                              contentDescription = "Loop",
+                                              contentDescription = "A-B loop",
                                               palette = palette,
-                                              onClick = onTapLoopPill
+                                              onClick = onTapLoopButton
                                           )
                                       }
                                       TopLeftQuickSlot.ORIENTATION -> {
@@ -7181,7 +8032,7 @@ jobs:
                   }
 
                   // --------------------------------------------------------------------
-                  // CENTER TRANSPORT CONTROLS: Play/Pause + Configurable Skip Back/Forward
+                  // CENTER TRANSPORT CONTROLS: Previous Video | Play/Pause | Next Video
                   // --------------------------------------------------------------------
                   Row(
                       modifier = Modifier.align(Alignment.Center),
@@ -7192,26 +8043,17 @@ jobs:
                           shape = RoundedCornerShape(16.dp),
                           color = palette.osdSurface,
                           border = BorderStroke(1.2.dp, palette.specularBorder),
-                          onClick = { onSeekRelative(-skipIntervalSeconds * 1000L) },
-                          modifier = Modifier.size(54.dp)
+                          onClick = { if (hasPreviousVideo) onPlayPreviousVideo() },
+                          modifier = Modifier
+                              .size(52.dp)
+                              .alpha(if (hasPreviousVideo) 1f else 0.38f)
                       ) {
-                          Column(
-                              modifier = Modifier.fillMaxSize(),
-                              horizontalAlignment = Alignment.CenterHorizontally,
-                              verticalArrangement = Arrangement.Center
-                          ) {
+                          Box(contentAlignment = Alignment.Center) {
                               Icon(
-                                  Icons.Default.FastRewind,
-                                  contentDescription = "Skip back ${skipIntervalSeconds}s",
+                                  Icons.Default.SkipPrevious,
+                                  contentDescription = "Previous video",
                                   tint = Color.White,
-                                  modifier = Modifier.size(22.dp)
-                              )
-                              Text(
-                                  text = "-${skipIntervalSeconds}s",
-                                  style = TabularMonoStyle,
-                                  fontSize = 10.sp,
-                                  fontWeight = FontWeight.Bold,
-                                  color = Color.White
+                                  modifier = Modifier.size(26.dp)
                               )
                           }
                       }
@@ -7237,53 +8079,48 @@ jobs:
                           shape = RoundedCornerShape(16.dp),
                           color = palette.osdSurface,
                           border = BorderStroke(1.2.dp, palette.specularBorder),
-                          onClick = { onSeekRelative(skipIntervalSeconds * 1000L) },
-                          modifier = Modifier.size(54.dp)
+                          onClick = { if (hasNextVideo) onPlayNextVideo() },
+                          modifier = Modifier
+                              .size(52.dp)
+                              .alpha(if (hasNextVideo) 1f else 0.38f)
                       ) {
-                          Column(
-                              modifier = Modifier.fillMaxSize(),
-                              horizontalAlignment = Alignment.CenterHorizontally,
-                              verticalArrangement = Arrangement.Center
-                          ) {
+                          Box(contentAlignment = Alignment.Center) {
                               Icon(
-                                  Icons.Default.FastForward,
-                                  contentDescription = "Skip forward ${skipIntervalSeconds}s",
+                                  Icons.Default.SkipNext,
+                                  contentDescription = "Next video",
                                   tint = Color.White,
-                                  modifier = Modifier.size(22.dp)
-                              )
-                              Text(
-                                  text = "+${skipIntervalSeconds}s",
-                                  style = TabularMonoStyle,
-                                  fontSize = 10.sp,
-                                  fontWeight = FontWeight.Bold,
-                                  color = Color.White
+                                  modifier = Modifier.size(26.dp)
                               )
                           }
                       }
                   }
 
                   // --------------------------------------------------------------------
-                  // BOTTOM PROGRESS DECK: NOTHING BELOW THE PROGRESS BAR
+                  // BOTTOM PROGRESS DECK: CLEAN LOOP STUDIO CARD + PROGRESS BAR
                   // --------------------------------------------------------------------
                   Column(
                       modifier = Modifier
                           .fillMaxWidth()
                           .align(Alignment.BottomCenter),
-                      verticalArrangement = Arrangement.spacedBy(4.dp)
+                      verticalArrangement = Arrangement.spacedBy(6.dp)
                   ) {
+                      // Clean, Sleek Loop Controller (Can be hidden while keeping loop active!)
                       AnimatedVisibility(
-                          visible = loopStartMs != null,
-                          enter = fadeIn(),
-                          exit = fadeOut()
+                          visible = loopStartMs != null && isLoopEditorVisible,
+                          enter = fadeIn(tween(110)) + slideInVertically { it / 3 },
+                          exit = fadeOut(tween(110)) + slideOutVertically { it / 3 }
                       ) {
-                          LoopMicroTunerBar(
+                          SleekLoopStudioBar(
                               loopStartMs = loopStartMs ?: 0L,
                               loopEndMs = loopEndMs,
                               palette = palette,
+                              onSetANow = onSetLoopPointANow,
+                              onSetBNow = onSetLoopPointBNow,
                               onAdjustA = onAdjustLoopA,
                               onAdjustB = onAdjustLoopB,
                               onSaveLoop = onSaveLoop,
-                              onClearLoop = onClearLoop
+                              onWatchUnobstructed = onHideLoopEditor,
+                              onExitLoop = onClearLoop
                           )
                       }
 
@@ -7329,10 +8166,6 @@ jobs:
               }
           }
 
-          /**
-           * Well-proportioned, softly rounded symbol button (`38dp` height, `14dp` corner radius)
-           * used for both Top-Left (under title) and Top-Right HUD controls.
-           */
           @Composable
           private fun OsdRoundedIconButton(
               icon: ImageVector,
@@ -7379,64 +8212,124 @@ jobs:
               }
           }
 
+          /**
+           * Redesigned Clean Loop Studio Bar:
+           * - Direct `[ Set A ]` and `[ Set B ]` buttons right inside the bar so you never have to re-tap the top-left icon.
+           * - `[ Hide bar ]` button lets you dismiss the menu and watch the active loop completely unobstructed.
+           * - `[ Save ]` stores the loop to the top-right menu so you can `[ Exit loop ]` and make another loop anytime.
+           */
           @Composable
-          private fun LoopMicroTunerBar(
+          private fun SleekLoopStudioBar(
               loopStartMs: Long,
               loopEndMs: Long?,
               palette: VideoDynamicPalette,
+              onSetANow: () -> Unit,
+              onSetBNow: () -> Unit,
               onAdjustA: (Long) -> Unit,
               onAdjustB: (Long) -> Unit,
               onSaveLoop: () -> Unit,
-              onClearLoop: () -> Unit
+              onWatchUnobstructed: () -> Unit,
+              onExitLoop: () -> Unit
           ) {
               Surface(
-                  shape = RoundedCornerShape(12.dp),
-                  color = palette.osdElevatedSurface,
-                  border = BorderStroke(1.dp, palette.tertiaryLoopAccent.copy(alpha = 0.75f)),
+                  shape = RoundedCornerShape(16.dp),
+                  color = Color(0xFF12141A).copy(alpha = 0.94f),
+                  border = BorderStroke(1.dp, Color.White.copy(alpha = 0.14f)),
                   modifier = Modifier.fillMaxWidth()
               ) {
-                  Row(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .horizontalScroll(rememberScrollState())
-                          .padding(horizontal = 10.dp, vertical = 6.dp),
-                      verticalAlignment = Alignment.CenterVertically,
-                      horizontalArrangement = Arrangement.spacedBy(6.dp)
+                  Column(
+                      modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                      verticalArrangement = Arrangement.spacedBy(8.dp)
                   ) {
-                      MicroTunerChip(text = "A -0.1s", onClick = { onAdjustA(-100L) })
-                      MicroTunerChip(text = "A +0.1s", onClick = { onAdjustA(100L) })
-
-                      Surface(
-                          shape = RoundedCornerShape(6.dp),
-                          color = palette.tertiaryLoopAccent.copy(alpha = 0.22f)
+                      // Top Row: Status + Set A / Set B + Watch Unobstructed + Save + Exit Loop
+                      Row(
+                          modifier = Modifier.fillMaxWidth(),
+                          verticalAlignment = Alignment.CenterVertically,
+                          horizontalArrangement = Arrangement.SpaceBetween
                       ) {
-                          val endText = if (loopEndMs != null) FormatUtils.formatPreciseCentiseconds(loopEndMs) else "Set B..."
-                          Text(
-                              text = "${FormatUtils.formatPreciseCentiseconds(loopStartMs)} - $endText",
-                              style = TabularMonoStyle,
-                              fontSize = 11.sp,
-                              fontWeight = FontWeight.Bold,
-                              color = palette.tertiaryLoopAccent,
-                              modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                          )
+                          Row(
+                              verticalAlignment = Alignment.CenterVertically,
+                              horizontalArrangement = Arrangement.spacedBy(6.dp)
+                          ) {
+                              LoopStudioButton(
+                                  text = "Set A (${FormatUtils.formatDurationMs(loopStartMs)})",
+                                  accentColor = palette.primaryAccent,
+                                  onClick = onSetANow
+                              )
+                              LoopStudioButton(
+                                  text = if (loopEndMs != null) "Set B (${FormatUtils.formatDurationMs(loopEndMs)})" else "Set B here",
+                                  accentColor = if (loopEndMs == null) palette.primaryAccent else palette.tertiaryLoopAccent,
+                                  filled = loopEndMs == null,
+                                  onClick = onSetBNow
+                              )
+                          }
+
+                          Row(
+                              verticalAlignment = Alignment.CenterVertically,
+                              horizontalArrangement = Arrangement.spacedBy(6.dp)
+                          ) {
+                              if (loopEndMs != null) {
+                                  LoopStudioButton(
+                                      text = "Save",
+                                      accentColor = palette.primaryAccent,
+                                      onClick = onSaveLoop
+                                  )
+                              }
+                              LoopStudioButton(
+                                  text = "Hide bar",
+                                  accentColor = Color.White.copy(alpha = 0.85f),
+                                  onClick = onWatchUnobstructed
+                              )
+                              LoopStudioButton(
+                                  text = "Exit loop",
+                                  accentColor = Color(0xFFFF6B6B),
+                                  onClick = onExitLoop
+                              )
+                          }
                       }
 
-                      if (loopEndMs != null) {
-                          MicroTunerChip(text = "B -0.1s", onClick = { onAdjustB(-100L) })
-                          MicroTunerChip(text = "B +0.1s", onClick = { onAdjustB(100L) })
-                          MicroTunerChip(
-                              text = "Save loop",
-                              highlightColor = palette.primaryAccent,
-                              onClick = onSaveLoop
-                          )
+                      // Bottom Row: Fine 0.1s Nudge Controls for A and B
+                      Row(
+                          modifier = Modifier
+                              .fillMaxWidth()
+                              .horizontalScroll(rememberScrollState()),
+                          verticalAlignment = Alignment.CenterVertically,
+                          horizontalArrangement = Arrangement.spacedBy(6.dp)
+                      ) {
+                          Text("Fine tune:", style = TabularMonoStyle, fontSize = 10.sp, color = Color.White.copy(alpha = 0.6f))
+                          MicroTunerChip(text = "A -0.1s", onClick = { onAdjustA(-100L) })
+                          MicroTunerChip(text = "A +0.1s", onClick = { onAdjustA(100L) })
+                          if (loopEndMs != null) {
+                              Spacer(Modifier.width(4.dp))
+                              MicroTunerChip(text = "B -0.1s", onClick = { onAdjustB(-100L) })
+                              MicroTunerChip(text = "B +0.1s", onClick = { onAdjustB(100L) })
+                          }
                       }
-
-                      MicroTunerChip(
-                          text = "Clear",
-                          highlightColor = Color(0xFFFF5C5C),
-                          onClick = onClearLoop
-                      )
                   }
+              }
+          }
+
+          @Composable
+          private fun LoopStudioButton(
+              text: String,
+              accentColor: Color,
+              filled: Boolean = false,
+              onClick: () -> Unit
+          ) {
+              Surface(
+                  shape = RoundedCornerShape(10.dp),
+                  color = if (filled) accentColor else accentColor.copy(alpha = 0.14f),
+                  border = BorderStroke(1.dp, accentColor.copy(alpha = 0.55f)),
+                  onClick = onClick
+              ) {
+                  Text(
+                      text = text,
+                      style = TabularMonoStyle,
+                      fontSize = 11.sp,
+                      fontWeight = FontWeight.Bold,
+                      color = if (filled) Color.Black else accentColor,
+                      modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+                  )
               }
           }
 
@@ -7448,26 +8341,21 @@ jobs:
           ) {
               Surface(
                   shape = RoundedCornerShape(8.dp),
-                  color = Color.White.copy(alpha = 0.10f),
-                  border = BorderStroke(1.dp, highlightColor.copy(alpha = 0.35f)),
+                  color = Color.White.copy(alpha = 0.08f),
+                  border = BorderStroke(1.dp, highlightColor.copy(alpha = 0.25f)),
                   onClick = onClick
               ) {
                   Text(
                       text = text,
                       style = TabularMonoStyle,
                       fontSize = 11.sp,
-                      fontWeight = FontWeight.SemiBold,
+                      fontWeight = FontWeight.Medium,
                       color = highlightColor,
                       modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                   )
               }
           }
 
-          /**
-           * Interactive Timeline Canvas:
-           * - Tapping a diamond bookmark pin immediately jumps to and plays that bookmarked timestamp.
-           * - Scrubbing auto-pauses during drag and resumes on finger release.
-           */
           @Composable
           private fun FlagshipTimelineCanvas(
               currentPositionMs: Long,
@@ -7503,7 +8391,6 @@ jobs:
                               val startA = latestLoopA
                               val endB = latestLoopB
 
-                              // Check if user tapped directly on a Bookmark Diamond Pin (within 24px horizontal radius)
                               val tappedBookmark = latestBookmarks.minByOrNull { bm ->
                                   val bmX = (bm.timestampMs.toFloat() / latestDur.toFloat()) * widthPx
                                   abs(down.position.x - bmX)
@@ -7669,7 +8556,6 @@ jobs:
                       }
                   }
 
-                  // Tappable Diamond Bookmark Markers
                   val diamondRadius = 6.dp.toPx()
                   for (bm in bookmarks) {
                       val bmX = ((bm.timestampMs.toFloat() / safeDuration.toFloat()).coerceIn(0f, 1f)) * canvasW
@@ -7716,6 +8602,8 @@ jobs:
               volumeFraction: Float,
               bookmarks: List<BookmarkEntity>,
               savedLoops: List<SavedLoopEntity>,
+              loopStartMs: Long?,
+              loopEndMs: Long?,
               playbackSpeed: Float,
               onSelectSubtitleTrack: (PlayerTrackOption?) -> Unit,
               onEnableExternalSubtitle: () -> Unit,
@@ -7724,7 +8612,7 @@ jobs:
               onResetSubtitleDelay: () -> Unit,
               onSetSubtitleSpeed: (Float) -> Unit,
               onAnchorSubtitleSpeedHere: () -> Unit,
-              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Boolean?, Float?) -> Unit,
+              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Float?, Float?, Boolean?, Float?) -> Unit,
               onSelectAudioTrack: (PlayerTrackOption?) -> Unit,
               onPickExternalAudio: () -> Unit,
               onAdjustAudioDelay: (Long) -> Unit,
@@ -7735,6 +8623,7 @@ jobs:
               onUpdateBookmarkLabel: (BookmarkEntity, String) -> Unit,
               onDeleteBookmark: (BookmarkEntity) -> Unit,
               onActivateSavedLoop: (SavedLoopEntity) -> Unit,
+              onClearActiveLoop: () -> Unit,
               onDeleteSavedLoop: (SavedLoopEntity) -> Unit,
               onSetPlaybackSpeed: (Float) -> Unit,
               onToggleTopLeftSlot: (TopLeftQuickSlot) -> Unit,
@@ -7844,11 +8733,14 @@ jobs:
                                   palette = palette,
                                   bookmarks = bookmarks,
                                   savedLoops = savedLoops,
+                                  loopStartMs = loopStartMs,
+                                  loopEndMs = loopEndMs,
                                   onSeekToExact = onSeekToExact,
                                   onAddBookmarkNow = onAddBookmarkNow,
                                   onUpdateBookmarkLabel = onUpdateBookmarkLabel,
                                   onDeleteBookmark = onDeleteBookmark,
                                   onActivateSavedLoop = onActivateSavedLoop,
+                                  onClearActiveLoop = onClearActiveLoop,
                                   onDeleteSavedLoop = onDeleteSavedLoop
                               )
                               SideSheetTab.SPEED -> SpeedSideSheetContent(
@@ -7886,20 +8778,28 @@ jobs:
               onResetSubtitleDelay: () -> Unit,
               onSetSubtitleSpeed: (Float) -> Unit,
               onAnchorSubtitleSpeedHere: () -> Unit,
-              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Boolean?, Float?) -> Unit
+              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Float?, Float?, Boolean?, Float?) -> Unit
           ) {
               var subSection by remember { mutableIntStateOf(0) }
 
               Column(modifier = Modifier.fillMaxSize()) {
+                  // Changed "Typography" to "Fonts" so it never wraps or bleeds across lines!
                   Row(
                       modifier = Modifier.fillMaxWidth(),
                       horizontalArrangement = Arrangement.spacedBy(6.dp)
                   ) {
-                      listOf("Tracks", "Sync & FPS", "Typography").forEachIndexed { idx, label ->
+                      listOf("Tracks", "Sync & FPS", "Fonts").forEachIndexed { idx, label ->
                           FilterChip(
                               selected = subSection == idx,
                               onClick = { subSection = idx },
-                              label = { Text(label, fontSize = 11.sp) },
+                              label = {
+                                  Text(
+                                      text = label,
+                                      fontSize = 11.sp,
+                                      maxLines = 1,
+                                      overflow = TextOverflow.Ellipsis
+                                  )
+                              },
                               modifier = Modifier.weight(1f)
                           )
                       }
@@ -8021,7 +8921,7 @@ jobs:
                                       badge = "Font",
                                       selected = prefs.subtitleFont == fontChoice,
                                       palette = palette,
-                                      onClick = { onUpdateSubtitleStyle(fontChoice, null, null, null, null, null) }
+                                      onClick = { onUpdateSubtitleStyle(fontChoice, null, null, null, null, null, null, null, null) }
                                   )
                               }
 
@@ -8032,7 +8932,7 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleFontSizeSp,
-                                  onValueChange = { onUpdateSubtitleStyle(null, it, null, null, null, null) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, it, null, null, null, null, null, null, null) },
                                   valueRange = 14f..42f
                               )
 
@@ -8043,7 +8943,7 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleBottomMarginDp,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, it) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, null, null, null, it) },
                                   valueRange = 8f..120f
                               )
 
@@ -8067,10 +8967,48 @@ jobs:
                                                   color = if (prefs.subtitleTextColorArgb == argb) palette.primaryAccent else Color.White,
                                                   shape = CircleShape
                                               )
-                                              .clickable { onUpdateSubtitleStyle(null, null, argb, null, null, null) }
+                                              .clickable { onUpdateSubtitleStyle(null, null, argb, null, null, null, null, null, null) }
                                       )
                                   }
                               }
+
+                              HorizontalDivider(color = palette.specularBorder)
+
+                              // Dedicated Caption Drop Shadow Tuning Sliders
+                              Text("Caption drop shadow", style = MaterialTheme.typography.labelMedium, color = palette.primaryAccent)
+
+                              Text(
+                                  "Shadow blur radius: ${String.format(Locale.US, "%.1f", prefs.subtitleDropShadowRadius)}",
+                                  style = TabularNumeralStyle,
+                                  color = Color.White
+                              )
+                              Slider(
+                                  value = prefs.subtitleDropShadowRadius,
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, it, null, null, null, null) },
+                                  valueRange = 0f..16f
+                              )
+
+                              Text(
+                                  "Shadow vertical distance: ${String.format(Locale.US, "%.1f", prefs.subtitleDropShadowOffsetY)}",
+                                  style = TabularNumeralStyle,
+                                  color = Color.White
+                              )
+                              Slider(
+                                  value = prefs.subtitleDropShadowOffsetY,
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, it, null, null, null) },
+                                  valueRange = 0f..8f
+                              )
+
+                              Text(
+                                  "Shadow opacity: ${(prefs.subtitleDropShadowOpacity * 100).roundToInt()}%",
+                                  style = TabularNumeralStyle,
+                                  color = Color.White
+                              )
+                              Slider(
+                                  value = prefs.subtitleDropShadowOpacity,
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, null, it, null, null) },
+                                  valueRange = 0f..1f
+                              )
 
                               Text(
                                   "Background box opacity: ${(prefs.subtitleBgOpacity * 100).roundToInt()}%",
@@ -8079,7 +9017,7 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleBgOpacity,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, it, null, null) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, it, null, null, null, null, null) },
                                   valueRange = 0f..1f
                               )
                           }
@@ -8176,11 +9114,14 @@ jobs:
               palette: VideoDynamicPalette,
               bookmarks: List<BookmarkEntity>,
               savedLoops: List<SavedLoopEntity>,
+              loopStartMs: Long?,
+              loopEndMs: Long?,
               onSeekToExact: (Long) -> Unit,
               onAddBookmarkNow: (String) -> Unit,
               onUpdateBookmarkLabel: (BookmarkEntity, String) -> Unit,
               onDeleteBookmark: (BookmarkEntity) -> Unit,
               onActivateSavedLoop: (SavedLoopEntity) -> Unit,
+              onClearActiveLoop: () -> Unit,
               onDeleteSavedLoop: (SavedLoopEntity) -> Unit
           ) {
               var editingBookmark by remember { mutableStateOf<BookmarkEntity?>(null) }
@@ -8191,6 +9132,73 @@ jobs:
                       .verticalScroll(rememberScrollState()),
                   verticalArrangement = Arrangement.spacedBy(10.dp)
               ) {
+                  if (loopStartMs != null) {
+                      Surface(
+                          shape = RoundedCornerShape(12.dp),
+                          color = palette.tertiaryLoopAccent.copy(alpha = 0.16f),
+                          border = BorderStroke(1.dp, palette.tertiaryLoopAccent),
+                          modifier = Modifier.fillMaxWidth()
+                      ) {
+                          Row(
+                              modifier = Modifier.padding(10.dp),
+                              verticalAlignment = Alignment.CenterVertically,
+                              horizontalArrangement = Arrangement.SpaceBetween
+                          ) {
+                              Column(modifier = Modifier.weight(1f)) {
+                                  Text("Active loop running", style = MaterialTheme.typography.labelSmall, color = palette.tertiaryLoopAccent)
+                                  val endStr = if (loopEndMs != null) FormatUtils.formatDurationMs(loopEndMs) else "..."
+                                  Text("${FormatUtils.formatDurationMs(loopStartMs)} - $endStr", style = TabularMonoStyle, fontSize = 12.sp, color = Color.White)
+                              }
+                              TextButton(onClick = onClearActiveLoop) {
+                                  Text("Exit loop", color = Color(0xFFFF6B6B))
+                              }
+                          }
+                      }
+                  }
+
+                  Text(
+                      "Saved A-B loops (${savedLoops.size})",
+                      style = MaterialTheme.typography.labelMedium,
+                      color = palette.tertiaryLoopAccent
+                  )
+                  if (savedLoops.isEmpty()) {
+                      Text(
+                          "No saved loops yet. Set a loop and tap Save to switch between multiple loops anytime.",
+                          style = MaterialTheme.typography.bodySmall,
+                          color = Color.White.copy(alpha = 0.65f)
+                      )
+                  } else {
+                      savedLoops.forEach { loop ->
+                          Surface(
+                              shape = RoundedCornerShape(10.dp),
+                              color = palette.tertiaryLoopAccent.copy(alpha = 0.14f),
+                              border = BorderStroke(1.dp, palette.tertiaryLoopAccent.copy(alpha = 0.5f)),
+                              onClick = { onActivateSavedLoop(loop) },
+                              modifier = Modifier.fillMaxWidth()
+                          ) {
+                              Row(
+                                  modifier = Modifier.padding(10.dp),
+                                  verticalAlignment = Alignment.CenterVertically
+                              ) {
+                                  Column(modifier = Modifier.weight(1f)) {
+                                      Text(loop.label, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = Color.White)
+                                      Text(
+                                          "${FormatUtils.formatPreciseCentiseconds(loop.startMs)} - ${FormatUtils.formatPreciseCentiseconds(loop.endMs)}",
+                                          style = TabularMonoStyle,
+                                          fontSize = 11.sp,
+                                          color = palette.tertiaryLoopAccent
+                                      )
+                                  }
+                                  IconButton(onClick = { onDeleteSavedLoop(loop) }, modifier = Modifier.size(28.dp)) {
+                                      Icon(Icons.Default.DeleteOutline, contentDescription = "Delete", tint = Color(0xFFFF5C5C), modifier = Modifier.size(16.dp))
+                                  }
+                              }
+                          }
+                      }
+                  }
+
+                  HorizontalDivider(color = palette.specularBorder)
+
                   Button(
                       onClick = { onAddBookmarkNow("") },
                       modifier = Modifier.fillMaxWidth()
@@ -8235,41 +9243,6 @@ jobs:
                           }
                       }
                   }
-
-                  HorizontalDivider(color = palette.specularBorder)
-
-                  Text(
-                      "Saved A-B loops (${savedLoops.size})",
-                      style = MaterialTheme.typography.labelMedium,
-                      color = palette.tertiaryLoopAccent
-                  )
-                  savedLoops.forEach { loop ->
-                      Surface(
-                          shape = RoundedCornerShape(10.dp),
-                          color = palette.tertiaryLoopAccent.copy(alpha = 0.14f),
-                          border = BorderStroke(1.dp, palette.tertiaryLoopAccent.copy(alpha = 0.5f)),
-                          onClick = { onActivateSavedLoop(loop) },
-                          modifier = Modifier.fillMaxWidth()
-                      ) {
-                          Row(
-                              modifier = Modifier.padding(10.dp),
-                              verticalAlignment = Alignment.CenterVertically
-                          ) {
-                              Column(modifier = Modifier.weight(1f)) {
-                                  Text(loop.label, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = Color.White)
-                                  Text(
-                                      "${FormatUtils.formatPreciseCentiseconds(loop.startMs)} - ${FormatUtils.formatPreciseCentiseconds(loop.endMs)}",
-                                      style = TabularMonoStyle,
-                                      fontSize = 11.sp,
-                                      color = palette.tertiaryLoopAccent
-                                  )
-                              }
-                              IconButton(onClick = { onDeleteSavedLoop(loop) }, modifier = Modifier.size(28.dp)) {
-                                  Icon(Icons.Default.DeleteOutline, contentDescription = "Delete", tint = Color(0xFFFF5C5C), modifier = Modifier.size(16.dp))
-                              }
-                          }
-                      }
-                  }
               }
 
               editingBookmark?.let { target ->
@@ -8298,6 +9271,10 @@ jobs:
               }
           }
 
+          /**
+           * Compact 3-Column / 4-Column Grid View for Playback Speed Presets:
+           * Zero scrolling needed in landscape!
+           */
           @Composable
           private fun SpeedSideSheetContent(
               palette: VideoDynamicPalette,
@@ -8308,37 +9285,71 @@ jobs:
                   modifier = Modifier
                       .fillMaxSize()
                       .verticalScroll(rememberScrollState()),
-                  verticalArrangement = Arrangement.spacedBy(12.dp)
+                  verticalArrangement = Arrangement.spacedBy(10.dp)
               ) {
-                  Text(
-                      text = String.format(Locale.US, "Speed: %.2fx", playbackSpeed),
-                      style = TabularMonoStyle,
-                      fontSize = 16.sp,
-                      fontWeight = FontWeight.Bold,
-                      color = palette.primaryAccent
-                  )
+                  Row(
+                      modifier = Modifier.fillMaxWidth(),
+                      horizontalArrangement = Arrangement.SpaceBetween,
+                      verticalAlignment = Alignment.CenterVertically
+                  ) {
+                      Text(
+                          text = String.format(Locale.US, "Speed: %.2fx", playbackSpeed),
+                          style = TabularMonoStyle,
+                          fontSize = 15.sp,
+                          fontWeight = FontWeight.Bold,
+                          color = palette.primaryAccent
+                      )
+                      Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                          MicroTunerChip(text = "-0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed - 0.05f) })
+                          MicroTunerChip(text = "+0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed + 0.05f) })
+                          MicroTunerChip(text = "1.0x", highlightColor = palette.tertiaryLoopAccent, onClick = { onSetPlaybackSpeed(1.0f) })
+                      }
+                  }
 
                   Slider(
                       value = playbackSpeed,
                       onValueChange = { onSetPlaybackSpeed((it * 20f).roundToInt() / 20f) },
-                      valueRange = 0.25f..4.0f
+                      valueRange = 0.25f..3.5f
                   )
 
-                  Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                      MicroTunerChip(text = "-0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed - 0.05f) })
-                      MicroTunerChip(text = "+0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed + 0.05f) })
-                      MicroTunerChip(text = "Reset 1.0x", highlightColor = palette.tertiaryLoopAccent, onClick = { onSetPlaybackSpeed(1.0f) })
-                  }
-
-                  val speeds = listOf(0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f, 3.5f)
-                  speeds.forEach { spd ->
-                      TrackRowItem(
-                          title = String.format(Locale.US, "%.2fx", spd),
-                          badge = if (spd == 1.0f) "Normal" else "${spd}x",
-                          selected = abs(playbackSpeed - spd) < 0.02f,
-                          palette = palette,
-                          onClick = { onSetPlaybackSpeed(spd) }
-                      )
+                  val speeds = listOf(0.25f, 0.50f, 0.75f, 1.0f, 1.25f, 1.50f, 1.75f, 2.0f, 2.50f, 3.0f, 3.50f)
+                  Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                      speeds.chunked(4).forEach { rowSpeeds ->
+                          Row(
+                              modifier = Modifier.fillMaxWidth(),
+                              horizontalArrangement = Arrangement.spacedBy(8.dp)
+                          ) {
+                              rowSpeeds.forEach { spd ->
+                                  val selected = abs(playbackSpeed - spd) < 0.02f
+                                  Surface(
+                                      shape = RoundedCornerShape(10.dp),
+                                      color = if (selected) palette.primaryAccent else Color.White.copy(alpha = 0.08f),
+                                      border = BorderStroke(
+                                          1.dp,
+                                          if (selected) palette.primaryAccent else palette.specularBorder
+                                      ),
+                                      onClick = { onSetPlaybackSpeed(spd) },
+                                      modifier = Modifier
+                                          .weight(1f)
+                                          .height(38.dp)
+                                  ) {
+                                      Box(contentAlignment = Alignment.Center) {
+                                          Text(
+                                              text = if (spd == 1.0f) "1x" else String.format(Locale.US, "%.2fx", spd).removeSuffix("0x") + "x",
+                                              style = TabularMonoStyle,
+                                              fontSize = 12.sp,
+                                              fontWeight = FontWeight.Bold,
+                                              color = if (selected) palette.onPrimaryAccent else Color.White,
+                                              textAlign = TextAlign.Center
+                                          )
+                                      }
+                                  }
+                              }
+                              repeat(4 - rowSpeeds.size) {
+                                  Spacer(Modifier.weight(1f))
+                              }
+                          }
+                      }
                   }
               }
           }
@@ -8512,8 +9523,8 @@ jobs:
                           } else {
                               HomeLibraryScreen(
                                   viewModel = homeViewModel,
-                                  onPlayVideo = { videoItem, autoResume ->
-                                      playerViewModel.loadAndPlayVideo(videoItem, autoResume)
+                                  onPlayVideo = { videoItem, playlist, autoResume ->
+                                      playerViewModel.loadAndPlayVideo(videoItem, playlist, autoResume)
                                   }
                               )
                           }
@@ -8556,7 +9567,7 @@ jobs:
                       fileFingerprint = fingerprint,
                       isNetworkStream = isNetwork
                   )
-                  playerViewModel.loadAndPlayVideo(externalItem, autoResume = true)
+                  playerViewModel.loadAndPlayVideo(externalItem, listOf(externalItem), autoResume = true)
               }
 
               private fun triggerPictureInPicture() {
@@ -8585,11 +9596,6 @@ jobs:
                   }
               }
 
-              /**
-               * If the user dismisses/closes the Picture-in-Picture window while outside the app,
-               * lifecycle.currentState is CREATED (or STOPPED). We immediately stop and release
-               * the player so background audio never keeps playing after PiP dismissal.
-               */
               override fun onPictureInPictureModeChanged(
                   isInPictureInPictureMode: Boolean,
                   newConfig: Configuration
