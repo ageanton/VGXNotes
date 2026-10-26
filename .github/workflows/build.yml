@@ -1,0 +1,93 @@
+name: Build VDX Player APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Accept Android SDK Licenses
+        run: |
+          mkdir -p "$ANDROID_HOME/licenses"
+          printf "\n24333f8a63b682569dd4e08acf67170a2b42d829\nd56f5187479451eabf01fb78af6dfcb131a6481e\n84831b9409646a578e44e3bb4530a66d34b880fb" > "$ANDROID_HOME/licenses/android-sdk-license"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Rebuild project files from vdx_source.txt
+        run: |
+          python3 - <<'PY'
+          import re, pathlib
+          lines = pathlib.Path("vdx_source.txt").read_text(encoding="utf-8").splitlines()
+          start = re.compile(r"^(\s*)cat << 'EOF' > (\S+)\s*$")
+          i = 0
+          while i < len(lines):
+              m = start.match(lines[i])
+              if not m:
+                  i += 1
+                  continue
+              indent, path = m.groups()
+              i += 1
+              body = []
+              while i < len(lines) and lines[i].strip() != "EOF":
+                  l = lines[i]
+                  body.append(l[len(indent):] if l.startswith(indent) else l.lstrip())
+                  i += 1
+              i += 1
+              text = "\n".join(body) + "\n"
+              text = re.sub(r"SideSheetTab\.CUSTOMIZE_CONTROLS -> Icons\.Outlined\.\s*\n\s*(SideSheetTab\.CUSTOMIZE_CONTROLS -> Icons\.Outlined\.Tune)", r"\1", text)
+              p = pathlib.Path(path)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_text(text, encoding="utf-8")
+              print("wrote", path)
+          PY
+
+      - name: Download fonts
+        run: |
+          set -e
+          sudo apt-get update -y && sudo apt-get install -y fonts-dejavu-core file curl
+          mkdir -p app/src/main/res/font
+          D=/usr/share/fonts/truetype/dejavu
+          G=https://github.com/google/fonts/raw/main/ofl
+          F=app/src/main/res/font
+          fetch() {
+            curl -sL --retry 3 --connect-timeout 10 "$1" -o "$2" || true
+            if [ ! -s "$2" ] || ! file "$2" | grep -qiE "font|TrueType|OpenType"; then cp "$3" "$2"; fi
+          }
+          fetch "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_regular.ttf $D/DejaVuSans.ttf
+          fetch "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_medium.ttf $D/DejaVuSans.ttf
+          fetch "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_bold.ttf $D/DejaVuSans-Bold.ttf
+          fetch "$G/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf" $F/space_grotesk_medium.ttf $D/DejaVuSans.ttf
+          fetch "$G/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf" $F/space_grotesk_bold.ttf $D/DejaVuSans-Bold.ttf
+          fetch "$G/spacemono/SpaceMono-Regular.ttf" $F/space_mono_regular.ttf $D/DejaVuSansMono.ttf
+          fetch "$G/spacemono/SpaceMono-Bold.ttf" $F/space_mono_bold.ttf $D/DejaVuSansMono-Bold.ttf
+          fetch "$G/plusjakartasans/PlusJakartaSans%5Bwght%5D.ttf" $F/plus_jakarta_sans.ttf $D/DejaVuSans.ttf
+          fetch "$G/opensans/OpenSans%5Bwdth,wght%5D.ttf" $F/open_sans.ttf $D/DejaVuSans.ttf
+          fetch "$G/dmsans/DMSans%5Bopsz,wght%5D.ttf" $F/dm_sans.ttf $D/DejaVuSans.ttf
+
+      - name: Build Debug APK
+        run: |
+          gradle wrapper --gradle-version 8.9
+          chmod +x ./gradlew
+          ./gradlew assembleDebug --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VDX-Player-Debug-APK
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
