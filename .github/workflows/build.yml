@@ -163,8 +163,8 @@ jobs:
                   applicationId = "com.flagship.videoplayer"
                   minSdk = 26
                   targetSdk = 35
-                  versionCode = 400
-                  versionName = "4.0.0-VDX"
+                  versionCode = 410
+                  versionName = "4.1.0-VDX"
 
                   vectorDrawables {
                       useSupportLibrary = true
@@ -282,16 +282,16 @@ jobs:
           </vector>
           EOF
 
-          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_crimson.xml
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_emerald.xml
           <?xml version="1.0" encoding="utf-8"?>
           <vector xmlns:android="http://schemas.android.com/apk/res/android"
               android:width="108dp"
               android:height="108dp"
               android:viewportWidth="108"
               android:viewportHeight="108">
-              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
-              <path android:fillColor="#E53935" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
-              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#101B14" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#2EBD85" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#101B14" android:pathData="M43,34 L77,54 L43,74 Z"/>
               <path android:fillColor="#FFFFFF" android:pathData="M40,31 L74,51 L40,71 Z"/>
           </vector>
           EOF
@@ -310,17 +310,17 @@ jobs:
           </vector>
           EOF
 
-          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_chalk.xml
+          cat << 'EOF' > app/src/main/res/drawable/ic_vdx_amethyst.xml
           <?xml version="1.0" encoding="utf-8"?>
           <vector xmlns:android="http://schemas.android.com/apk/res/android"
               android:width="108dp"
               android:height="108dp"
               android:viewportWidth="108"
               android:viewportHeight="108">
-              <path android:fillColor="#111111" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
-              <path android:fillColor="#EFECE6" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
-              <path android:fillColor="#111111" android:pathData="M43,34 L77,54 L43,74 Z"/>
-              <path android:fillColor="#455A64" android:pathData="M40,31 L74,51 L40,71 Z"/>
+              <path android:fillColor="#14111F" android:pathData="M54,4 A50,50 0 1,1 53.9,4 Z"/>
+              <path android:fillColor="#A78BFA" android:pathData="M54,10 A44,44 0 1,1 53.9,10 Z"/>
+              <path android:fillColor="#14111F" android:pathData="M43,34 L77,54 L43,74 Z"/>
+              <path android:fillColor="#FFFFFF" android:pathData="M40,31 L74,51 L40,71 Z"/>
           </vector>
           EOF
 
@@ -412,11 +412,11 @@ jobs:
                   </activity-alias>
 
                   <activity-alias
-                      android:name=".LauncherCrimson"
+                      android:name=".LauncherEmerald"
                       android:enabled="false"
                       android:exported="true"
-                      android:icon="@drawable/ic_vdx_crimson"
-                      android:roundIcon="@drawable/ic_vdx_crimson"
+                      android:icon="@drawable/ic_vdx_emerald"
+                      android:roundIcon="@drawable/ic_vdx_emerald"
                       android:label="VDX Player"
                       android:targetActivity=".MainActivity">
                       <intent-filter>
@@ -440,11 +440,11 @@ jobs:
                   </activity-alias>
 
                   <activity-alias
-                      android:name=".LauncherChalk"
+                      android:name=".LauncherAmethyst"
                       android:enabled="false"
                       android:exported="true"
-                      android:icon="@drawable/ic_vdx_chalk"
-                      android:roundIcon="@drawable/ic_vdx_chalk"
+                      android:icon="@drawable/ic_vdx_amethyst"
+                      android:roundIcon="@drawable/ic_vdx_amethyst"
                       android:label="VDX Player"
                       android:targetActivity=".MainActivity">
                       <intent-filter>
@@ -482,7 +482,6 @@ jobs:
           import android.media.MediaFormat
           import android.media.MediaMetadataRetriever
           import android.net.Uri
-          import android.os.Build
           import android.provider.MediaStore
           import androidx.datastore.core.DataStore
           import androidx.datastore.preferences.core.*
@@ -501,8 +500,8 @@ jobs:
 
           enum class AppThemeMode(val label: String) {
               OCEAN("Ocean"),
-              CRIMSON("Crimson red"),
-              TAINTED_CHALK("Tainted white"),
+              SAGE_FOREST("Sage forest"),
+              ROYAL_AMETHYST("Royal amethyst"),
               BANANA("Banana"),
               TERRACOTTA("Terracotta"),
               SLATE_DUSK("Slate dusk"),
@@ -511,9 +510,9 @@ jobs:
 
           enum class AppIconColor(val label: String, val aliasName: String, val previewHex: Long) {
               BLUE("Ocean blue", "com.flagship.videoplayer.LauncherBlue", 0xFF4D9CFF),
-              CRIMSON("Crimson red", "com.flagship.videoplayer.LauncherCrimson", 0xFFE53935),
+              EMERALD("Sage emerald", "com.flagship.videoplayer.LauncherEmerald", 0xFF2EBD85),
               GOLD("Gold yellow", "com.flagship.videoplayer.LauncherGold", 0xFFFFD83D),
-              CHALK("Tainted white", "com.flagship.videoplayer.LauncherChalk", 0xFFEFECE6),
+              AMETHYST("Royal amethyst", "com.flagship.videoplayer.LauncherAmethyst", 0xFFA78BFA),
               ONYX("Onyx cyan", "com.flagship.videoplayer.LauncherOnyx", 0xFF16181E)
           }
 
@@ -539,9 +538,9 @@ jobs:
           }
 
           enum class DecoderMode(val badge: String, val description: String) {
-              HW("HW", "Pure Hardware MediaCodec"),
-              HW_PLUS("HW+", "Hardware Video + FFmpeg Audio"),
-              SW("SW", "Full Software CPU Decoding")
+              HW("HW", "Direct Hardware MediaCodec"),
+              HW_PLUS("HW+", "Hybrid Codec + FFmpeg Audio"),
+              SW("SW", "Software Video & FFmpeg Engine")
           }
 
           enum class AspectRatioMode(val label: String) {
@@ -1033,7 +1032,7 @@ jobs:
                   TrashedVideoEntity::class,
                   NetworkStreamHistoryEntity::class
               ],
-              version = 4,
+              version = 5,
               exportSchema = false
           )
           abstract class FlagshipDatabase : RoomDatabase() {
@@ -1048,7 +1047,7 @@ jobs:
                           val instance = Room.databaseBuilder(
                               context.applicationContext,
                               FlagshipDatabase::class.java,
-                              "vdx_flagship_player_v4.db"
+                              "vdx_flagship_player_v5.db"
                           ).fallbackToDestructiveMigration().build()
                           INSTANCE = instance
                           instance
@@ -1237,7 +1236,7 @@ jobs:
               }
           }
 
-          private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "vdx_player_prefs_v4")
+          private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "vdx_player_prefs_v5")
 
           data class AppPreferencesState(
               val themeMode: AppThemeMode = AppThemeMode.OCEAN,
@@ -1256,10 +1255,8 @@ jobs:
               val subtitleFont: SubtitleFontChoice = SubtitleFontChoice.INTER,
               val subtitleFontSizeSp: Float = 22f,
               val subtitleTextColorArgb: Int = 0xFFFFFFFF.toInt(),
-              val subtitleBgOpacity: Float = 0.35f,
-              val subtitleDropShadowRadius: Float = 5.0f,
-              val subtitleDropShadowOffsetY: Float = 2.0f,
-              val subtitleDropShadowOpacity: Float = 0.85f,
+              val subtitleBgOpacity: Float = 0.25f,
+              val subtitleOutlineWidth: Float = 1.2f,
               val subtitleBold: Boolean = true,
               val subtitleBottomMarginDp: Float = 28f
           ) {
@@ -1274,8 +1271,8 @@ jobs:
 
           class AppPreferencesRepository(private val context: Context) {
               private object Keys {
-                  val THEME_MODE = stringPreferencesKey("theme_mode_v4")
-                  val APP_ICON_COLOR = stringPreferencesKey("app_icon_color")
+                  val THEME_MODE = stringPreferencesKey("theme_mode_v5")
+                  val APP_ICON_COLOR = stringPreferencesKey("app_icon_color_v5")
                   val VIEW_MODE = stringPreferencesKey("library_view_mode")
                   val FOLDER_CONTENT_VIEW_MODE = stringPreferencesKey("folder_content_view_mode")
                   val SORT_FIELD = stringPreferencesKey("sort_field")
@@ -1287,13 +1284,11 @@ jobs:
                   val BG_AUDIO = booleanPreferencesKey("bg_audio")
                   val TOP_LEFT_SLOTS = stringPreferencesKey("top_left_slots_csv")
                   val TOP_RIGHT_SLOTS = stringPreferencesKey("top_right_slots_csv")
-                  val SUB_FONT = stringPreferencesKey("sub_font_v4")
+                  val SUB_FONT = stringPreferencesKey("sub_font_v5")
                   val SUB_SIZE_SP = floatPreferencesKey("sub_size_sp")
-                  val SUB_COLOR = intPreferencesKey("sub_color_argb")
+                  val SUB_COLOR = intPreferencesKey("sub_color_argb_v5")
                   val SUB_BG_OPACITY = floatPreferencesKey("sub_bg_opacity")
-                  val SUB_SHADOW_RADIUS = floatPreferencesKey("sub_shadow_radius")
-                  val SUB_SHADOW_OFFSET_Y = floatPreferencesKey("sub_shadow_offset_y")
-                  val SUB_SHADOW_OPACITY = floatPreferencesKey("sub_shadow_opacity")
+                  val SUB_OUTLINE_WIDTH = floatPreferencesKey("sub_outline_width_v5")
                   val SUB_BOLD = booleanPreferencesKey("sub_bold")
                   val SUB_BOTTOM_MARGIN = floatPreferencesKey("sub_bottom_margin")
               }
@@ -1332,10 +1327,8 @@ jobs:
                           }.getOrDefault(SubtitleFontChoice.INTER),
                           subtitleFontSizeSp = prefs[Keys.SUB_SIZE_SP] ?: 22f,
                           subtitleTextColorArgb = prefs[Keys.SUB_COLOR] ?: 0xFFFFFFFF.toInt(),
-                          subtitleBgOpacity = prefs[Keys.SUB_BG_OPACITY] ?: 0.35f,
-                          subtitleDropShadowRadius = prefs[Keys.SUB_SHADOW_RADIUS] ?: 5.0f,
-                          subtitleDropShadowOffsetY = prefs[Keys.SUB_SHADOW_OFFSET_Y] ?: 2.0f,
-                          subtitleDropShadowOpacity = prefs[Keys.SUB_SHADOW_OPACITY] ?: 0.85f,
+                          subtitleBgOpacity = prefs[Keys.SUB_BG_OPACITY] ?: 0.25f,
+                          subtitleOutlineWidth = prefs[Keys.SUB_OUTLINE_WIDTH] ?: 1.2f,
                           subtitleBold = prefs[Keys.SUB_BOLD] ?: true,
                           subtitleBottomMarginDp = prefs[Keys.SUB_BOTTOM_MARGIN] ?: 28f
                       )
@@ -1422,9 +1415,7 @@ jobs:
                   sizeSp: Float? = null,
                   colorArgb: Int? = null,
                   bgOpacity: Float? = null,
-                  shadowRadius: Float? = null,
-                  shadowOffsetY: Float? = null,
-                  shadowOpacity: Float? = null,
+                  outlineWidth: Float? = null,
                   bold: Boolean? = null,
                   bottomMarginDp: Float? = null
               ) {
@@ -1433,9 +1424,7 @@ jobs:
                       sizeSp?.let { prefs[Keys.SUB_SIZE_SP] = it.coerceIn(14f, 42f) }
                       colorArgb?.let { prefs[Keys.SUB_COLOR] = it }
                       bgOpacity?.let { prefs[Keys.SUB_BG_OPACITY] = it.coerceIn(0f, 1f) }
-                      shadowRadius?.let { prefs[Keys.SUB_SHADOW_RADIUS] = it.coerceIn(0f, 16f) }
-                      shadowOffsetY?.let { prefs[Keys.SUB_SHADOW_OFFSET_Y] = it.coerceIn(0f, 8f) }
-                      shadowOpacity?.let { prefs[Keys.SUB_SHADOW_OPACITY] = it.coerceIn(0f, 1f) }
+                      outlineWidth?.let { prefs[Keys.SUB_OUTLINE_WIDTH] = it.coerceIn(0f, 3.0f) }
                       bold?.let { prefs[Keys.SUB_BOLD] = it }
                       bottomMarginDp?.let { prefs[Keys.SUB_BOTTOM_MARGIN] = it.coerceIn(8f, 120f) }
                   }
@@ -1629,37 +1618,39 @@ jobs:
                       quaternary = Color(0xFFFF8A3D),
                       isDark = false
                   )
-                  AppThemeMode.CRIMSON -> VdxThemeTokens(
-                      mode = AppThemeMode.CRIMSON,
-                      paper = Color(0xFFFFEBEE),
+                  // Replaced Crimson Red with a fresh, botanical Sage Forest theme
+                  AppThemeMode.SAGE_FOREST -> VdxThemeTokens(
+                      mode = AppThemeMode.SAGE_FOREST,
+                      paper = Color(0xFFE8F1EC),
                       card = Color(0xFFFFFFFF),
-                      ink = Color(0xFF141111),
-                      muted = Color(0xFF5C4B4B),
-                      onColor = Color(0xFF111111),
-                      tickerBg = Color(0xFF141111),
-                      onTicker = Color(0xFFFFEBEE),
-                      tickerSlash = Color(0xFF8A8A85),
-                      primary = Color(0xFFFF5252),
-                      secondary = Color(0xFFFF8A80),
-                      tertiary = Color(0xFFFFCA28),
-                      quaternary = Color(0xFF80CBC4),
+                      ink = Color(0xFF101D16),
+                      muted = Color(0xFF495E53),
+                      onColor = Color(0xFF101D16),
+                      tickerBg = Color(0xFF101D16),
+                      onTicker = Color(0xFFE8F1EC),
+                      tickerSlash = Color(0xFF7A9285),
+                      primary = Color(0xFF2EBD85),
+                      secondary = Color(0xFF7CE0B5),
+                      tertiary = Color(0xFFA3E635),
+                      quaternary = Color(0xFF38BDF8),
                       isDark = false
                   )
-                  AppThemeMode.TAINTED_CHALK -> VdxThemeTokens(
-                      mode = AppThemeMode.TAINTED_CHALK,
-                      paper = Color(0xFFF3F0E8),
-                      card = Color(0xFFFAF8F3),
-                      ink = Color(0xFF1C1B18),
-                      muted = Color(0xFF636059),
-                      onColor = Color(0xFF111111),
-                      tickerBg = Color(0xFF1C1B18),
-                      onTicker = Color(0xFFF3F0E8),
-                      tickerSlash = Color(0xFF8A8A85),
-                      primary = Color(0xFFD6CFC2),
-                      secondary = Color(0xFFAEC6CF),
-                      tertiary = Color(0xFFE6D7A8),
-                      quaternary = Color(0xFFC5D6C0),
-                      isDark = false
+                  // Replaced Tainted White with a rich, twilight Royal Amethyst theme
+                  AppThemeMode.ROYAL_AMETHYST -> VdxThemeTokens(
+                      mode = AppThemeMode.ROYAL_AMETHYST,
+                      paper = Color(0xFF1A1626),
+                      card = Color(0xFF251F36),
+                      ink = Color(0xFFF3EEFF),
+                      muted = Color(0xFFA89EC4),
+                      onColor = Color(0xFF14111F),
+                      tickerBg = Color(0xFF110E1A),
+                      onTicker = Color(0xFFF3EEFF),
+                      tickerSlash = Color(0xFF7D7299),
+                      primary = Color(0xFFA78BFA),
+                      secondary = Color(0xFFF472B6),
+                      tertiary = Color(0xFF60A5FA),
+                      quaternary = Color(0xFF34D399),
+                      isDark = true
                   )
                   AppThemeMode.BANANA -> VdxThemeTokens(
                       mode = AppThemeMode.BANANA,
@@ -1709,7 +1700,6 @@ jobs:
                       quaternary = Color(0xFFBA68C8),
                       isDark = true
                   )
-                  // Midnight without any bright yellow
                   AppThemeMode.MIDNIGHT -> VdxThemeTokens(
                       mode = AppThemeMode.MIDNIGHT,
                       paper = Color(0xFF121216),
@@ -1806,9 +1796,9 @@ jobs:
               val onPrimaryAccent: Color = Color(0xFF111111),
               val primaryGlow: Color = Color(0x664D9CFF),
               val tertiaryLoopAccent: Color = Color(0xFF5CE1E6),
-              val osdSurface: Color = Color(0xFF0E0F12).copy(alpha = 0.84f),
-              val osdElevatedSurface: Color = Color(0xFF1E1F24).copy(alpha = 0.92f),
-              val specularBorder: Color = Color.White.copy(alpha = 0.15f)
+              val osdSurface: Color = Color(0xFF0E0F12).copy(alpha = 0.78f),
+              val osdElevatedSurface: Color = Color(0xFF1E1F24).copy(alpha = 0.90f),
+              val specularBorder: Color = Color.White.copy(alpha = 0.14f)
           )
 
           object DynamicVideoAccentExtractor {
@@ -1937,8 +1927,6 @@ jobs:
           import androidx.compose.ui.Alignment
           import androidx.compose.ui.Modifier
           import androidx.compose.ui.draw.clip
-          import androidx.compose.ui.draw.drawBehind
-          import androidx.compose.ui.geometry.Offset
           import androidx.compose.ui.graphics.Brush
           import androidx.compose.ui.graphics.Color
           import androidx.compose.ui.graphics.SolidColor
@@ -1974,7 +1962,7 @@ jobs:
           import kotlin.math.roundToInt
 
           // ============================================================================
-          // 1. MX-STYLE INSTANT MEMORY + DISK THUMBNAIL ENGINE (ZERO FOLDER DELAY)
+          // 1. INSTANT MEMORY + DISK THUMBNAIL ENGINE (ZERO FOLDER DELAY)
           // ============================================================================
 
           object FastThumbnailCacheEngine {
@@ -2309,7 +2297,6 @@ jobs:
               fun refreshLibrarySilently() {
                   viewModelScope.launch {
                       MediaStoreVideoScanner.syncDeviceVideosToCache(appContext, dao)
-                      // Pre-warm thumbnails into memory/disk cache in background so folders open in 0ms
                       val snapshot = enrichedVideos.value
                       withContext(Dispatchers.IO) {
                           for (vid in snapshot.take(80)) {
@@ -2507,11 +2494,8 @@ jobs:
               searchQuery: String,
               onSearchChange: (String) -> Unit,
               selectedViewMode: LibraryViewMode,
-              folderContentViewMode: FolderContentViewMode,
               isInsideFolder: Boolean,
               onSelectViewMode: (LibraryViewMode) -> Unit,
-              onSelectFolderContentViewMode: (FolderContentViewMode) -> Unit,
-              onBackFromFolder: () -> Unit,
               onOpenCloud: () -> Unit,
               onOpenSettings: () -> Unit,
               onOpenSort: () -> Unit
@@ -2723,58 +2707,40 @@ jobs:
                       }
                   }
 
-                  // BLOCK C: VIEW SWITCHER
-                  Row(
-                      modifier = Modifier.fillMaxWidth(),
-                      horizontalArrangement = Arrangement.spacedBy(8.dp)
-                  ) {
-                      val items = listOf(
-                          Triple(LibraryViewMode.FOLDER, tokens.primary, "Folders view"),
-                          Triple(LibraryViewMode.RICH_LIST, tokens.secondary, "List view"),
-                          Triple(LibraryViewMode.COMFORT_GRID, tokens.tertiary, "Grid view"),
-                          Triple(LibraryViewMode.COMPACT_GRID, tokens.quaternary, "Compact view")
-                      )
-
-                      items.forEach { (mode, ownColor, desc) ->
-                          val isSelected = if (isInsideFolder) {
-                              when (mode) {
-                                  LibraryViewMode.FOLDER -> false
-                                  LibraryViewMode.RICH_LIST -> folderContentViewMode == FolderContentViewMode.RICH_LIST
-                                  LibraryViewMode.COMFORT_GRID -> folderContentViewMode == FolderContentViewMode.COMFORT_GRID
-                                  LibraryViewMode.COMPACT_GRID -> folderContentViewMode == FolderContentViewMode.COMPACT_GRID
-                              }
-                          } else {
-                              selectedViewMode == mode
-                          }
-
-                          val icon = when (mode) {
-                              LibraryViewMode.FOLDER -> Icons.Outlined.Folder
-                              LibraryViewMode.RICH_LIST -> Icons.Outlined.FormatListBulleted
-                              LibraryViewMode.COMFORT_GRID -> Icons.Outlined.GridView
-                              LibraryViewMode.COMPACT_GRID -> Icons.Outlined.Apps
-                          }
-
-                          NeoToggleViewButton(
-                              modifier = Modifier.weight(1f),
-                              isSelected = isSelected,
-                              ownFillColor = ownColor,
-                              inkColor = tokens.ink,
-                              onColor = tokens.onColor,
-                              icon = icon,
-                              contentDescription = desc,
-                              onClick = {
-                                  if (isInsideFolder) {
-                                      when (mode) {
-                                          LibraryViewMode.FOLDER -> onBackFromFolder()
-                                          LibraryViewMode.RICH_LIST -> onSelectFolderContentViewMode(FolderContentViewMode.RICH_LIST)
-                                          LibraryViewMode.COMFORT_GRID -> onSelectFolderContentViewMode(FolderContentViewMode.COMFORT_GRID)
-                                          LibraryViewMode.COMPACT_GRID -> onSelectFolderContentViewMode(FolderContentViewMode.COMPACT_GRID)
-                                      }
-                                  } else {
-                                      onSelectViewMode(mode)
-                                  }
-                              }
+                  // BLOCK C: VIEW SWITCHER (Strictly hidden when inside a folder!)
+                  if (!isInsideFolder) {
+                      Row(
+                          modifier = Modifier.fillMaxWidth(),
+                          horizontalArrangement = Arrangement.spacedBy(8.dp)
+                      ) {
+                          val items = listOf(
+                              Triple(LibraryViewMode.FOLDER, tokens.primary, "Folders view"),
+                              Triple(LibraryViewMode.RICH_LIST, tokens.secondary, "List view"),
+                              Triple(LibraryViewMode.COMFORT_GRID, tokens.tertiary, "Grid view"),
+                              Triple(LibraryViewMode.COMPACT_GRID, tokens.quaternary, "Compact view")
                           )
+
+                          items.forEach { (mode, ownColor, desc) ->
+                              val isSelected = selectedViewMode == mode
+
+                              val icon = when (mode) {
+                                  LibraryViewMode.FOLDER -> Icons.Outlined.Folder
+                                  LibraryViewMode.RICH_LIST -> Icons.Outlined.FormatListBulleted
+                                  LibraryViewMode.COMFORT_GRID -> Icons.Outlined.GridView
+                                  LibraryViewMode.COMPACT_GRID -> Icons.Outlined.Apps
+                              }
+
+                              NeoToggleViewButton(
+                                  modifier = Modifier.weight(1f),
+                                  isSelected = isSelected,
+                                  ownFillColor = ownColor,
+                                  inkColor = tokens.ink,
+                                  onColor = tokens.onColor,
+                                  icon = icon,
+                                  contentDescription = desc,
+                                  onClick = { onSelectViewMode(mode) }
+                              )
+                          }
                       }
                   }
               }
@@ -2910,34 +2876,6 @@ jobs:
               }
           }
 
-          // Subtle organic grain/spots modifier for the Tainted White theme
-          fun Modifier.taintedWhiteSpotsIfEnabled(mode: AppThemeMode): Modifier {
-              if (mode != AppThemeMode.TAINTED_CHALK) return this
-              return this.drawBehind {
-                  val spotColor1 = Color(0xFFDCD6C8).copy(alpha = 0.45f)
-                  val spotColor2 = Color(0xFFE5DFD3).copy(alpha = 0.55f)
-                  val w = size.width
-                  val h = size.height
-                  val spots = listOf(
-                      Triple(0.12f, 0.08f, 42f),
-                      Triple(0.78f, 0.16f, 64f),
-                      Triple(0.34f, 0.29f, 28f),
-                      Triple(0.86f, 0.44f, 52f),
-                      Triple(0.19f, 0.58f, 70f),
-                      Triple(0.62f, 0.71f, 38f),
-                      Triple(0.28f, 0.88f, 56f),
-                      Triple(0.82f, 0.91f, 44f)
-                  )
-                  spots.forEachIndexed { idx, (fx, fy, radiusDp) ->
-                      drawCircle(
-                          color = if (idx % 2 == 0) spotColor1 else spotColor2,
-                          radius = radiusDp.dp.toPx(),
-                          center = Offset(w * fx, h * fy)
-                      )
-                  }
-              }
-          }
-
           @Composable
           fun HomeLibraryScreen(
               viewModel: HomeLibraryViewModel,
@@ -3032,7 +2970,6 @@ jobs:
                               searchQuery = searchQuery,
                               onSearchChange = { viewModel.setSearchQuery(it) },
                               selectedViewMode = prefs.libraryViewMode,
-                              folderContentViewMode = prefs.folderContentViewMode,
                               isInsideFolder = selectedFolder != null,
                               onSelectViewMode = { mode ->
                                   viewModel.setViewMode(mode)
@@ -3040,10 +2977,6 @@ jobs:
                                       viewModel.openFolder(null)
                                   }
                               },
-                              onSelectFolderContentViewMode = { folderMode ->
-                                  viewModel.setFolderContentViewMode(folderMode)
-                              },
-                              onBackFromFolder = { viewModel.openFolder(null) },
                               onOpenCloud = { showNetworkSheet = true },
                               onOpenSettings = { showSettingsSheet = true },
                               onOpenSort = { showSortMenu = true }
@@ -3138,7 +3071,6 @@ jobs:
                   Column(
                       modifier = Modifier
                           .fillMaxSize()
-                          .taintedWhiteSpotsIfEnabled(prefs.themeMode)
                           .padding(innerPadding)
                   ) {
                       if (selectedFolder != null) {
@@ -3237,7 +3169,6 @@ jobs:
                   }
               }
 
-              // Video Properties Dialog (Including Codec, Bitrate, and HDR Format Details)
               videoForProperties?.let { vid ->
                   var probedMeta by remember(vid.filePath) { mutableStateOf<VideoTechnicalMetadata?>(null) }
                   LaunchedEffect(vid) {
@@ -4281,7 +4212,6 @@ jobs:
           import android.media.audiofx.LoudnessEnhancer
           import android.net.Uri
           import android.os.Build
-          import android.os.Handler
           import android.provider.Settings
           import android.view.Display
           import androidx.lifecycle.ViewModel
@@ -4296,17 +4226,15 @@ jobs:
           import androidx.media3.exoplayer.DefaultLoadControl
           import androidx.media3.exoplayer.DefaultRenderersFactory
           import androidx.media3.exoplayer.ExoPlayer
-          import androidx.media3.exoplayer.Renderer
           import androidx.media3.exoplayer.SeekParameters
-          import androidx.media3.exoplayer.audio.AudioRendererEventListener
           import androidx.media3.exoplayer.audio.AudioSink
           import androidx.media3.exoplayer.audio.DefaultAudioSink
+          import androidx.media3.exoplayer.mediacodec.MediaCodecAdapter
           import androidx.media3.exoplayer.mediacodec.MediaCodecInfo
           import androidx.media3.exoplayer.mediacodec.MediaCodecSelector
           import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
           import androidx.media3.exoplayer.source.MediaSource
           import androidx.media3.exoplayer.source.MergingMediaSource
-          import androidx.media3.exoplayer.video.VideoRendererEventListener
           import com.flagship.videoplayer.data.*
           import com.flagship.videoplayer.ui.theme.FormatUtils
           import kotlinx.coroutines.*
@@ -4473,14 +4401,17 @@ jobs:
           }
 
           // ============================================================================
-          // 2. MX-GRADE CONFIGURABLE RENDERERS FACTORY (TRUE HW / HW+ / SW SEPARATION)
+          // 2. RE-ENGINEERED MX-GRADE DECODER PIPELINE (HW / HW+ / SW)
           // ============================================================================
 
           /**
-           * Distinct decoder behavior matching MX Player:
-           * - HW: Strictly hardware MediaCodec (`hardwareOnly == true`), zero software extensions.
-           * - HW+: Hardware video MediaCodec first with software fallback + FFmpeg extension for AC3/DTS/TrueHD/FLAC audio.
-           * - SW: Prioritizes software CPU decoders (`softwareOnly == true` / `c2.android.*` / `OMX.google.*` + FFmpeg).
+           * Re-engineered Decoder Engine:
+           * - HW: Direct hardware MediaCodec with synchronous low-overhead queuing.
+           * - HW+: Asynchronous multi-threaded MediaCodec buffer queueing + FFmpeg audio extension
+           *        with seamless fallback to software if a hardware profile is unsupported.
+           * - SW: Prioritizes modern C2 (`c2.android.*`) multi-threaded software decoders over legacy
+           *       single-threaded `OMX.google.*` codecs, enables asynchronous buffer queuing so the CPU
+           *       decoder never blocks the rendering thread, and prefers FFmpeg for all audio streams.
            */
           class ConfigurableRenderersFactory(
               context: Context,
@@ -4496,6 +4427,11 @@ jobs:
                   }
                   setExtensionRendererMode(extMode)
                   setEnableDecoderFallback(true)
+
+                  if (decoderMode == DecoderMode.HW_PLUS || decoderMode == DecoderMode.SW) {
+                      forceEnableMediaCodecAsynchronousQueueing()
+                  }
+
                   setMediaCodecSelector(buildModeSpecificSelector(decoderMode))
               }
 
@@ -4514,12 +4450,20 @@ jobs:
                               hwOnly.ifEmpty { defaultList }
                           }
                           DecoderMode.HW_PLUS -> {
-                              val hwFirst = defaultList.sortedByDescending { isHardwareCodec(it) }
-                              hwFirst
+                              // Hardware primary, C2 software secondary, legacy OMX last
+                              defaultList.sortedWith(
+                                  compareByDescending<MediaCodecInfo> { isHardwareCodec(it) }
+                                      .thenByDescending { isModernC2SoftwareCodec(it) }
+                              )
                           }
                           DecoderMode.SW -> {
-                              val swFirst = defaultList.sortedBy { isHardwareCodec(it) }
-                              swFirst
+                              // Prioritize modern multi-threaded Codec2 software decoders (c2.android.*),
+                              // then other software codecs, keeping hardware as an automatic safety net
+                              // if a high-bitrate 4K/10-bit stream exceeds software capability.
+                              val swCodecs = defaultList.filter { !isHardwareCodec(it) }
+                                  .sortedByDescending { isModernC2SoftwareCodec(it) }
+                              val hwCodecs = defaultList.filter { isHardwareCodec(it) }
+                              if (swCodecs.isNotEmpty()) swCodecs + hwCodecs else defaultList
                           }
                       }
                   }
@@ -4535,6 +4479,11 @@ jobs:
                       lower.contains(".sw.") ||
                       lower.contains("ffmpeg")
                   return !isSw
+              }
+
+              private fun isModernC2SoftwareCodec(info: MediaCodecInfo): Boolean {
+                  val lower = info.name.lowercase(Locale.US)
+                  return lower.startsWith("c2.android.") || lower.contains("c2.")
               }
 
               override fun buildAudioSink(
@@ -4866,7 +4815,6 @@ jobs:
               private val _decoderMode = MutableStateFlow(DecoderMode.HW_PLUS)
               val decoderMode: StateFlow<DecoderMode> = _decoderMode.asStateFlow()
 
-              // HDR State & Manual HDR-to-SDR Tone-Mapping Toggle
               private val _isCurrentVideoHdr = MutableStateFlow(false)
               val isCurrentVideoHdr: StateFlow<Boolean> = _isCurrentVideoHdr.asStateFlow()
 
@@ -4876,11 +4824,6 @@ jobs:
               private val _forceSdrToneMapping = MutableStateFlow(false)
               val forceSdrToneMapping: StateFlow<Boolean> = _forceSdrToneMapping.asStateFlow()
 
-              /**
-               * True whenever an HDR video should be tone-mapped to SDR:
-               * either because the user toggled "Convert HDR to SDR", OR because the device display
-               * does not natively support HDR (preventing washed-out colors on SDR screens).
-               */
               val shouldApplySdrVisualToneMap: StateFlow<Boolean> = combine(
                   _isCurrentVideoHdr,
                   _forceSdrToneMapping
@@ -4930,7 +4873,6 @@ jobs:
               private val _brightnessOverride = MutableStateFlow<Float?>(null)
               val brightnessOverride: StateFlow<Float?> = _brightnessOverride.asStateFlow()
 
-              // Precision A-B Loop State + Independent Loop Editor Visibility
               private val _loopStartMs = MutableStateFlow<Long?>(null)
               val loopStartMs: StateFlow<Long?> = _loopStartMs.asStateFlow()
 
@@ -5167,13 +5109,15 @@ jobs:
 
                   val mediaSourceFactory = buildMediaSourceFactory(video)
 
-                  // High-performance LoadControl to prevent buffer underrun stutters on high-bitrate 4K/HDR files
+                  // Mode-tuned LoadControl: extra buffer headroom when running SW or HW+ decoding
+                  val minBufferMs = if (decoder == DecoderMode.SW) 25_000 else 15_000
+                  val maxBufferMs = if (decoder == DecoderMode.SW) 65_000 else 50_000
                   val loadControl = DefaultLoadControl.Builder()
                       .setBufferDurationsMs(
-                          15_000,
-                          50_000,
-                          1_200,
-                          2_500
+                          minBufferMs,
+                          maxBufferMs,
+                          1_000,
+                          2_000
                       )
                       .setPrioritizeTimeOverSizeThresholds(true)
                       .build()
@@ -5613,10 +5557,6 @@ jobs:
                   viewModelScope.launch { prefsRepo.toggleTopRightSlot(slot) }
               }
 
-              // ============================================================================
-              // 6. REDESIGNED A-B LOOP CONTROLLER (INDEPENDENT EDITOR VISIBILITY + SET A / SET B)
-              // ============================================================================
-
               fun toggleLoopEditorOrStartLoop() {
                   val now = _exoPlayerFlow.value?.currentPosition ?: _currentPositionMs.value
                   if (_loopStartMs.value == null) {
@@ -5894,9 +5834,7 @@ jobs:
                   sizeSp: Float? = null,
                   colorArgb: Int? = null,
                   bgOpacity: Float? = null,
-                  shadowRadius: Float? = null,
-                  shadowOffsetY: Float? = null,
-                  shadowOpacity: Float? = null,
+                  outlineWidth: Float? = null,
                   bold: Boolean? = null,
                   bottomMarginDp: Float? = null
               ) {
@@ -5906,9 +5844,7 @@ jobs:
                           sizeSp = sizeSp,
                           colorArgb = colorArgb,
                           bgOpacity = bgOpacity,
-                          shadowRadius = shadowRadius,
-                          shadowOffsetY = shadowOffsetY,
-                          shadowOpacity = shadowOpacity,
+                          outlineWidth = outlineWidth,
                           bold = bold,
                           bottomMarginDp = bottomMarginDp
                       )
@@ -6108,6 +6044,7 @@ jobs:
           import android.app.Activity
           import android.content.Context
           import android.content.pm.ActivityInfo
+          import android.content.res.Configuration
           import android.graphics.ColorMatrix
           import android.graphics.ColorMatrixColorFilter
           import android.graphics.Paint
@@ -6138,8 +6075,10 @@ jobs:
           import androidx.compose.ui.draw.clip
           import androidx.compose.ui.geometry.Offset
           import androidx.compose.ui.graphics.*
+          import androidx.compose.ui.graphics.drawscope.Stroke
           import androidx.compose.ui.graphics.vector.ImageVector
           import androidx.compose.ui.input.pointer.*
+          import androidx.compose.ui.platform.LocalConfiguration
           import androidx.compose.ui.platform.LocalContext
           import androidx.compose.ui.platform.LocalDensity
           import androidx.compose.ui.platform.LocalView
@@ -6193,6 +6132,8 @@ jobs:
               val context = LocalContext.current
               val activity = context as? Activity
               val localView = LocalView.current
+              val configuration = LocalConfiguration.current
+              val isPortraitLayout = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
               val tokens = LocalVdxTokens.current
               val palette = remember(tokens) { DynamicVideoAccentExtractor.buildFromThemeTokens(tokens) }
 
@@ -6300,7 +6241,6 @@ jobs:
                   }
               }
 
-              // Configure Window ColorMode for Wide Gamut / HDR when playing native HDR
               LaunchedEffect(isCurrentVideoHdr, shouldApplySdrVisualToneMap, activity) {
                   val window = activity?.window ?: return@LaunchedEffect
                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -6312,16 +6252,26 @@ jobs:
                   }
               }
 
+              // Keep system bars synchronized with OSD visibility so Android's edge back gesture
+              // never gets trapped by permanent immersive transient state!
+              LaunchedEffect(isOsdVisible, isTouchLocked, activity) {
+                  val window = activity?.window ?: return@LaunchedEffect
+                  val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+                  insetsController.systemBarsBehavior =
+                      WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                  if (isOsdVisible && !isTouchLocked) {
+                      insetsController.show(WindowInsetsCompat.Type.navigationBars())
+                  } else {
+                      insetsController.hide(WindowInsetsCompat.Type.systemBars())
+                  }
+              }
+
               DisposableEffect(activity) {
                   val window = activity?.window
                   window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                   val insetsController = if (window != null) {
                       WindowCompat.getInsetsController(window, window.decorView)
                   } else null
-
-                  insetsController?.systemBarsBehavior =
-                      WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                  insetsController?.hide(WindowInsetsCompat.Type.systemBars())
 
                   onDispose {
                       window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -6385,26 +6335,32 @@ jobs:
                   }
               }
 
-              BackHandler {
+              // Always enabled BackHandler so system edge-back gestures reliably exit the player
+              BackHandler(enabled = true) {
                   when {
                       activeSideSheetTab != null -> activeSideSheetTab = null
                       isLoopEditorVisible -> viewModel.setLoopEditorVisible(false)
-                      isTouchLocked -> showLockedWakeShield = true
+                      isTouchLocked -> {
+                          viewModel.setTouchLocked(false)
+                          showLockedWakeShield = false
+                          isOsdVisible = true
+                      }
                       else -> onExitPlayer()
                   }
               }
 
               val viewportWidthFraction by animateFloatAsState(
-                  targetValue = if (activeSideSheetTab != null && !isInPipMode) 0.70f else 1.0f,
+                  targetValue = if (activeSideSheetTab != null && !isInPipMode && !isPortraitLayout) 0.70f else 1.0f,
                   animationSpec = tween(durationMillis = 150, easing = FastOutSlowInEasing),
                   label = "ViewportWidthFraction"
               )
 
+              val osdBottomClearance = if (isPortraitLayout) 136.dp else 88.dp
               val animatedSubtitleBottomMargin by animateDpAsState(
                   targetValue = when {
                       isInPipMode -> 4.dp
                       isOsdVisible && activeSideSheetTab == null && !isTouchLocked ->
-                          maxOf(prefs.subtitleBottomMarginDp.dp, 88.dp)
+                          maxOf(prefs.subtitleBottomMarginDp.dp, osdBottomClearance)
                       else -> prefs.subtitleBottomMarginDp.dp
                   },
                   animationSpec = tween(durationMillis = 140),
@@ -6467,10 +6423,13 @@ jobs:
                   }
 
                   if (!isTouchLocked) {
+                      // Inset by 36.dp on left and right edges so Android's system back swipe gesture
+                      // is NEVER intercepted or starved by Compose pointerInput!
                       GestureInterceptorLayer(
                           modifier = Modifier
                               .fillMaxHeight()
                               .fillMaxWidth(viewportWidthFraction)
+                              .padding(horizontal = 36.dp)
                               .align(Alignment.CenterStart),
                           doubleTapSeekSeconds = prefs.skipIntervalSeconds,
                           currentPositionMs = currentPositionMs,
@@ -6557,6 +6516,7 @@ jobs:
                       Box(
                           modifier = Modifier
                               .fillMaxSize()
+                              .padding(horizontal = 36.dp)
                               .clickable(
                                   interactionSource = remember { MutableInteractionSource() },
                                   indication = null
@@ -6595,6 +6555,7 @@ jobs:
                       MainOsdChromeLayer(
                           videoTitle = activeVideo?.titleWithoutExt ?: "Video",
                           isPlaying = isPlaying,
+                          isPortraitMode = isPortraitLayout,
                           hasPreviousVideo = hasPreviousVideo,
                           hasNextVideo = hasNextVideo,
                           currentPositionMs = currentPositionMs,
@@ -6704,7 +6665,6 @@ jobs:
                       )
                   }
 
-                  // Subtle, Compact "Tap to unlock" Pill (No bright colored outline, smaller footprint)
                   AnimatedVisibility(
                       visible = isTouchLocked && showLockedWakeShield,
                       enter = fadeIn(tween(80)),
@@ -6778,8 +6738,8 @@ jobs:
                               onResetSubtitleDelay = { viewModel.resetSubtitleDelay() },
                               onSetSubtitleSpeed = { viewModel.setSubtitleSpeedFactor(it) },
                               onAnchorSubtitleSpeedHere = { viewModel.anchorSubtitleSpeedAtCurrentTime() },
-                              onUpdateSubtitleStyle = { font, size, color, bg, shadowR, shadowY, shadowOp, bold, margin ->
-                                  viewModel.updateSubtitleStyle(font, size, color, bg, shadowR, shadowY, shadowOp, bold, margin)
+                              onUpdateSubtitleStyle = { font, size, color, bg, outlineW, bold, margin ->
+                                  viewModel.updateSubtitleStyle(font, size, color, bg, outlineW, bold, margin)
                               },
                               onSelectAudioTrack = { viewModel.selectAudioTrack(it) },
                               onPickExternalAudio = { audioFilePicker.launch(arrayOf("audio/*", "*/*")) },
@@ -6805,13 +6765,6 @@ jobs:
               }
           }
 
-          /**
-           * Video Surface Layer:
-           * - Uses `surface_type="surface_view"` (default) for genuine 10-bit hardware HDR passthrough.
-           * - When `applySdrToneMapFilter == true` (either user selected "Convert HDR to SDR" or the device
-           *   screen lacks HDR support), applies a calibrated BT.2020 PQ -> Rec.709 contrast/saturation
-           *   tone-mapping transformation so HDR videos never look washed out on SDR displays.
-           */
           @Composable
           private fun VideoSurfaceLayer(
               exoPlayer: ExoPlayer?,
@@ -6890,6 +6843,12 @@ jobs:
               }
           }
 
+          /**
+           * Subtitle Layer with Clean Thin Border (Stroke) Support:
+           * Renders a crisp outline pass underneath the main fill text when `subtitleOutlineWidth > 0f`.
+           * If the user selects Black caption text (`#18181B`), the border automatically inverts to white
+           * so the caption remains legible on any scene.
+           */
           @Composable
           private fun CustomSubtitleCanvasLayer(
               joinedText: String,
@@ -6898,6 +6857,7 @@ jobs:
               isInPipMode: Boolean,
               modifier: Modifier = Modifier
           ) {
+              val density = LocalDensity.current
               val fontFamily = remember(prefs.subtitleFont) { resolveSubtitleFontFamily(prefs.subtitleFont) }
               val effectiveFontSize = if (isInPipMode) 9.sp else prefs.subtitleFontSizeSp.sp
               val effectiveLineHeight = if (isInPipMode) 11.sp else (prefs.subtitleFontSizeSp * 1.25f).sp
@@ -6907,9 +6867,10 @@ jobs:
               val boxHPad = if (isInPipMode) 6.dp else 12.dp
               val boxVPad = if (isInPipMode) 2.dp else 5.dp
 
-              val shadowAlpha = prefs.subtitleDropShadowOpacity.coerceIn(0f, 1f)
-              val shadowBlur = if (isInPipMode) 2f else prefs.subtitleDropShadowRadius.coerceIn(0f, 16f)
-              val shadowY = if (isInPipMode) 1f else prefs.subtitleDropShadowOffsetY.coerceIn(0f, 8f)
+              val outlineDp = if (isInPipMode) (prefs.subtitleOutlineWidth * 0.5f) else prefs.subtitleOutlineWidth
+              val outlinePx = with(density) { (outlineDp * 2f).dp.toPx() }
+              val isDarkText = prefs.subtitleTextColorArgb == 0xFF18181B.toInt()
+              val borderColor = if (isDarkText) Color.White.copy(alpha = 0.92f) else Color.Black.copy(alpha = 0.94f)
 
               Box(
                   modifier = modifier
@@ -6925,6 +6886,25 @@ jobs:
                           .padding(horizontal = boxHPad, vertical = boxVPad),
                       contentAlignment = Alignment.Center
                   ) {
+                      if (outlineDp > 0.05f) {
+                          Text(
+                              text = joinedText,
+                              color = borderColor,
+                              fontFamily = fontFamily,
+                              fontSize = effectiveFontSize,
+                              lineHeight = effectiveLineHeight,
+                              fontWeight = fontWeight,
+                              textAlign = TextAlign.Center,
+                              maxLines = if (isInPipMode) 2 else 5,
+                              overflow = TextOverflow.Ellipsis,
+                              style = TextStyle.Default.copy(
+                                  drawStyle = Stroke(
+                                      width = outlinePx,
+                                      join = StrokeJoin.Round
+                                  )
+                              )
+                          )
+                      }
                       Text(
                           text = joinedText,
                           color = textColor,
@@ -6934,16 +6914,7 @@ jobs:
                           fontWeight = fontWeight,
                           textAlign = TextAlign.Center,
                           maxLines = if (isInPipMode) 2 else 5,
-                          overflow = TextOverflow.Ellipsis,
-                          style = TextStyle.Default.copy(
-                              shadow = if (shadowBlur > 0.1f && shadowAlpha > 0.02f) {
-                                  Shadow(
-                                      color = Color.Black.copy(alpha = shadowAlpha),
-                                      offset = Offset(0f, shadowY),
-                                      blurRadius = shadowBlur
-                                  )
-                              } else null
-                          )
+                          overflow = TextOverflow.Ellipsis
                       )
                   }
               }
@@ -6959,18 +6930,18 @@ jobs:
                           .align(Alignment.TopCenter)
                           .background(
                               Brush.verticalGradient(
-                                  listOf(Color.Black.copy(alpha = 0.78f), Color.Transparent)
+                                  listOf(Color.Black.copy(alpha = 0.72f), Color.Transparent)
                               )
                           )
                   )
                   Box(
                       modifier = Modifier
                           .fillMaxWidth()
-                          .height(136.dp)
+                          .height(148.dp)
                           .align(Alignment.BottomCenter)
                           .background(
                               Brush.verticalGradient(
-                                  listOf(Color.Transparent, Color.Black.copy(alpha = 0.84f))
+                                  listOf(Color.Transparent, Color.Black.copy(alpha = 0.82f))
                               )
                           )
                   )
@@ -7003,9 +6974,6 @@ jobs:
               onPinchZoomAndPan: (Float, Float, Float) -> Unit,
               onGestureEnded: () -> Unit
           ) {
-              val density = LocalDensity.current
-              val edgeExclusionPx = with(density) { 32.dp.toPx() }
-
               val latestPos by rememberUpdatedState(currentPositionMs)
               val latestDur by rememberUpdatedState(durationMs.coerceAtLeast(1L))
               val latestBrightness by rememberUpdatedState(currentBrightness)
@@ -7029,10 +6997,7 @@ jobs:
                                       else -> onCenterDoubleTap()
                                   }
                               },
-                              onLongPress = { startOffset ->
-                                  if (startOffset.x < edgeExclusionPx || startOffset.x > size.width - edgeExclusionPx) {
-                                      return@detectTapGestures
-                                  }
+                              onLongPress = {
                                   onHoldFastForwardStart(latestHoldSpeed)
                               }
                           )
@@ -7042,14 +7007,6 @@ jobs:
                               val down = awaitFirstDown(requireUnconsumed = false)
                               val width = size.width.toFloat().coerceAtLeast(1f)
                               val height = size.height.toFloat().coerceAtLeast(1f)
-
-                              if (down.position.x < edgeExclusionPx ||
-                                  down.position.x > width - edgeExclusionPx ||
-                                  down.position.y < edgeExclusionPx ||
-                                  down.position.y > height - edgeExclusionPx
-                              ) {
-                                  return@awaitEachGesture
-                              }
 
                               var activeMode = 0
                               var accumBri = latestBrightness
@@ -7586,6 +7543,7 @@ jobs:
           fun MainOsdChromeLayer(
               videoTitle: String,
               isPlaying: Boolean,
+              isPortraitMode: Boolean,
               hasPreviousVideo: Boolean,
               hasNextVideo: Boolean,
               currentPositionMs: Long,
@@ -7644,6 +7602,8 @@ jobs:
               Box(
                   modifier = Modifier
                       .fillMaxSize()
+                      .statusBarsPadding()
+                      .navigationBarsPadding()
                       .padding(horizontal = 16.dp, vertical = 12.dp)
               ) {
                   Column(
@@ -7791,7 +7751,6 @@ jobs:
                                       expanded = showTopRightMainMenu,
                                       onDismissRequest = { showTopRightMainMenu = false }
                                   ) {
-                                      // Only show HDR -> SDR conversion option when the current video is HDR!
                                       if (isCurrentVideoHdr) {
                                           DropdownMenuItem(
                                               text = {
@@ -7945,8 +7904,6 @@ jobs:
                           }
                       }
 
-                      // Row 2: Top-Left Quick Buttons Under Title
-                      // Note: Bookmark button simply pins a bookmark with zero counter badge or selected highlight!
                       if (enabledTopLeftSlots.isNotEmpty()) {
                           LazyRow(
                               horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -8033,71 +7990,23 @@ jobs:
                   }
 
                   // --------------------------------------------------------------------
-                  // CENTER TRANSPORT CONTROLS: Previous Video | Play/Pause | Next Video
+                  // LANDSCAPE ONLY: LOW-KEY ROUND CENTER TRANSPORT CONTROLS
+                  // (In Portrait mode, these move below the progress bar so the video is unobstructed!)
                   // --------------------------------------------------------------------
-                  Row(
-                      modifier = Modifier.align(Alignment.Center),
-                      verticalAlignment = Alignment.CenterVertically,
-                      horizontalArrangement = Arrangement.spacedBy(28.dp)
-                  ) {
-                      Surface(
-                          shape = RoundedCornerShape(16.dp),
-                          color = palette.osdSurface,
-                          border = BorderStroke(1.2.dp, palette.specularBorder),
-                          onClick = { if (hasPreviousVideo) onPlayPreviousVideo() },
-                          modifier = Modifier
-                              .size(52.dp)
-                              .alpha(if (hasPreviousVideo) 1f else 0.38f)
-                      ) {
-                          Box(contentAlignment = Alignment.Center) {
-                              Icon(
-                                  Icons.Default.SkipPrevious,
-                                  contentDescription = "Previous video",
-                                  tint = Color.White,
-                                  modifier = Modifier.size(26.dp)
-                              )
-                          }
-                      }
-
-                      Surface(
-                          shape = RoundedCornerShape(20.dp),
-                          color = palette.primaryAccent,
-                          border = BorderStroke(2.dp, Color.Black),
-                          onClick = onPlayPause,
-                          modifier = Modifier.size(70.dp)
-                      ) {
-                          Box(contentAlignment = Alignment.Center) {
-                              Icon(
-                                  imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                                  contentDescription = if (isPlaying) "Pause" else "Play",
-                                  tint = palette.onPrimaryAccent,
-                                  modifier = Modifier.size(36.dp)
-                              )
-                          }
-                      }
-
-                      Surface(
-                          shape = RoundedCornerShape(16.dp),
-                          color = palette.osdSurface,
-                          border = BorderStroke(1.2.dp, palette.specularBorder),
-                          onClick = { if (hasNextVideo) onPlayNextVideo() },
-                          modifier = Modifier
-                              .size(52.dp)
-                              .alpha(if (hasNextVideo) 1f else 0.38f)
-                      ) {
-                          Box(contentAlignment = Alignment.Center) {
-                              Icon(
-                                  Icons.Default.SkipNext,
-                                  contentDescription = "Next video",
-                                  tint = Color.White,
-                                  modifier = Modifier.size(26.dp)
-                              )
-                          }
-                      }
+                  if (!isPortraitMode) {
+                      LowKeyRoundTransportCluster(
+                          isPlaying = isPlaying,
+                          hasPreviousVideo = hasPreviousVideo,
+                          hasNextVideo = hasNextVideo,
+                          onPlayPreviousVideo = onPlayPreviousVideo,
+                          onPlayPause = onPlayPause,
+                          onPlayNextVideo = onPlayNextVideo,
+                          modifier = Modifier.align(Alignment.Center)
+                      )
                   }
 
                   // --------------------------------------------------------------------
-                  // BOTTOM PROGRESS DECK: CLEAN LOOP STUDIO CARD + PROGRESS BAR
+                  // BOTTOM PROGRESS DECK (+ PORTRAIT TRANSPORT ROW BELOW PROGRESS BAR)
                   // --------------------------------------------------------------------
                   Column(
                       modifier = Modifier
@@ -8105,7 +8014,6 @@ jobs:
                           .align(Alignment.BottomCenter),
                       verticalArrangement = Arrangement.spacedBy(6.dp)
                   ) {
-                      // Clean, Sleek Loop Controller (Can be hidden while keeping loop active!)
                       AnimatedVisibility(
                           visible = loopStartMs != null && isLoopEditorVisible,
                           enter = fadeIn(tween(110)) + slideInVertically { it / 3 },
@@ -8163,6 +8071,101 @@ jobs:
                           onTapBookmarkDiamond = onTapBookmarkDiamond,
                           onDragLoopBracket = onDragLoopBracket
                       )
+
+                      // PORTRAIT MODE: Low-key circular transport buttons placed below the progress bar!
+                      if (isPortraitMode) {
+                          Box(
+                              modifier = Modifier
+                                  .fillMaxWidth()
+                                  .padding(top = 2.dp, bottom = 4.dp),
+                              contentAlignment = Alignment.Center
+                          ) {
+                              LowKeyRoundTransportCluster(
+                                  isPlaying = isPlaying,
+                                  hasPreviousVideo = hasPreviousVideo,
+                                  hasNextVideo = hasNextVideo,
+                                  onPlayPreviousVideo = onPlayPreviousVideo,
+                                  onPlayPause = onPlayPause,
+                                  onPlayNextVideo = onPlayNextVideo
+                              )
+                          }
+                      }
+                  }
+              }
+          }
+
+          /**
+           * Low-Key Circular Transport Cluster (`CircleShape`):
+           * Translucent dark glass fill with a delicate specular rim so it never overpowers the video frame.
+           */
+          @Composable
+          private fun LowKeyRoundTransportCluster(
+              isPlaying: Boolean,
+              hasPreviousVideo: Boolean,
+              hasNextVideo: Boolean,
+              onPlayPreviousVideo: () -> Unit,
+              onPlayPause: () -> Unit,
+              onPlayNextVideo: () -> Unit,
+              modifier: Modifier = Modifier
+          ) {
+              Row(
+                  modifier = modifier,
+                  verticalAlignment = Alignment.CenterVertically,
+                  horizontalArrangement = Arrangement.spacedBy(24.dp)
+              ) {
+                  Surface(
+                      shape = CircleShape,
+                      color = Color.Black.copy(alpha = 0.48f),
+                      border = BorderStroke(1.dp, Color.White.copy(alpha = 0.16f)),
+                      onClick = { if (hasPreviousVideo) onPlayPreviousVideo() },
+                      modifier = Modifier
+                          .size(44.dp)
+                          .alpha(if (hasPreviousVideo) 1f else 0.32f)
+                  ) {
+                      Box(contentAlignment = Alignment.Center) {
+                          Icon(
+                              Icons.Default.SkipPrevious,
+                              contentDescription = "Previous video",
+                              tint = Color.White.copy(alpha = 0.92f),
+                              modifier = Modifier.size(22.dp)
+                          )
+                      }
+                  }
+
+                  Surface(
+                      shape = CircleShape,
+                      color = Color.Black.copy(alpha = 0.58f),
+                      border = BorderStroke(1.2.dp, Color.White.copy(alpha = 0.24f)),
+                      onClick = onPlayPause,
+                      modifier = Modifier.size(56.dp)
+                  ) {
+                      Box(contentAlignment = Alignment.Center) {
+                          Icon(
+                              imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                              contentDescription = if (isPlaying) "Pause" else "Play",
+                              tint = Color.White,
+                              modifier = Modifier.size(28.dp)
+                          )
+                      }
+                  }
+
+                  Surface(
+                      shape = CircleShape,
+                      color = Color.Black.copy(alpha = 0.48f),
+                      border = BorderStroke(1.dp, Color.White.copy(alpha = 0.16f)),
+                      onClick = { if (hasNextVideo) onPlayNextVideo() },
+                      modifier = Modifier
+                          .size(44.dp)
+                          .alpha(if (hasNextVideo) 1f else 0.32f)
+                  ) {
+                      Box(contentAlignment = Alignment.Center) {
+                          Icon(
+                              Icons.Default.SkipNext,
+                              contentDescription = "Next video",
+                              tint = Color.White.copy(alpha = 0.92f),
+                              modifier = Modifier.size(22.dp)
+                          )
+                      }
                   }
               }
           }
@@ -8213,12 +8216,6 @@ jobs:
               }
           }
 
-          /**
-           * Redesigned Clean Loop Studio Bar:
-           * - Direct `[ Set A ]` and `[ Set B ]` buttons right inside the bar so you never have to re-tap the top-left icon.
-           * - `[ Hide bar ]` button lets you dismiss the menu and watch the active loop completely unobstructed.
-           * - `[ Save ]` stores the loop to the top-right menu so you can `[ Exit loop ]` and make another loop anytime.
-           */
           @Composable
           private fun SleekLoopStudioBar(
               loopStartMs: Long,
@@ -8242,7 +8239,6 @@ jobs:
                       modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
                       verticalArrangement = Arrangement.spacedBy(8.dp)
                   ) {
-                      // Top Row: Status + Set A / Set B + Watch Unobstructed + Save + Exit Loop
                       Row(
                           modifier = Modifier.fillMaxWidth(),
                           verticalAlignment = Alignment.CenterVertically,
@@ -8289,7 +8285,6 @@ jobs:
                           }
                       }
 
-                      // Bottom Row: Fine 0.1s Nudge Controls for A and B
                       Row(
                           modifier = Modifier
                               .fillMaxWidth()
@@ -8613,7 +8608,7 @@ jobs:
               onResetSubtitleDelay: () -> Unit,
               onSetSubtitleSpeed: (Float) -> Unit,
               onAnchorSubtitleSpeedHere: () -> Unit,
-              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Float?, Float?, Boolean?, Float?) -> Unit,
+              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Boolean?, Float?) -> Unit,
               onSelectAudioTrack: (PlayerTrackOption?) -> Unit,
               onPickExternalAudio: () -> Unit,
               onAdjustAudioDelay: (Long) -> Unit,
@@ -8640,6 +8635,8 @@ jobs:
                   Column(
                       modifier = Modifier
                           .fillMaxSize()
+                          .statusBarsPadding()
+                          .navigationBarsPadding()
                           .padding(14.dp)
                   ) {
                       Row(
@@ -8779,12 +8776,11 @@ jobs:
               onResetSubtitleDelay: () -> Unit,
               onSetSubtitleSpeed: (Float) -> Unit,
               onAnchorSubtitleSpeedHere: () -> Unit,
-              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Float?, Float?, Boolean?, Float?) -> Unit
+              onUpdateSubtitleStyle: (SubtitleFontChoice?, Float?, Int?, Float?, Float?, Boolean?, Float?) -> Unit
           ) {
               var subSection by remember { mutableIntStateOf(0) }
 
               Column(modifier = Modifier.fillMaxSize()) {
-                  // Changed "Typography" to "Fonts" so it never wraps or bleeds across lines!
                   Row(
                       modifier = Modifier.fillMaxWidth(),
                       horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -8922,7 +8918,7 @@ jobs:
                                       badge = "Font",
                                       selected = prefs.subtitleFont == fontChoice,
                                       palette = palette,
-                                      onClick = { onUpdateSubtitleStyle(fontChoice, null, null, null, null, null, null, null, null) }
+                                      onClick = { onUpdateSubtitleStyle(fontChoice, null, null, null, null, null, null) }
                                   )
                               }
 
@@ -8933,7 +8929,7 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleFontSizeSp,
-                                  onValueChange = { onUpdateSubtitleStyle(null, it, null, null, null, null, null, null, null) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, it, null, null, null, null, null) },
                                   valueRange = 14f..42f
                               )
 
@@ -8944,72 +8940,75 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleBottomMarginDp,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, null, null, null, it) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, null, it) },
                                   valueRange = 8f..120f
                               )
 
-                              Text("Subtitle color", style = MaterialTheme.typography.labelMedium, color = Color.White)
-                              Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                              // Refined White, Off-White, Silver & Black Caption Swatches
+                              Text("Caption color", style = MaterialTheme.typography.labelMedium, color = Color.White)
+                              Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                   val colors = listOf(
-                                      0xFFFFFFFF.toInt(),
-                                      0xFFFFEA00.toInt(),
-                                      0xFF00E5FF.toInt(),
-                                      0xFF69F0AE.toInt(),
-                                      0xFFFF80AB.toInt()
+                                      0xFFFFFFFF.toInt() to "Pure White",
+                                      0xFFF5F5F7.toInt() to "Soft Pearl",
+                                      0xFFEFECE6.toInt() to "Warm Ivory",
+                                      0xFFD8DEE9.toInt() to "Cool Silver",
+                                      0xFF18181B.toInt() to "Charcoal Black"
                                   )
-                                  colors.forEach { argb ->
+                                  colors.forEach { (argb, _) ->
+                                      val isSelected = prefs.subtitleTextColorArgb == argb
                                       Box(
                                           modifier = Modifier
-                                              .size(30.dp)
+                                              .size(32.dp)
                                               .clip(CircleShape)
                                               .background(Color(argb))
                                               .border(
-                                                  width = if (prefs.subtitleTextColorArgb == argb) 3.dp else 1.dp,
-                                                  color = if (prefs.subtitleTextColorArgb == argb) palette.primaryAccent else Color.White,
+                                                  width = if (isSelected) 2.5.dp else 1.dp,
+                                                  color = if (isSelected) palette.primaryAccent else Color.White.copy(alpha = 0.45f),
                                                   shape = CircleShape
                                               )
-                                              .clickable { onUpdateSubtitleStyle(null, null, argb, null, null, null, null, null, null) }
+                                              .clickable { onUpdateSubtitleStyle(null, null, argb, null, null, null, null) }
                                       )
                                   }
                               }
 
                               HorizontalDivider(color = palette.specularBorder)
 
-                              // Dedicated Caption Drop Shadow Tuning Sliders
-                              Text("Caption drop shadow", style = MaterialTheme.typography.labelMedium, color = palette.primaryAccent)
-
-                              Text(
-                                  "Shadow blur radius: ${String.format(Locale.US, "%.1f", prefs.subtitleDropShadowRadius)}",
-                                  style = TabularNumeralStyle,
-                                  color = Color.White
-                              )
-                              Slider(
-                                  value = prefs.subtitleDropShadowRadius,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, it, null, null, null, null) },
-                                  valueRange = 0f..16f
-                              )
-
-                              Text(
-                                  "Shadow vertical distance: ${String.format(Locale.US, "%.1f", prefs.subtitleDropShadowOffsetY)}",
-                                  style = TabularNumeralStyle,
-                                  color = Color.White
-                              )
-                              Slider(
-                                  value = prefs.subtitleDropShadowOffsetY,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, it, null, null, null) },
-                                  valueRange = 0f..8f
-                              )
-
-                              Text(
-                                  "Shadow opacity: ${(prefs.subtitleDropShadowOpacity * 100).roundToInt()}%",
-                                  style = TabularNumeralStyle,
-                                  color = Color.White
-                              )
-                              Slider(
-                                  value = prefs.subtitleDropShadowOpacity,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, null, null, null, it, null, null) },
-                                  valueRange = 0f..1f
-                              )
+                              // Clean Thin Border (Outline) Selector — No overwhelming drop-shadow sliders!
+                              Text("Text border", style = MaterialTheme.typography.labelMedium, color = palette.primaryAccent)
+                              Row(
+                                  modifier = Modifier.fillMaxWidth(),
+                                  horizontalArrangement = Arrangement.spacedBy(8.dp)
+                              ) {
+                                  val borderOptions = listOf(
+                                      "None" to 0.0f,
+                                      "Thin" to 1.2f,
+                                      "Medium" to 2.2f
+                                  )
+                                  borderOptions.forEach { (label, widthVal) ->
+                                      val selected = abs(prefs.subtitleOutlineWidth - widthVal) < 0.25f
+                                      Surface(
+                                          shape = RoundedCornerShape(10.dp),
+                                          color = if (selected) palette.primaryAccent else Color.White.copy(alpha = 0.08f),
+                                          border = BorderStroke(
+                                              1.dp,
+                                              if (selected) palette.primaryAccent else palette.specularBorder
+                                          ),
+                                          onClick = { onUpdateSubtitleStyle(null, null, null, null, widthVal, null, null) },
+                                          modifier = Modifier
+                                              .weight(1f)
+                                              .height(36.dp)
+                                      ) {
+                                          Box(contentAlignment = Alignment.Center) {
+                                              Text(
+                                                  text = label,
+                                                  style = MaterialTheme.typography.labelMedium,
+                                                  fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
+                                                  color = if (selected) palette.onPrimaryAccent else Color.White
+                                              )
+                                          }
+                                      }
+                                  }
+                              }
 
                               Text(
                                   "Background box opacity: ${(prefs.subtitleBgOpacity * 100).roundToInt()}%",
@@ -9018,7 +9017,7 @@ jobs:
                               )
                               Slider(
                                   value = prefs.subtitleBgOpacity,
-                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, it, null, null, null, null, null) },
+                                  onValueChange = { onUpdateSubtitleStyle(null, null, null, it, null, null, null) },
                                   valueRange = 0f..1f
                               )
                           }
@@ -9273,8 +9272,8 @@ jobs:
           }
 
           /**
-           * Compact 3-Column / 4-Column Grid View for Playback Speed Presets:
-           * Zero scrolling needed in landscape!
+           * Overhauled Clean Speed Controller:
+           * Spacious typography readout + smooth slider + a single row of 5 essential anchor pills.
            */
           @Composable
           private fun SpeedSideSheetContent(
@@ -9286,68 +9285,96 @@ jobs:
                   modifier = Modifier
                       .fillMaxSize()
                       .verticalScroll(rememberScrollState()),
-                  verticalArrangement = Arrangement.spacedBy(10.dp)
+                  verticalArrangement = Arrangement.spacedBy(18.dp)
               ) {
-                  Row(
-                      modifier = Modifier.fillMaxWidth(),
-                      horizontalArrangement = Arrangement.SpaceBetween,
-                      verticalAlignment = Alignment.CenterVertically
+                  Surface(
+                      shape = RoundedCornerShape(16.dp),
+                      color = Color.White.copy(alpha = 0.05f),
+                      border = BorderStroke(1.dp, palette.specularBorder),
+                      modifier = Modifier.fillMaxWidth()
                   ) {
-                      Text(
-                          text = String.format(Locale.US, "Speed: %.2fx", playbackSpeed),
-                          style = TabularMonoStyle,
-                          fontSize = 15.sp,
-                          fontWeight = FontWeight.Bold,
-                          color = palette.primaryAccent
-                      )
-                      Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                          MicroTunerChip(text = "-0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed - 0.05f) })
-                          MicroTunerChip(text = "+0.05x", onClick = { onSetPlaybackSpeed(playbackSpeed + 0.05f) })
-                          MicroTunerChip(text = "1.0x", highlightColor = palette.tertiaryLoopAccent, onClick = { onSetPlaybackSpeed(1.0f) })
+                      Column(
+                          modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp),
+                          horizontalAlignment = Alignment.CenterHorizontally,
+                          verticalArrangement = Arrangement.spacedBy(12.dp)
+                      ) {
+                          Row(
+                              modifier = Modifier.fillMaxWidth(),
+                              horizontalArrangement = Arrangement.SpaceBetween,
+                              verticalAlignment = Alignment.CenterVertically
+                          ) {
+                              IconButton(
+                                  onClick = { onSetPlaybackSpeed((playbackSpeed - 0.05f).coerceAtLeast(0.25f)) },
+                                  modifier = Modifier
+                                      .size(36.dp)
+                                      .clip(CircleShape)
+                                      .background(Color.White.copy(alpha = 0.08f))
+                              ) {
+                                  Icon(Icons.Default.Remove, contentDescription = "Slower", tint = Color.White, modifier = Modifier.size(18.dp))
+                              }
+
+                              Text(
+                                  text = String.format(Locale.US, "%.2fx", playbackSpeed),
+                                  style = TabularMonoStyle,
+                                  fontSize = 26.sp,
+                                  fontWeight = FontWeight.Bold,
+                                  color = palette.primaryAccent
+                              )
+
+                              IconButton(
+                                  onClick = { onSetPlaybackSpeed((playbackSpeed + 0.05f).coerceAtMost(3.5f)) },
+                                  modifier = Modifier
+                                      .size(36.dp)
+                                      .clip(CircleShape)
+                                      .background(Color.White.copy(alpha = 0.08f))
+                              ) {
+                                  Icon(Icons.Default.Add, contentDescription = "Faster", tint = Color.White, modifier = Modifier.size(18.dp))
+                              }
+                          }
+
+                          Slider(
+                              value = playbackSpeed,
+                              onValueChange = { onSetPlaybackSpeed((it * 20f).roundToInt() / 20f) },
+                              valueRange = 0.25f..3.0f
+                          )
                       }
                   }
 
-                  Slider(
-                      value = playbackSpeed,
-                      onValueChange = { onSetPlaybackSpeed((it * 20f).roundToInt() / 20f) },
-                      valueRange = 0.25f..3.5f
-                  )
-
-                  val speeds = listOf(0.25f, 0.50f, 0.75f, 1.0f, 1.25f, 1.50f, 1.75f, 2.0f, 2.50f, 3.0f, 3.50f)
-                  Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                      speeds.chunked(4).forEach { rowSpeeds ->
-                          Row(
-                              modifier = Modifier.fillMaxWidth(),
-                              horizontalArrangement = Arrangement.spacedBy(8.dp)
+                  // Single Spacious Row of 5 Essential Preset Pills
+                  val essentialPresets = listOf(0.75f, 1.0f, 1.25f, 1.5f, 2.0f)
+                  Row(
+                      modifier = Modifier.fillMaxWidth(),
+                      horizontalArrangement = Arrangement.spacedBy(8.dp)
+                  ) {
+                      essentialPresets.forEach { spd ->
+                          val selected = abs(playbackSpeed - spd) < 0.02f
+                          val label = when (spd) {
+                              1.0f -> "1x"
+                              1.5f -> "1.5x"
+                              2.0f -> "2x"
+                              else -> String.format(Locale.US, "%.2fx", spd)
+                          }
+                          Surface(
+                              shape = CircleShape,
+                              color = if (selected) palette.primaryAccent else Color.White.copy(alpha = 0.07f),
+                              border = BorderStroke(
+                                  1.dp,
+                                  if (selected) palette.primaryAccent else palette.specularBorder
+                              ),
+                              onClick = { onSetPlaybackSpeed(spd) },
+                              modifier = Modifier
+                                  .weight(1f)
+                                  .height(40.dp)
                           ) {
-                              rowSpeeds.forEach { spd ->
-                                  val selected = abs(playbackSpeed - spd) < 0.02f
-                                  Surface(
-                                      shape = RoundedCornerShape(10.dp),
-                                      color = if (selected) palette.primaryAccent else Color.White.copy(alpha = 0.08f),
-                                      border = BorderStroke(
-                                          1.dp,
-                                          if (selected) palette.primaryAccent else palette.specularBorder
-                                      ),
-                                      onClick = { onSetPlaybackSpeed(spd) },
-                                      modifier = Modifier
-                                          .weight(1f)
-                                          .height(38.dp)
-                                  ) {
-                                      Box(contentAlignment = Alignment.Center) {
-                                          Text(
-                                              text = if (spd == 1.0f) "1x" else String.format(Locale.US, "%.2fx", spd).removeSuffix("0x") + "x",
-                                              style = TabularMonoStyle,
-                                              fontSize = 12.sp,
-                                              fontWeight = FontWeight.Bold,
-                                              color = if (selected) palette.onPrimaryAccent else Color.White,
-                                              textAlign = TextAlign.Center
-                                          )
-                                      }
-                                  }
-                              }
-                              repeat(4 - rowSpeeds.size) {
-                                  Spacer(Modifier.weight(1f))
+                              Box(contentAlignment = Alignment.Center) {
+                                  Text(
+                                      text = label,
+                                      style = TabularMonoStyle,
+                                      fontSize = 12.sp,
+                                      fontWeight = FontWeight.Bold,
+                                      color = if (selected) palette.onPrimaryAccent else Color.White,
+                                      textAlign = TextAlign.Center
+                                  )
                               }
                           }
                       }
