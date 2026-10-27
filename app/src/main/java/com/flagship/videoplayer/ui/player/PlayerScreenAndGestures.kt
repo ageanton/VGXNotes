@@ -417,7 +417,7 @@ fun FlagshipPlayerScreen(
                         )
                     }
             ) {
-                if (doubleTapSide != 0 && doubleTapAccumulatedSec != 0) {
+                if (doubleTapSide != 0 && doubleTapSeekAccumulatedSec != 0) {
                     Surface(
                         shape = RoundedCornerShape(10.dp),
                         color = Color.Black.copy(alpha = 0.70f),
@@ -426,7 +426,7 @@ fun FlagshipPlayerScreen(
                             .padding(horizontal = 10.dp)
                     ) {
                         Text(
-                            text = "${if (doubleTapSide > 0) "+" else "-"}${abs(doubleTapAccumulatedSec)}s",
+                            text = "${if (doubleTapSide > 0) "+" else "-"}${abs(doubleTapSeekAccumulatedSec)}s",
                             style = TabularMonoStyle,
                             fontWeight = FontWeight.Bold,
                             fontSize = 11.sp,
