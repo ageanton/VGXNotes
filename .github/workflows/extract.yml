@@ -9,8 +9,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract
         run: |
+          echo "Files in repo:"
+          find . -path ./.git -prune -o -type f -print
+          SRC=$(grep -rl "rootProject.name" --exclude-dir=.git . | head -1)
+          if [ -z "$SRC" ]; then
+            echo "ERROR: could not find your source file in the repo"
+            exit 1
+          fi
+          echo "Using: $SRC"
           awk '
           /^ *cat << .EOF. > / {
+            ind = match($0, /[^ ]/) - 1
             match($0, /> [^ ]+$/)
             out = substr($0, RSTART + 2)
             dir = out
@@ -22,10 +31,11 @@ jobs:
           inblk && /^ *EOF$/ { close(out); inblk = 0; next }
           inblk {
             line = $0
-            if (substr(line, 1, 10) == "          ") line = substr(line, 11)
+            pad = sprintf("%" ind "s", "")
+            if (ind > 0 && substr(line, 1, ind) == pad) line = substr(line, ind + 1)
             print line > out
           }
-          ' vgx_source.txt
+          ' "$SRC"
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add -A
