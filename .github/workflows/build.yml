@@ -35,43 +35,26 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Download Fonts
+      - name: Generate Project from Source Text File
         run: |
           set -e
-          mkdir -p app/src/main/res/font
-          sudo apt-get update -y && sudo apt-get install -y fonts-dejavu-core fonts-liberation2 curl file
+          SCRIPT_FILE=$(grep -l "settings.gradle.kts" *.txt *.sh 2>/dev/null | head -n 1)
+          if [ -z "$SCRIPT_FILE" ]; then
+            echo "Error: Could not find your source generator .txt or .sh file in the repository root."
+            exit 1
+          fi
+          echo "Generating project from: $SCRIPT_FILE"
+          tr -d '\r' < "$SCRIPT_FILE" | bash
 
-          get_font() {
-            curl -sL --retry 3 --connect-timeout 10 "$1" -o "$2" || true
-            if [ ! -s "$2" ] || ! file "$2" | grep -qiE "font|TrueType|OpenType"; then
-              cp "$3" "$2"
-            fi
-          }
-
-          F=app/src/main/res/font
-          G=https://github.com/google/fonts/raw/main/ofl
-          D=/usr/share/fonts/truetype/dejavu
-
-          get_font "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_regular.ttf $D/DejaVuSans.ttf
-          get_font "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_medium.ttf $D/DejaVuSans.ttf
-          get_font "$G/inter/Inter%5Bopsz,wght%5D.ttf" $F/inter_bold.ttf $D/DejaVuSans-Bold.ttf
-          get_font "$G/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf" $F/space_grotesk_medium.ttf $D/DejaVuSans.ttf
-          get_font "$G/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf" $F/space_grotesk_bold.ttf $D/DejaVuSans-Bold.ttf
-          get_font "$G/spacemono/SpaceMono-Regular.ttf" $F/space_mono_regular.ttf $D/DejaVuSansMono.ttf
-          get_font "$G/spacemono/SpaceMono-Bold.ttf" $F/space_mono_bold.ttf $D/DejaVuSansMono-Bold.ttf
-          get_font "$G/plusjakartasans/PlusJakartaSans%5Bwght%5D.ttf" $F/plus_jakarta_sans.ttf $D/DejaVuSans.ttf
-          get_font "$G/opensans/OpenSans%5Bwdth,wght%5D.ttf" $F/open_sans.ttf $D/DejaVuSans.ttf
-          get_font "$G/dmsans/DMSans%5Bopsz,wght%5D.ttf" $F/dm_sans.ttf $D/DejaVuSans.ttf
-
-      - name: Initialize Gradle Wrapper & Compile VDX Player Debug APK
+      - name: Initialize Gradle Wrapper & Compile VDX Player Release APK
         run: |
           gradle wrapper --gradle-version 8.9
           chmod +x ./gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleRelease --stacktrace
 
       - name: Upload VDX Player APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: VDX-Player-Debug-APK
-          path: app/build/outputs/apk/debug/*.apk
+          name: VDX-Player-Release-APK
+          path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
